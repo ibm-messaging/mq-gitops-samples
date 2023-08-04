@@ -1,11 +1,7 @@
 # mq-gitops-samples
 GitOps samples for IBM MQ
 
-The deployment samples in this repository are intended for use with an implementation of ArgoCD.
-
-The sample in the 'queue-manager-deployment' folder will deploy a two queue manager uniform-cluster with TLS and a dynamic MQSC update capability.
-
-The sample also has a custom transformer that provides the capability to template any files that Kustomize generates, including the MQSC that gets inserted into the Kubernetes config maps.
+The Kustomize deployment samples in this repository are intended for use with an implementation of ArgoCD. The sample in the 'queue-manager-deployment' folder will deploy a two queue manager uniform-cluster with TLS and a dynamic MQSC update capability. The sample has a custom sed transformer that provides the capability to template any files that Kustomize generates, including the MQSC that gets inserted into Kubernetes config maps.
 
 **Prerequisites:**
 
