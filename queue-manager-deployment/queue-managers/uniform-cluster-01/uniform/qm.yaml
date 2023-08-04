@@ -1,0 +1,24 @@
+apiVersion: mq.ibm.com/v1beta1
+kind: QueueManager
+metadata:
+  name: ibm-mq
+spec:
+  queueManager:
+      resources:
+        limits:
+          cpu: '1'
+        requests:
+          cpu: '1'
+      name: __ENV____QMGRNAME__
+      mqsc:
+      - configMap:
+          name: __qmgrname__-mqsc-configmap
+          items:
+            - static.mqsc
+            - static-uc.mqsc
+      ini:
+      - configMap:
+          name: __qmgrname__-qm-ini-configmap
+          items:
+            - qm.ini
+          

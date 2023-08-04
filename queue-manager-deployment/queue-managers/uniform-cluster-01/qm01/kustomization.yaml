@@ -1,0 +1,25 @@
+namePrefix: qm01-
+
+resources:
+- ../uniform
+
+patchesStrategicMerge:
+- qm.yaml
+
+components:
+- ../../../components/versions/dev
+
+transformers:
+- sed-transformer.yaml
+
+
+# Rename the deployment queue manager name, not the actual queue manager, this gets the prefix from above.
+patches:
+- target:
+    group: mq.ibm.com
+    kind: QueueManager
+  patch: |-
+    - op: replace
+      path: /metadata/name
+      value: qm
+

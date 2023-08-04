@@ -1,0 +1,4 @@
+* Use this file to apply MQSC to all environments/instances of this queue manager.
+
+DEFINE CHANNEL('+AUTOCL+_+QMNAME+') CHLTYPE(clusrcvr) TRPTYPE(TCP) CONNAME('__qmgrname__-qm-ibm-mq(1414)') CLUSTER('+AUTOCL+') REPLACE
+DEFINE SERVICE(APPLY_MQSC) CONTROL(QMGR) SERVTYPE(SERVER) STARTCMD('/mq-config/start-mqsc.sh') STARTARG(__ENV____QMGRNAME__) STOPCMD('/mq-config/stop-mqsc.sh') STOPARG('') STDOUT('') STDERR('') REPLACE

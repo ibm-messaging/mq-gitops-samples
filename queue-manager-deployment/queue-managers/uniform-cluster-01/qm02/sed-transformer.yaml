@@ -1,0 +1,15 @@
+apiVersion: myapp/v1
+kind: basic-transformer
+metadata:
+  name: sed-transformer
+  annotations:
+    config.kubernetes.io/function: |
+      exec: 
+        path: ../../../plugins/sed-transformer.sh
+
+# sedvalue takes the form, what-to-find/what-to-replace-it-with, global match is added in the script
+sed:
+  - sedvalue: __env__/d
+  - sedvalue: __ENV__/D
+  - sedvalue: __qmgrname__/qm02
+  - sedvalue: __QMGRNAME__/QM02

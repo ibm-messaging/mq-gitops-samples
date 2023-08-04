@@ -1,0 +1,12 @@
+apiVersion: mq.ibm.com/v1beta1
+kind: QueueManager
+metadata:
+  name: ibm-mq
+spec:
+  license:
+    accept: true
+    license: L-APIG-CAUEQC
+    use: Development
+  version: 9.3.2.0-r1
+
+  

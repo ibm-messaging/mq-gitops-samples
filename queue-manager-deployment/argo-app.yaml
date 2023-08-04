@@ -1,0 +1,15 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: dev
+  namespace: openshift-gitops
+spec:
+  destination:
+    name: ''
+    namespace: test-cp4i
+    server: 'https://kubernetes.default.svc'
+  source:
+    path: queue-manager-deployment/queue-managers
+    repoURL: 'https://github.com/ibm-messaging/mq-gitops-samples'
+    targetRevision: main 
+  project: default

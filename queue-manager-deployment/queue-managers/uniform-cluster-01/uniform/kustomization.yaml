@@ -1,0 +1,28 @@
+resources:
+- ../../../templates/native-ha
+
+patches:
+- ./qm.yaml
+
+generatorOptions:
+ disableNameSuffixHash: true
+
+# Add uniform-cluster-wide static MQSC and qm.ini file.
+configMapGenerator:
+- name: mqsc-configmap
+  behavior: merge
+  files:
+  - static-uc.mqsc
+  - dynamic.mqsc
+
+- name: qm-ini-configmap
+  behavior: create
+  files:
+  - qm.ini
+
+# Add the configMap that will be used for dynamic updates, this should be used globally i.e. stay the same in each environment.
+
+- name: dynamic-mqsc-configmap
+  behavior: create
+  files:
+  - dynamic.mqsc
