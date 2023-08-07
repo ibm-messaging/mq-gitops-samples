@@ -40,6 +40,11 @@ spec:
         command: [ "sh", "-c" ]
         args: ["kustomize build --enable-alpha-plugins=true --enable-exec" ]
 ```
+Add this to your ArgoCD Application YAML for application scoped plugin enablement,
+```yaml
+plugin:
+  name: kustomize-build-with-params
+```
 
 **Usage:**
 
