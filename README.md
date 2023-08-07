@@ -12,7 +12,8 @@ An OpenShift cluster with a default storage class and the following Operators:
 - cert-manager Operator for Red Hat OpenShift
 
 Patch ArgoCD to allow the use of plugins, first option applies globally, second has application scope.
-  option 1
+
+option 1
 
 ```yaml
 apiVersion: argoproj.io/v1alpha1
