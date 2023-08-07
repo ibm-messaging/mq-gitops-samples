@@ -14,7 +14,6 @@ An OpenShift cluster with a default storage class and the following Operators:
 Patch ArgoCD to allow the use of plugins, first option applies globally, second has application scope.
 
 ```yaml
-
 apiVersion: argoproj.io/v1alpha1
 kind: ArgoCD
 metadata:
@@ -22,13 +21,11 @@ metadata:
   namespace: openshift-gitops
 spec:
   repo:
-        name: kustomize
+  name: kustomize
   kustomizeBuildOptions: '--enable-alpha-plugins=true --enable-exec'
-
 ```
 
 ```yaml
-
 apiVersion: argoproj.io/v1alpha1
 kind: ArgoCD
 metadata:
@@ -36,13 +33,12 @@ metadata:
   namespace: openshift-gitops
 spec:
   repo:
-        name: kustomize
+  name: kustomize
   configManagementPlugins: |
     - name: kustomize-build-with-params
       generate:
         command: [ "sh", "-c" ]
         args: ["kustomize build --enable-alpha-plugins=true --enable-exec" ]
-
 ```
 
 **Usage:**
