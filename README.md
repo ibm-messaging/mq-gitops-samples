@@ -8,7 +8,7 @@ The Kustomize deployment samples in this repository are intended for use with an
 An OpenShift cluster with a default storage class and the following Operators:
 
 - IBM MQ
-- Red Hat OpenShift GitOps
+- Red Hat OpenShift GitOps (ensure ArgoCD has access to the terget project and plugins are enabled)
 - cert-manager Operator for Red Hat OpenShift
 
 Patch ArgoCD to allow the use of plugins, first option applies globally, second has application scope.
@@ -46,6 +46,24 @@ For option 2 add this to your ArgoCD Application YAML for application scoped plu
 ```yaml
 plugin:
   name: kustomize-build-with-params
+```
+
+example role binding
+
+```yaml
+kind: RoleBinding
+apiVersion: rbac.authorization.k8s.io/v1
+metadata:
+  name: argo-test
+  namespace: default
+subjects:
+  - kind: ServiceAccount
+    name: openshift-gitops-argocd-application-controller
+    namespace: openshift-gitops
+roleRef:
+  apiGroup: rbac.authorization.k8s.io
+  kind: ClusterRole
+  name: admin
 ```
 
 **Usage:**
