@@ -11,6 +11,29 @@ An OpenShift cluster with a default storage class and the following Operators:
 - Red Hat OpenShift GitOps
 - cert-manager Operator for Red Hat OpenShift
 
+Patch ArgoCD to allow the use of plugins, first option applies globally, second has application scope.
+
+```yaml
+
+apiVersion: argoproj.io/v1alpha1
+kind: ArgoCD
+metadata:
+  name: openshift-gitops
+  namespace: openshift-gitops
+spec:
+  repo:
+        name: kustomize
+  kustomizeBuildOptions: '--enable-alpha-plugins=true --enable-exec'
+
+  configManagementPlugins: |
+    - name: kustomize-build-with-params
+      generate:
+        command: [ "sh", "-c" ]
+        args: ["kustomize build --enable-alpha-plugins=true --enable-exec" ]
+
+
+```
+
 **Usage:**
 
 Deploy the argo-app.yaml 
