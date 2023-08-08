@@ -26,13 +26,3 @@ configMapGenerator:
   behavior: create
   files:
   - dynamic.mqsc
-
-# Set the target namespace for certificates.
-patches:
-- target:
-    group: cert-manager.io
-    kind: Certificate
-  patch: |-
-    - op: replace
-      path: /metadata/namespace
-      value: default
