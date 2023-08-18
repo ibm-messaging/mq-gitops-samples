@@ -82,7 +82,7 @@ Deploy the argo-app.yaml
 
     oc apply -f argo-app.yaml
 
-
+Kustomize plugin documentation: https://kubectl.docs.kubernetes.io/guides/extending_kustomize/exec_krm_functions/
 Disclaimer
 
 All samples in this repository are provided AS-IS without warranty of any kind, express or implied.  IBM shall not be responsible for any damages arising out of the use of, or otherwise related to, these samples.
