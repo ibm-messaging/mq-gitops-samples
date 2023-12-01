@@ -3,9 +3,6 @@ namePrefix: qm02-
 resources:
 - ../uniform
 
-patchesStrategicMerge:
-- ./qm.yaml
-
 transformers:
 - sed-transformer.yaml
 
@@ -14,6 +11,7 @@ components:
 
 # Rename the deployment queue manager name, not the actual queue manager, this also gets the prefix from above
 patches:
+- path: ./qm.yaml
 - target:
     group: mq.ibm.com
     kind: QueueManager

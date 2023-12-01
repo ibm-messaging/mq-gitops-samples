@@ -5,4 +5,4 @@ generatorOptions:
  disableNameSuffixHash: true
 
 patches:
-  - ./qm.yaml
+  - path: ./qm.yaml

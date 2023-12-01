@@ -4,6 +4,8 @@ metadata:
   name: ibm-mq
 spec:
   queueManager:
+      metrics:
+        enabled: false
       resources:
         limits:
           cpu: '1'
