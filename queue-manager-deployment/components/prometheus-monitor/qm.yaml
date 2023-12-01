@@ -1,0 +1,16 @@
+piVersion: mq.ibm.com/v1beta1
+kind: QueueManager
+metadata:
+  name: ibm-mq
+spec:
+  queueManager:
+    metrics:
+      enabled: false
+  template:
+    pod:
+      containers:
+        name: qmgr
+        ports:
+          - containerPort: 9157
+            protocol: TCP
+
