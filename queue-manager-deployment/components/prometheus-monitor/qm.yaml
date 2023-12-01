@@ -1,16 +1,13 @@
-piVersion: mq.ibm.com/v1beta1
-kind: QueueManager
-metadata:
-  name: ibm-mq
-spec:
-  queueManager:
-    metrics:
-      enabled: false
-  template:
-    pod:
-      containers:
-        name: qmgr
-        ports:
-          - containerPort: 9157
-            protocol: TCP
+apiVersion: kustomize.config.k8s.io/v1alpha1
+kind: Component
+
+generatorOptions:
+ disableNameSuffixHash: true
+
+resources:
+  - ./service.yaml
+  - ./service-monitor.yaml
+
+patches:
+  - path: ./qm.yaml
 
