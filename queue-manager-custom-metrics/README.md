@@ -78,6 +78,6 @@ To find the tag for a task image search here,
 
 Pipeline parameters:
 
-mqVersion - used to select the MQ image and used for the resulting custom images.
-mqSrcImage - this is the name of the MQ image held in the IBM registries, note that the URL for develper eddition is different, you will also need an IBM entitlement key to download production images.
-targetregistry - where you want the buildah tasks to store the mq-metrics image and your final customised image.
+  mqVersion - used to select the MQ image and used for the resulting custom images.
+  mqSrcImage - this is the name of the MQ image held in the IBM registries, note that the URL for develper eddition is different, you will also need an IBM entitlement key to download production images.
+  targetregistry - where you want the buildah tasks to store the mq-metrics image and your final customised image.
