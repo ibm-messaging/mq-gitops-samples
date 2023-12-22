@@ -69,14 +69,14 @@ Example commands are in the **example\-commands\.sh file**
 7. Once you have a customised image you can create a queue manager YAML and specify your custom image on the spec.queueManager.image field.
 8. Add the MQSC to start the collector and emmiter as an MQ Service, see cmd/mq_prometheus/mq_prometheus.mqsc in the https://github.com/ibm-messaging/mq-metric-samples repo.
 
-Notes:
+**Notes:**
 
 To find the tag for a task image search here, 
 
 [Red Hat Certified Products & Services \- Red Hat Ecosystem Catalog](https://catalog.redhat.com/)
 
 
-Pipeline parameters:
+**Pipeline parameters:**
 
 - mqVersion - used to select the MQ image and used for the resulting custom images.
 - mqSrcImage - this is the name of the MQ image held in the IBM registries, note that the URL for develper eddition is different, you will also need an IBM entitlement key to download production images.
