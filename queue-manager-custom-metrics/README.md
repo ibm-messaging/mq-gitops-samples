@@ -8,7 +8,7 @@ Customising the IBM supplied container image is supported but you must be aware 
 
 ### Versioning
 
-The first thing to consider is version control\. All MQ images are tagged with a version number in the V\.M\.R\.F format, I strongly recommend that you use that same version number for your own images but change the name of the image to reflect the customisation\. In following example we will take the image name and version of MQ developer edition and add “\-with\-metrics” e\.g\. “mq\-with\-metrics: 9\.3\.3\.2\-r3”, you can add something of your choosing \- perhaps a company or project name\.
+The first thing to consider is version control\. All MQ images are tagged with a version number in the V\.M\.R\.F format, I strongly recommend that you use that same version number for your own images but change the name of the image to reflect the customisation\. In following example we will take the image name and version of MQ developer edition and add “\-with\-metrics” e\.g\. “mq\-with\-metrics: 9\.3\.3\.2\-r3”, you can add something of your choosing \- perhaps a company or project name\. The pipeline sample allows you to specify the version and source MQ image as parameters, these are carried through in multiple places, you only have to update the pipeline run but it's probably a good idea to update the defaults in the pipeline tasks too.
 
 MQ image version history can be found here,
 
@@ -29,6 +29,8 @@ If you want to run the Metrics Collector and Prometheus Emitter inside the same 
 The main advantage of putting the metrics code into the MQ image is that all the metric data is collected within the same container as the queue manager and only the Prometheus data is transferred across the network to the Prometheus pod, this is more efficient and scalable than having hundreds of additional pods receiving the data via client connections\. The other advantage is that you don’t have to setup client security and connections on the queue manager as the queue manager itself will run the collector and emitter\.
 
 ## Steps to build the custom image
+
+By following steps you will and up with a pipeline that will clone the mq-metric-samples repository, use buldah to build the mq_prometheus collector in an image, clone this repo to get the Dockerfile that will efficiently take some of the files from the metrics image and copy them into the official MQ image and then finally push that image into a registry that can be used to run IBM MQ in a container with metrics enabled.
 
 1. Install OpenShift Pipelines. Go to the OCP OperatorHub and install ‘Red Hat OpenShift Pipelines’, you can take the defaults for this example\. Tip seach for ‘pipeline’
 
@@ -64,9 +66,21 @@ or
 
 Example commands are in the **example\-commands\.sh file**
 
-Notes:
+7. Once you have a customised image you can create a queue manager YAML and specify your custom image on the spec.queueManager.image field.
+8. Add the MQSC to start the collector and emmiter as an MQ Service, see cmd/mq_prometheus/mq_prometheus.mqsc in the https://github.com/ibm-messaging/mq-metric-samples repo.
+
+**Notes:**
 
 To find the tag for a task image search here, 
 
 [Red Hat Certified Products & Services \- Red Hat Ecosystem Catalog](https://catalog.redhat.com/)
+
+
+**Pipeline parameters:**
+
+- mqVersion - used to select the MQ image and used for the resulting custom images.
+- mqSrcImage - this is the name of the MQ image held in the IBM registries, note that the URL for develper eddition is different, you will also need an IBM entitlement key to download production images.
+- targetRegistry - where you want the buildah tasks to store the mq-metrics image and your final customised image. Also not that I inject the namespace when using the internal registry e.g., image-registry.openshift-image-registry.svc:5000/$(context.pipelineRun.namespace) you might need to tweak the pipeline to support your own registry.
+
+  Also note the the Dockerfile uses the above params via --build-args on the final buildah task.
 
