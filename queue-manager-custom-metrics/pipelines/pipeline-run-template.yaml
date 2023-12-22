@@ -1,0 +1,33 @@
+apiVersion: template.openshift.io/v1
+kind: Template
+metadata:
+  name: mq-metrics-pipeline-run-template
+objects:
+  - apiVersion: tekton.dev/v1beta1
+    kind: PipelineRun
+    metadata:
+      name: mq-metrics-pipeline-run-${runNumber}
+    spec:
+      params:
+        - name: mqVersion
+          value: 9.3.3.1-r1
+        - name: mqSrcImage
+          value: icr.io/ibm-messaging/mq
+        - name: targetRegistry
+          value: image-registry.openshift-image-registry.svc:5000
+      pipelineRef:
+        name: build-mq-with-metrics
+      serviceAccountName: pipeline        
+      workspaces:
+        - name: mq-metrics-workspace
+          persistentVolumeClaim:
+            claimName: mq-metrics-workspace-pvc
+        - name: mq-metrics-dockerconfig
+          secret:
+            secretName: internal-registry-creds
+parameters:
+  - name: runNumber
+    displayName: Unique run number
+    description: Use a unique run number or delete the last PipelineRun
+    value: "01"
+    required: true
