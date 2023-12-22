@@ -18,7 +18,7 @@ spec:
     - name: git-clone-metrics
       params:
         - name: url
-          value: 'https://github.com/martinevansibm/mq-metric-samples'
+          value: 'https://github.com/ibm-messaging/mq-gitops-samples'
         - name: revision
           value: master
         - name: refspec
