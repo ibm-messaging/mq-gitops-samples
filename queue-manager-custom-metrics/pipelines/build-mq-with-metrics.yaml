@@ -10,7 +10,7 @@ spec:
     - default: icr.io/ibm-messaging/mq
       name: mqSrcImage
       type: string
-    - default: image-registry.openshift-image-registry.svc:5000
+    - default: image-registry.openshift-image-registry.svc:5000/$(context.pipelineRun.namespace)
       name: targetRegistry
       type: string
 
@@ -60,7 +60,7 @@ spec:
       params:
         - name: IMAGE
           value: >-
-            $(params.targetRegistry)/$(context.pipelineRun.namespace)/mq-metrics:$(params.mqVersion)
+            $(params.targetRegistry)/mq-metrics:$(params.mqVersion)
         - name: BUILDER_IMAGE
           value: 'registry.redhat.io/rhel8/buildah:latest'
         - name: STORAGE_DRIVER
@@ -138,7 +138,7 @@ spec:
       params:
         - name: IMAGE
           value: >-
-            $(params.targetRegistry)/$(context.pipelineRun.namespace)/mq-with-metrics:$(params.mqVersion)
+            $(params.targetRegistry)/mq-with-metrics:$(params.mqVersion)
         - name: BUILDER_IMAGE
           value: 'registry.redhat.io/rhel8/buildah:latest'
         - name: STORAGE_DRIVER
@@ -152,7 +152,7 @@ spec:
         - name: FORMAT
           value: oci
         - name: BUILD_EXTRA_ARGS
-          value: '--build-arg mqVersion=$(params.mqVersion)'
+          value: '--build-arg mqVersion=$(params.mqVersion) --build-arg mqSrcImage=$(params.mqSrcImage) --build-arg targetRegistry=$(params.targetRegistry)'
         - name: PUSH_EXTRA_ARGS
           value: ''
         - name: SKIP_PUSH

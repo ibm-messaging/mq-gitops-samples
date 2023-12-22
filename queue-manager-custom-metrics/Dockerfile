@@ -2,7 +2,7 @@ ARG mqSrcImage="icr.io/ibm-messaging/mq"
 
 ARG mqVersion="9.3.3.1-r1"
 
-ARG targetRegistry="mq-demo"
+ARG targetRegistry="image-registry.openshift-image-registry.svc:5000/mq-demo"
 
 FROM ${targetRegistry}/mq-metrics:${mqVersion} as mq-metrics
 

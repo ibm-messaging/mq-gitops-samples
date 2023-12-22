@@ -14,7 +14,7 @@ objects:
         - name: mqSrcImage
           value: icr.io/ibm-messaging/mq
         - name: targetRegistry
-          value: image-registry.openshift-image-registry.svc:5000
+          value: image-registry.openshift-image-registry.svc:5000/$(context.pipelineRun.namespace)
       pipelineRef:
         name: build-mq-with-metrics
       serviceAccountName: pipeline        
