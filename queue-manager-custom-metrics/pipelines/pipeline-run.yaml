@@ -1,12 +1,8 @@
 apiVersion: tekton.dev/v1beta1
 kind: PipelineRun
 metadata:
-  name: mq-metrics-pipeline-run-${runNumber}
+  name: mq-metrics-pipeline-run-01
 spec:
-#  podTemplate:
-#    securityContext:
-#      runAsNonRoot: true
-#      runAsUser: 65532
   params:
     - name: mqVersion
       value: 9.3.3.1-r1
