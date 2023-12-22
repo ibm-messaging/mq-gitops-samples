@@ -78,9 +78,8 @@ To find the tag for a task image search here,
 
 **Pipeline parameters:**
 
-- mqVersion - used to select the MQ image and used for the resulting custom images.
-- mqSrcImage - this is the name of the MQ image held in the IBM registries, note that the URL for develper eddition is different, you will also need an IBM entitlement key to download production images.
-- targetRegistry - where you want the buildah tasks to store the mq-metrics image and your final customised image. Also not that I inject the namespace when using the internal registry e.g., image-registry.openshift-image-registry.svc:5000/$(context.pipelineRun.namespace) you might need to tweak the pipeline to support your own registry.
-
-  Also note the the Dockerfile uses the above params via --build-args on the final buildah task.
+- mqVersion - used to select the specified version of MQ image from the IBM registry, and used for the resulting custom images in the target registry aka your registry to ensure consistency. The pipeline and Dockerfile use this parameter.
+- mqSrcImage - this is the name of the MQ image and the IBM registry, note that the URLs for the production and developer registries are different, you will also need an IBM entitlement key to download production images.
+- targetRegistry - where you want the buildah tasks to store the mq-metrics image and your final customised image. Also note that I inject the namespace when using the internal registry e.g., image-registry.openshift-image-registry.svc:5000/$(context.pipelineRun.namespace) you might need to tweak the pipeline to support your own registry.
+- *Also note that the the Dockerfile in this repo uses the above params passed in via BUILD_EXTRA_ARGS field e.g., --build-arg mqVersion=VRMF on the final buildah task.*
 
