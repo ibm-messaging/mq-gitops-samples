@@ -38,7 +38,7 @@ By following steps you will and up with a pipeline that will clone the mq-metric
 
 To create,
 
-`oc new-project mq-demo --display-name "My MQ Project"`
+```oc new-project mq-demo --display-name "My MQ Project"```
 
 To switch to existing,
 
