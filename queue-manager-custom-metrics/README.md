@@ -38,7 +38,7 @@ By following the steps below you will end up with a pipeline that will clone the
 
 1. Install OpenShift Pipelines. Go to the OCP OperatorHub and install ‘Red Hat OpenShift Pipelines’, you can take the defaults for this example\.
 
-:bulb: **Tip: seach for ‘pipeline’**
+:bulb: **Tip: search for ‘pipeline’**
 
 3. Create a namespace. If you don’t have an existing project create a new one, we will be using ‘mq\-demo’ for this example\. When you login to the command line make sure you are using the right project as the YAML files do not specify a namespace\.
 
@@ -110,7 +110,7 @@ To find the tag for a task image search here,
 - targetRegistry - where you want the buildah tasks to store the mq-metrics image and your final customised image. Also note that I inject the namespace when using the internal registry e.g., image-registry.openshift-image-registry.svc:5000/$(context.pipelineRun.namespace) you might need to tweak the pipeline to support your own registry.
 
 ---
-**NOTE**
+:exclamation: **NOTE**
 
 The the Dockerfile in this repo uses the above params passed in via BUILD_EXTRA_ARGS field e.g., --build-arg mqVersion=VRMF on the final buildah task.*
 
