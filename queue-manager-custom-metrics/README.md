@@ -36,33 +36,39 @@ By following steps you will and up with a pipeline that will clone the mq-metric
 
 2. Create a namespace. If you don’t have an existing project create a new one, we will be using ‘mq\-demo’ for this example\. When you login to the command line make sure you are using the right project as the YAML files do not specify a namespace\.
 
-`$oc project mq-demo`
+To create,
+
+`oc new-project mq-demo --display-name "My MQ Project"`
+
+To switch to existing,
+
+`oc project mq-demo`
 
 3. Create a PVC. In the mq\-demo project under ‘Storage’ \- create a PersistentVolumeClaim \(PVC\) for the pipeline to use as a shared workspace between tasks e\.g\., 'mq\-metrics\-workspace', request 4GB, select RWO and volume mode Filesystem\. There is a sample PVC YAML file in the repo\.
 
-`$oc create -f example-pvc.yaml`
+`oc create -f example-pvc.yaml`
 
 4. Create Secrets for docker\.io and your external image registry. For this example I am using the internal image registry located here, image\-registry\.openshift\-image\-registry\.svc:5000, in the repo you will find a file called **setup\-commands\.sh** with examples for creating the secrets and linking them to the service account\.
 
-See `setup-commands.sh`
+For examples see, `setup-commands.sh`
 
 Note: You don’t need to add docker\.io unless you get the error saying downloads exceeded\. Also note that it is the buildah task that requires the external registry credentials, these are mapped to its workspace for dockerconfig\.
 
 5. Create a new Pipeline called ‘build\-mq\-with\-metrics’ using the example YAML from the repo under the pipelines folder\.
 
-`$oc create -f build-mq-with-metrics.yaml`
+`oc create -f build-mq-with-metrics.yaml`
 
 6. Run the Pipeline. To run the pipeline you can either use the example pipeline\-run yaml or you can create a template that allows you to change the name of the pipeline run when you insert it into your cluster, this is handy if you want to keep old runs\.
 
 Either
 
-`$oc create -f pipeline-run.yaml`
+`oc create -f pipeline-run.yaml`
 
 or
 
-`$oc create -f pipeline-run-template.yaml`
+`oc create -f pipeline-run-template.yaml`
 
-`$oc process mq-metrics-pipeline-run-template --param=runNumber=02 | oc create -f -`
+`oc process mq-metrics-pipeline-run-template --param=runNumber=02 | oc create -f -`
 
 Example commands are in the **example\-commands\.sh file**
 
