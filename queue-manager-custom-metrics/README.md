@@ -2,6 +2,8 @@
 
 IBM provide pre\-built IBM MQ \(MQ\) container images for use with the MQ Operator, but what if you want to customise an image by adding your own exits, or the latest MQ Metrics collector? This article will describe some good practices and methods for customising an IBM supplied container image\. The notes and examples are based on an IBM MQ Operator controlled deployment running on the Red Hat OpenShift Container Platform \(OCP\)\.
 
+Estimated reading time 5 minutes, typical execution time 15-20 minutes.
+
 ## Important considerations and good practice for using a custom image
 
 Customising the IBM supplied container image is supported but you must be aware that there are implications, please read the following notes and reach out to your IBM representative if there is anything you are unsure of\.
@@ -30,39 +32,64 @@ The main advantage of putting the metrics code into the MQ image is that all the
 
 ## Steps to build the custom image
 
-By following steps you will and up with a pipeline that will clone the mq-metric-samples repository, use buldah to build the mq_prometheus collector in an image, clone this repo to get the Dockerfile that will efficiently take some of the files from the metrics image and copy them into the official MQ image and then finally push that image into a registry that can be used to run IBM MQ in a container with metrics enabled.
+By following the steps below you will end up with a pipeline that will clone the mq-metric-samples repository, use buildah to build the mq_prometheus collector image and insert into a registry, clone this repository to get a sample Dockerfile that will efficiently copy some files from the metrics image into the official MQ image and then finally push that image into a registry that can be used to run IBM MQ in a container with metrics.
 
-1. Install OpenShift Pipelines. Go to the OCP OperatorHub and install ‘Red Hat OpenShift Pipelines’, you can take the defaults for this example\. Tip seach for ‘pipeline’
+**Steps:**
 
-2. Create a namespace. If you don’t have an existing project create a new one, we will be using ‘mq\-demo’ for this example\. When you login to the command line make sure you are using the right project as the YAML files do not specify a namespace\.
+1. Install OpenShift Pipelines. Go to the OCP OperatorHub and install ‘Red Hat OpenShift Pipelines’, you can take the defaults for this example\.
 
-`$oc project mq-demo`
+:bulb: **Tip: search for ‘pipeline’**
+
+3. Create a namespace. If you don’t have an existing project create a new one, we will be using ‘mq\-demo’ for this example\. When you login to the command line make sure you are using the right project as the YAML files do not specify a namespace\.
+
+To create,
+
+```
+oc new-project mq-demo --display-name "My MQ Project"
+```
+
+To switch to existing,
+
+```
+oc project mq-demo
+```
 
 3. Create a PVC. In the mq\-demo project under ‘Storage’ \- create a PersistentVolumeClaim \(PVC\) for the pipeline to use as a shared workspace between tasks e\.g\., 'mq\-metrics\-workspace', request 4GB, select RWO and volume mode Filesystem\. There is a sample PVC YAML file in the repo\.
 
-`$oc create -f example-pvc.yaml`
+```
+oc create -f example-pvc.yaml
+```
 
 4. Create Secrets for docker\.io and your external image registry. For this example I am using the internal image registry located here, image\-registry\.openshift\-image\-registry\.svc:5000, in the repo you will find a file called **setup\-commands\.sh** with examples for creating the secrets and linking them to the service account\.
 
-See `setup-commands.sh`
+For examples see, `setup-commands.sh`
 
 Note: You don’t need to add docker\.io unless you get the error saying downloads exceeded\. Also note that it is the buildah task that requires the external registry credentials, these are mapped to its workspace for dockerconfig\.
 
 5. Create a new Pipeline called ‘build\-mq\-with\-metrics’ using the example YAML from the repo under the pipelines folder\.
 
-`$oc create -f build-mq-with-metrics.yaml`
+```
+cd pipelines
+oc create -f build-mq-with-metrics.yaml
+```
 
 6. Run the Pipeline. To run the pipeline you can either use the example pipeline\-run yaml or you can create a template that allows you to change the name of the pipeline run when you insert it into your cluster, this is handy if you want to keep old runs\.
 
 Either
 
-`$oc create -f pipeline-run.yaml`
+```
+oc create -f pipeline-run.yaml
+```
 
 or
 
-`$oc create -f pipeline-run-template.yaml`
+```
+oc create -f pipeline-run-template.yaml
+```
 
-`$oc process mq-metrics-pipeline-run-template --param=runNumber=02 | oc create -f -`
+```
+oc process mq-metrics-pipeline-run-template --param=runNumber=02 | oc create -f -
+```
 
 Example commands are in the **example\-commands\.sh file**
 
@@ -78,9 +105,13 @@ To find the tag for a task image search here,
 
 **Pipeline parameters:**
 
-- mqVersion - used to select the MQ image and used for the resulting custom images.
-- mqSrcImage - this is the name of the MQ image held in the IBM registries, note that the URL for develper eddition is different, you will also need an IBM entitlement key to download production images.
-- targetRegistry - where you want the buildah tasks to store the mq-metrics image and your final customised image. Also not that I inject the namespace when using the internal registry e.g., image-registry.openshift-image-registry.svc:5000/$(context.pipelineRun.namespace) you might need to tweak the pipeline to support your own registry.
+- mqVersion - used to select the specified version of MQ image from the IBM registry, and used for the resulting custom images in the target registry aka your registry to ensure consistency. The pipeline and Dockerfile use this parameter.
+- mqSrcImage - this is the name of the MQ image and the IBM registry, note that the URLs for the production and developer registries are different, you will also need an IBM entitlement key to download production images.
+- targetRegistry - where you want the buildah tasks to store the mq-metrics image and your final customised image. Also note that I inject the namespace when using the internal registry e.g., image-registry.openshift-image-registry.svc:5000/$(context.pipelineRun.namespace) you might need to tweak the pipeline to support your own registry.
 
-  Also note the the Dockerfile uses the above params via --build-args on the final buildah task.
+---
+:exclamation: **NOTE**
 
+The the Dockerfile in this repo uses the above params passed in via BUILD_EXTRA_ARGS field e.g., --build-arg mqVersion=VRMF on the final buildah task.*
+
+---
