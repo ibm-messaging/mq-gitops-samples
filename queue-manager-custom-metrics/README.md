@@ -110,8 +110,7 @@ To find the tag for a task image search here,
 - targetRegistry - where you want the buildah tasks to store the mq-metrics image and your final customised image. Also note that I inject the namespace when using the internal registry e.g., image-registry.openshift-image-registry.svc:5000/$(context.pipelineRun.namespace) you might need to tweak the pipeline to support your own registry.
 
 ---
-:exclamation: **NOTE**
 
-The the Dockerfile in this repo uses the above params passed in via BUILD_EXTRA_ARGS field e.g., --build-arg mqVersion=VRMF on the final buildah task.*
+:exclamation: **NOTE:** The sample Dockerfile in this repo also uses the above parameters, they are passed in via BUILD_EXTRA_ARGS field e.g., --build-arg mqVersion=VRMF on the final buildah task.
 
 ---
