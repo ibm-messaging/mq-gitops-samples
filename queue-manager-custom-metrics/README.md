@@ -36,9 +36,11 @@ By following the steps below you will end up with a pipeline that will clone the
 
 **Steps:**
 
-1. Install OpenShift Pipelines. Go to the OCP OperatorHub and install ‘Red Hat OpenShift Pipelines’, you can take the defaults for this example\. Tip seach for ‘pipeline’
+1. Install OpenShift Pipelines. Go to the OCP OperatorHub and install ‘Red Hat OpenShift Pipelines’, you can take the defaults for this example\.
 
-2. Create a namespace. If you don’t have an existing project create a new one, we will be using ‘mq\-demo’ for this example\. When you login to the command line make sure you are using the right project as the YAML files do not specify a namespace\.
+:bulb: **Tip: seach for ‘pipeline’**
+
+3. Create a namespace. If you don’t have an existing project create a new one, we will be using ‘mq\-demo’ for this example\. When you login to the command line make sure you are using the right project as the YAML files do not specify a namespace\.
 
 To create,
 
