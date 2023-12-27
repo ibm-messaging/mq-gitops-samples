@@ -2,6 +2,8 @@
 
 IBM provide pre\-built IBM MQ \(MQ\) container images for use with the MQ Operator, but what if you want to customise an image by adding your own exits, or the latest MQ Metrics collector? This article will describe some good practices and methods for customising an IBM supplied container image\. The notes and examples are based on an IBM MQ Operator controlled deployment running on the Red Hat OpenShift Container Platform \(OCP\)\.
 
+Reading time 5 minutes, execution time 15-20 minutes.
+
 ## Important considerations and good practice for using a custom image
 
 Customising the IBM supplied container image is supported but you must be aware that there are implications, please read the following notes and reach out to your IBM representative if there is anything you are unsure of\.
@@ -63,6 +65,7 @@ Note: You don’t need to add docker\.io unless you get the error saying downloa
 5. Create a new Pipeline called ‘build\-mq\-with\-metrics’ using the example YAML from the repo under the pipelines folder\.
 
 ```
+cd pipelines
 oc create -f build-mq-with-metrics.yaml
 ```
 
