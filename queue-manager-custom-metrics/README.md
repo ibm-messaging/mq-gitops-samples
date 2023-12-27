@@ -32,7 +32,9 @@ The main advantage of putting the metrics code into the MQ image is that all the
 
 ## Steps to build the custom image
 
-By following steps you will and up with a pipeline that will clone the mq-metric-samples repository, use buldah to build the mq_prometheus collector in an image, clone this repo to get the Dockerfile that will efficiently take some of the files from the metrics image and copy them into the official MQ image and then finally push that image into a registry that can be used to run IBM MQ in a container with metrics enabled.
+By following the steps below you will end up with a pipeline that will clone the mq-metric-samples repository, use buildah to build the mq_prometheus collector image and insert into a registry, clone this repository to get a sample Dockerfile that will efficiently copy some files from the metrics image into the official MQ image and then finally push that image into a registry that can be used to run IBM MQ in a container with metrics.
+
+**Steps:**
 
 1. Install OpenShift Pipelines. Go to the OCP OperatorHub and install ‘Red Hat OpenShift Pipelines’, you can take the defaults for this example\. Tip seach for ‘pipeline’
 
