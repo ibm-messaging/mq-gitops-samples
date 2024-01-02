@@ -4,6 +4,9 @@ IBM provide pre\-built IBM MQ \(MQ\) container images for use with the MQ Operat
 
 Estimated reading time 5 minutes, typical execution time 15-20 minutes.
 
+:warning: **Warning:**
+This sample uses the developer edition - for production use an appropriate image.
+
 ## Important considerations and good practice for using a custom image
 
 Customising the IBM supplied container image is supported but you must be aware that there are implications, please read the following notes and reach out to your IBM representative if there is anything you are unsure of\.
