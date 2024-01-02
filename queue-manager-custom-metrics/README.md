@@ -40,7 +40,7 @@ By following the steps below you will end up with a pipeline that will clone the
 
 :bulb: **Tip: search for ‘pipeline’**
 
-3. Create a namespace. If you don’t have an existing project create a new one, we will be using ‘mq\-demo’ for this example\. When you login to the command line make sure you are using the right project as the YAML files do not specify a namespace\.
+2. Create a namespace. If you don’t have an existing project create a new one, we will be using ‘mq\-demo’ for this example\. When you login to the command line make sure you are using the right project as the YAML files do not specify a namespace\.
 
 To create,
 
