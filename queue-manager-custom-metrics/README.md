@@ -70,6 +70,8 @@ Note: You don’t need to add docker\.io unless you get the error saying downloa
 
 ```
 cd pipelines
+```
+```
 oc create -f build-mq-with-metrics.yaml
 ```
 
