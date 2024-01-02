@@ -1,4 +1,4 @@
-# Customising an IBM Provided IBM MQ Container Image with a Metrics Collector and Prometheus Emitter
+# Customising an IBM Provided MQ Container Image with a Metrics Collector and Prometheus Emitter
 
 IBM provide pre\-built IBM MQ \(MQ\) container images for use with the MQ Operator, but what if you want to customise an image by adding your own exits, or the latest MQ Metrics collector? This article will describe some good practices and methods for customising an IBM supplied container image\. The notes and examples are based on an IBM MQ Operator controlled deployment running on the Red Hat OpenShift Container Platform \(OCP\)\.
 
