@@ -9,7 +9,7 @@ This sample uses the developer edition of IBM MQ - for production use an appropr
 
 ## Important considerations and good practice for using a custom image
 
-Customising the IBM supplied container image is supported but you must be aware that there are implications, please read the following notes and reach out to your IBM representative if there is anything you are unsure of\.
+Customising the IBM supplied container image is permitted but you must be aware that there are implications, and you could be asked to recreate any issues you face with an un-customised image, please read the following notes and reach out to your IBM representative if there is anything you are unsure of.
 
 ### Versioning
 
