@@ -1,6 +1,6 @@
 # Customising an IBM Provided MQ Container Image with a Metrics Collector and Prometheus Emitter
 
-IBM provide pre\-built IBM MQ \(MQ\) container images for use with the MQ Operator, but what if you want to customise an image by adding your own exits, or the latest MQ Metrics collector? This article will describe some good practices and methods for customising an IBM supplied container image\. The notes and examples are based on an IBM MQ Operator controlled deployment running on the Red Hat OpenShift Container Platform \(OCP\)\.
+IBM provide pre-built IBM MQ (MQ) container images for use with the MQ Operator, but what if you want to customise an image by adding your own exit, or the latest MQ Metrics collector? This document describes some good practices and methods for customising an IBM supplied container image. The notes and examples are based on an IBM MQ Operator controlled deployment running on the Red Hat OpenShift Container Platform (OCP).
 
 Estimated reading time 5 minutes, typical execution time 15-20 minutes.
 
@@ -13,17 +13,17 @@ Customising the IBM supplied container image is permitted but you must be aware 
 
 ### Versioning
 
-The first thing to consider is version control\. All MQ images are tagged with a version number in the V\.M\.R\.F format, I strongly recommend that you use that same version number for your own images but change the name of the image to reflect the customisation\. In following example we will take the image name and version of MQ developer edition and add “\-with\-metrics” e\.g\. “mq\-with\-metrics: 9\.3\.3\.2\-r3”, you can add something of your choosing \- perhaps a company or project name\. The pipeline sample allows you to specify the version and source MQ image as parameters, these are carried through in multiple places, you only have to update the pipeline run but it's probably a good idea to update the defaults in the pipeline tasks too.
+The first thing to consider is version control. All MQ images are tagged with a version number in the V.M.R.F format, It is strongly recommend that you use that same version number for your own images but change the name of the image to reflect the customisation. The following example takes the image name and version of MQ developer edition and adds “-with-metrics” e.g. “mq-with-metrics: 9.3.3.2-r3”, you can add something of your choosing - perhaps a company or project name. The pipeline sample allows you to specify the version and source MQ image as parameters, these are carried through in multiple places, you only have to update the pipeline run but it's probably a good idea to update the defaults in the pipeline tasks too.
 
 MQ image version history can be found here,
 
 [https://www\.ibm\.com/docs/en/ibm\-mq/9\.3?topic=operator\-release\-history\-mq](https://www.ibm.com/docs/en/ibm-mq/9.3?topic=operator-release-history-mq)
 
-Another thing to consider is that the MQ Operator uses a field in the QueueManager Custom Resource \(CR\) YAML called spec\.version\. The spec\.version field must match the version of the base MQ image that you have customised\. Keeping the version number consistent will also help you track and maintain you MQ deployments\.
+Another thing to consider is that the MQ Operator uses a field in the QueueManager Custom Resource (CR) YAML called spec.version. The spec.version field must match the version of the base MQ image that you have customised. Keeping the version number consistent will also help you track and maintain you MQ deployments.
 
 ### Specifying a custom image
 
-To use a custom image, you have to make use of another field in the queue manager CR called spec\.queueManager\.image\. When you explicitly specify the MQ image you cannot then simply change the spec\.version field in the queue manager YAML to have the Operator automatically upgrade your queue managers anymore\. You must change the spec\.version field and spec\.queueManager\.image together when you want to upgrade your queue manager, or you can remove the custom image and revert to a standard image by removing spec\.queueManager\.image\.
+To use a custom image, you have to make use of another field in the queue manager CR called spec.queueManager.image. When you explicitly specify the MQ image you cannot then simply change the spec.version field in the queue manager YAML to have the Operator automatically upgrade your queue managers anymore. You must change the spec.version field and spec.queueManager.image together when you want to upgrade your queue manager, or you can remove the custom image and revert to a standard image by removing spec.queueManager.image.
 
 ## Building the IBM MQ custom image with the metrics collector
 
