@@ -8,20 +8,20 @@ This repository contains samples that can be used to automate IBM MQ tasks on an
 Samples that use Kustomize and ArgoCD to deploy and manage an IBM MQ Uniform Cluster.
 
 **Features**
-
-Certificate management
-\
-Dynamic MQSC configuration updates without restarting the queue manager
-\
+  
+Certificate management  
+  
+Dynamic MQSC configuration updates without restarting the queue manager  
+  
 ## queue-manager-custom-metrics
-\
+  
 Samples and good practice guidance for customising an IBM provided MQ container image.
-\
-\
-\
-\
-# Disclaimer
+  
 
+
+
+
+# Disclaimer  
 All samples in this repository are provided AS-IS without warranty of any kind, express or implied.  IBM shall not be responsible for any damages arising out of the use of, or otherwise related to, these samples.
 
 The content provided in this repository is for informational purposes only. The opinions and insights discussed are those of the author and do not necessarily represent those of the IBM Corporation.
