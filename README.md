@@ -3,91 +3,26 @@ GitOps samples for IBM MQ
 
 This repository contains samples that can be used to automate IBM MQ tasks on an OpenShift Container Platform.
 
-The Kustomize deployment samples are intended for use with an implementation of ArgoCD. The sample in the 'queue-manager-deployment' folder will deploy a two queue manager uniform-cluster with TLS and a dynamic MQSC update capability. The sample has a custom sed transformer that provides the capability to template any files that Kustomize generates, including the MQSC that gets inserted into Kubernetes config maps.
+## queue-manager-deployment
 
-:warning: **Warning:**
-This deployment disables queue manager security, it is strongly recommended you enable security for anything other than a demonstration.
+Samples that use Kustomize and ArgoCD to deploy and manage an IBM MQ Uniform Cluster.
 
-:bulb: **Tip:**
-If you just want to build the YAML files without deploying, in the 'mq-gitops-samples/queue-manager-deployment' folder run:
+Features
 
-```shell
-kustomize build --enable-alpha-plugins --enable-exec queue-managers/
-```
+Certificate management
+Dynamic MQSC configuration updates without restarting the queue manager
 
-**Prerequisites:**
+## queue-manager-custom-metrics
 
-An OpenShift cluster with a default storage class and the following Operators:
-
-- IBM MQ
-- Red Hat OpenShift GitOps (ensure ArgoCD has access to the terget project and plugins are enabled)
-- cert-manager Operator for Red Hat OpenShift
-
-Patch ArgoCD to allow the use of plugins, first option applies globally, second has application scope.
-
-option 1
-
-```yaml
-apiVersion: argoproj.io/v1alpha1
-kind: ArgoCD
-metadata:
-  name: openshift-gitops
-  namespace: openshift-gitops
-spec:
-  repo:
-  name: kustomize
-  kustomizeBuildOptions: '--enable-alpha-plugins=true --enable-exec'
-```
-option 2
-```yaml
-apiVersion: argoproj.io/v1alpha1
-kind: ArgoCD
-metadata:
-  name: openshift-gitops
-  namespace: openshift-gitops
-spec:
-  repo:
-  name: kustomize
-  configManagementPlugins: |
-    - name: kustomize-build-with-params
-      generate:
-        command: [ "sh", "-c" ]
-        args: ["kustomize build --enable-alpha-plugins=true --enable-exec" ]
-```
-For option 2 add this to your ArgoCD Application YAML for application scoped plugin enablement,
-```yaml
-plugin:
-  name: kustomize-build-with-params
-```
-
-example role binding
-
-```yaml
-kind: RoleBinding
-apiVersion: rbac.authorization.k8s.io/v1
-metadata:
-  name: argo-test
-  namespace: default
-subjects:
-  - kind: ServiceAccount
-    name: openshift-gitops-argocd-application-controller
-    namespace: openshift-gitops
-roleRef:
-  apiGroup: rbac.authorization.k8s.io
-  kind: ClusterRole
-  name: admin
-```
-
-**Usage:**
-
-Deploy the argo-app.yaml 
-
-    oc apply -f argo-app.yaml
+Samples and good practice guidance for customising an IBM provided MQ contaner image.
 
 
-Disclaimer
+**Disclaimer**
 
 All samples in this repository are provided AS-IS without warranty of any kind, express or implied.  IBM shall not be responsible for any damages arising out of the use of, or otherwise related to, these samples.
 
+The content provided in this repository is for informational purposes only. The opinions and insights discussed are those of the author and do not necessarily represent those of the IBM Corporation.
 
-Kustomize plugin documentation: https://kubectl.docs.kubernetes.io/guides/extending_kustomize/exec_krm_functions/
+Nothing contained in these materials or the products discussed is intended to, nor shall have the effect of, creating any warranties or representations from IBM or its suppliers, or altering the terms and conditions of any agreement you have with IBM.
+
+The information presented is not intended to imply that any actions taken by you will result in any specific result or benefit and should not be relied on in making a purchasing decision. IBM does not warrant that any systems, products or services are immune from, or will make your enterprise immune from, the malicious or illegal contact of any party.
