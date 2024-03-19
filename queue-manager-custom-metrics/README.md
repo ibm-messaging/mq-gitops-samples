@@ -60,7 +60,7 @@ oc project mq-demo
 3. Create a PVC. In the mq\-demo project under ‘Storage’ \- create a PersistentVolumeClaim \(PVC\) for the pipeline to use as a shared workspace between tasks e\.g\., 'mq\-metrics\-workspace', request 4GB, select RWO and volume mode Filesystem\. There is a sample PVC YAML file in the repo\.
 
 ```
-oc create -f example-pvc.yaml
+oc create -f pvc.yaml
 ```
 
 4. Create Secrets for docker\.io and your external image registry. For this example I am using the internal image registry located here, image\-registry\.openshift\-image\-registry\.svc:5000, in the repo you will find a file called **setup\-commands\.sh** with examples for creating the secrets and linking them to the service account\.
