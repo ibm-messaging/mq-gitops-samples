@@ -1,4 +1,4 @@
-# GitOps - JSON CCDT web server on OpenShift deployment sample
+# This sample demonstrates how to deploy an nginx web server on OpenShift that will serve a JSON CCDT file
 
 This folder contains an ArgoCD application that can be used to deploy an nginx web server that will serve a JSON ccdt file, alternatively you can deploy the YAML samples in this order:
 
@@ -26,7 +26,6 @@ Creates a Kubernetes Service that will route to the nginx Pods. e.g. "http://ccd
 ccdt-route.yaml
 
 Creates an OpenShift Route that will allow lookups from outside the cluster.
-
 
 ## Deployment Overview
 
