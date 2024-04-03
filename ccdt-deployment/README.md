@@ -3,16 +3,15 @@ GitOps ccdt web server sample
 
 This folder contains an ArgoCD application that can be used to deploy an nginx web server that will serve a JSON ccdt file, alternatively you can deploy the YAML samples in this order:
 
-ccdt-mq-routes-configmap.yaml  
-ccdt-mq-services-configmap.yaml  
-ccdt-server-deployment.yaml  
-ccdt-service.yaml  
-ccdt-route.yaml  
+| ccdt-mq-routes-configmap.yaml |
+| ccdt-mq-services-configmap.yaml |
+|ccdt-server-deployment.yaml |
+| ccdt-service.yaml |
+| ccdt-route.yaml |
 
 Files explained,
 
-| ccdt-mq-routes-configmap.yaml |
----------------------------------
+ccdt-mq-routes-configmap.yaml
 cdt-mq-services-configmap.yaml
 
 These files contain the CCDT file in JSON format, the nginx deployment will mount them into the container.
