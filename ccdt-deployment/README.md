@@ -1,10 +1,32 @@
 # mq-gitops-samples
-GitOps samples for IBM MQ
+GitOps ccdt web server sample
 
-This repository contains samples that can be used to automate IBM MQ tasks on an OpenShift Container Platform.
+This folder contains an ArgoCD application that can be used to deploy an nginx web server that will serve a JSON ccdt file, alternatively you can deploy the YAML samples in this order:
 
+ccdt-mq-routes-configmap.yaml
+cdt-mq-services-configmap.yaml
+ccdt-server-deployment.yaml
+ccdt-service.yaml
+ccdt-route.yaml
 
+Files explained,
 
+ccdt-mq-routes-configmap.yaml
+cdt-mq-services-configmap.yaml
+
+These files contain the CCDT file in JSON format, the nginx deployment will mount them into the container.
+
+ccdt-server-deployment.yaml
+
+Contains the Pod deployment for an nginx web server that will host the CCDT files.
+
+ccdt-service.yaml
+
+Creates a Kubernetes Service that will route to the nginx Pods. e.g. "http://ccdt-service.mq-demo.svc.cluster.local:8080/ccdt.json"
+
+ccdt-route.yaml
+
+Creates an OpenShift Route that will allow lookups from outside the cluster.
 
 
 # Disclaimer  
