@@ -1,5 +1,4 @@
-# mq-gitops-samples
-GitOps ccdt web server sample
+# GitOps - JSON CCDT web server on OpenShift deployment sample
 
 This folder contains an ArgoCD application that can be used to deploy an nginx web server that will serve a JSON ccdt file, alternatively you can deploy the YAML samples in this order:
 
