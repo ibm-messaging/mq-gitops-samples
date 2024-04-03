@@ -9,4 +9,16 @@ resources:
   - ./service-monitor.yaml
 
 patches:
-  - path: ./qm.yaml
+- path: qm.yaml
+
+- patch: |-
+    - op: add
+      path: /spec/template/pod/containers/0/ports
+      value:
+      - containerPort: 9157
+        protocol: TCP
+
+  target:
+    group: mq.ibm.com
+    kind: QueueManager
+    

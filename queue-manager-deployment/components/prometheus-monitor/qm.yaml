@@ -6,10 +6,5 @@ spec:
   queueManager:
     metrics:
       enabled: false
-  template:
-    pod:
-      containers:
-      - ports:
-        - containerPort: 9157
-          protocol: TCP
-
+    image: image-registry.openshift-image-registry.svc:5000/mq-demo/mq-with-metrics:9.3.5.0-r2
+    
