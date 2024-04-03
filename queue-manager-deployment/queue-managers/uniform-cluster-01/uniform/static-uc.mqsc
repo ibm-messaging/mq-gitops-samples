@@ -6,15 +6,15 @@ DEFINE SERVICE(APPLY_MQSC) CONTROL(QMGR) SERVTYPE(SERVER) STARTCMD('/mq-config/s
 *
 * Uncomment to create an MQ Service for the Prometheus collector, requires a container image with the collector.
 *
-*DEFINE SERVICE(MQPROMETHEUS)       +
-*       CONTROL(QMGR)               +
-*       SERVTYPE(SERVER)            +
-*       STARTCMD('/opt/mqm/metrics/mq_prometheus.sh') +
-*       STARTARG(+QMNAME+)          +
-*       STOPCMD('/usr/bin/kill ' )  +
-*       STOPARG(+MQ_SERVER_PID+)    +
-*       STDOUT('/var/mqm/errors/mq_prometheus.out')   +
-*       STDERR('/var/mqm/errors/mq_prometheus.out')   +
-*       DESCR('MQ exporter for Prometheus') REPLACE
-*START SERVICE(MQPROMETHEUS)
-*DEFINE QLOCAL(APP.DEMO.1) REPLACE
+DEFINE SERVICE(MQPROMETHEUS)       +
+       CONTROL(QMGR)               +
+       SERVTYPE(SERVER)            +
+       STARTCMD('/opt/mqm/metrics/mq_prometheus.sh') +
+       STARTARG(+QMNAME+)          +
+       STOPCMD('/usr/bin/kill ' )  +
+       STOPARG(+MQ_SERVER_PID+)    +
+       STDOUT('/var/mqm/errors/mq_prometheus.out')   +
+       STDERR('/var/mqm/errors/mq_prometheus.out')   +
+       DESCR('MQ exporter for Prometheus') REPLACE
+START SERVICE(MQPROMETHEUS)
+DEFINE QLOCAL(APP.DEMO.1) REPLACE
