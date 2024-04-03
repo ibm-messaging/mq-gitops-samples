@@ -1,0 +1,117 @@
+kind: ConfigMap
+apiVersion: v1
+metadata:
+  name: ccdt-mq-services-configmap
+  annotations:
+    argocd.argoproj.io/sync-wave: "0"
+data:
+  ccdt.json: |  
+    {
+        "channel": [
+                {
+                        "name": "IBM.APP.SVRCONN",
+                        "clientConnection": {
+                                "connection": [
+                                        {
+                                                "host": "qm01-qm-ibm-mq.mq-demo.svc.cluster.local",
+                                                "port": 1414
+                                        }
+                                ],
+                                "queueManager": "ANY_QM"
+                        },
+                        "transmissionSecurity": {
+                                "cipherSpecification": "ANY_TLS12_OR_HIGHER"
+                        },
+                        "connectionManagement": {
+                                "clientWeight": 1,
+                                "affinity": "none"
+                        },
+                        "type": "clientConnection"
+                },
+                {
+                        "name": "IBM.APP.SVRCONN",
+                        "clientConnection": {
+                                "connection": [
+                                        {
+                                                "host": "qm02-qm-ibm-mq.mq-demo.svc.cluster.local",
+                                                "port": 1414
+                                        }
+                                ],
+                                "queueManager": "ANY_QM"
+                        },
+                        "transmissionSecurity": {
+                                "cipherSpecification": "ANY_TLS12_OR_HIGHER"
+                        },
+                        "connectionManagement": {
+                                "clientWeight": 1,
+                                "affinity": "none"
+                        },
+                        "type": "clientConnection"
+                },
+                {
+                        "name": "IBM.APP.SVRCONN",
+                        "clientConnection": {
+                                "connection": [
+                                        {
+                                                "host": "qm01-qm-ibm-mq.mq-demo.svc.cluster.local",
+                                                "port": 1414
+                                        }
+                                ],
+                                "queueManager": "DQM01"
+                        },
+                        "transmissionSecurity": {
+                                "cipherSpecification": "ANY_TLS12_OR_HIGHER"
+                        },
+                        "type": "clientConnection"
+                },
+            {
+                        "name": "IBM.APP.SVRCONN",
+                        "clientConnection": {
+                                "connection": [
+                                        {
+                                                "host": "qm02-qm-ibm-mq.mq-demo.svc.cluster.local",
+                                                "port": 1414
+                                        }
+                                ],
+                                "queueManager": "DQM02"
+                        },
+                        "transmissionSecurity": {
+                                "cipherSpecification": "ANY_TLS12_OR_HIGHER"
+                        },
+                        "type": "clientConnection"
+                },
+            {
+                        "name": "IBM.APP.SVRCONN",
+                        "clientConnection": {
+                                "connection": [
+                                        {
+                                                "host": "qm03-qm-ibm-mq.mq-demo.svc.cluster.local",
+                                                "port": 1414
+                                        }
+                                ],
+                                "queueManager": "DQM03"
+                        },
+                        "transmissionSecurity": {
+                                "cipherSpecification": "ANY_TLS12_OR_HIGHER"
+                        },
+                        "type": "clientConnection"
+                },
+                {
+                        "name": "IBM.APP.SVRCONN",
+                        "clientConnection": {
+                                "connection": [
+                                        {
+                                                "host": "qm04-qm-ibm-mq.mq-demo.svc.cluster.local",
+                                                "port": 1414
+                                        }
+                                ],
+                                "queueManager": "DQM04"
+                        },
+                        "transmissionSecurity": {
+                                "cipherSpecification": "ANY_TLS12_OR_HIGHER"
+                        },
+                        "type": "clientConnection"
+                }
+        ]
+    }
+

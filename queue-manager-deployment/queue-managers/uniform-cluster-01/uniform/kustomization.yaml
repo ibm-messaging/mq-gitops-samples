@@ -5,8 +5,8 @@ patches:
 - path: ./qm.yaml
 
 # Uncomment to include components required for a Prometheus MQ Service, requires a container image with the collector.
-#components:
-#- ../../../components/prometheus-monitor
+components:
+- ../../../components/prometheus-monitor
 
 generatorOptions:
  disableNameSuffixHash: true

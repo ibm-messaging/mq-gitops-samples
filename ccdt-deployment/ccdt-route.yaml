@@ -1,0 +1,15 @@
+kind: Route
+apiVersion: route.openshift.io/v1
+metadata:
+  name: ccdt-route
+  labels: {}
+  annotations:
+    argocd.argoproj.io/sync-wave: "3"
+spec:
+  to:
+    kind: Service
+    name: ccdt-service
+  tls: null
+  path: /external
+  port:
+    targetPort: 8080

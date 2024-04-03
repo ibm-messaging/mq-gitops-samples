@@ -1,0 +1,38 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: nginx-ccdt-deployment
+  annotations:
+    argocd.argoproj.io/sync-wave: "1"
+spec:
+  selector:
+    matchLabels:
+      app: nginx-ccdt
+  replicas: 1 
+  template:
+    metadata:
+      labels:
+        app: nginx-ccdt
+    spec:
+      containers:
+      - name: nginx-ccdt
+        image: nginxinc/nginx-unprivileged:latest
+        ports:
+        - containerPort: 8080
+
+        volumeMounts:
+            - name: nginx-mq-services-file
+              mountPath: /usr/share/nginx/html/
+
+            - name: nginx-mq-routes-file
+              mountPath: /usr/share/nginx/html/external
+
+      volumes:
+      - name: nginx-mq-services-file
+        configMap:
+          name: ccdt-mq-services-configmap
+
+      - name: nginx-mq-routes-file
+        configMap:
+          name: ccdt-mq-routes-configmap
+                                                
