@@ -1,4 +1,6 @@
-# This sample demonstrates how to deploy an nginx web server on OpenShift that will serve a JSON CCDT file
+<div style="text-align: left">
+
+# Sample - using an nginx web server deployed on OpenShift to serve a JSON CCDT file
 
 This folder contains an ArgoCD application that can be used to deploy an nginx web server that will serve a JSON ccdt file, alternatively you can deploy the YAML samples in this order:
 
@@ -41,3 +43,4 @@ Nothing contained in these materials or the products discussed is intended to, n
 
 The information presented is not intended to imply that any actions taken by you will result in any specific result or benefit and should not be relied on in making a purchasing decision. IBM does not warrant that any systems, products or services are immune from, or will make your enterprise immune from, the malicious or illegal contact of any party.
 
+</div>
