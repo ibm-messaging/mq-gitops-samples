@@ -16,7 +16,11 @@ Dynamic MQSC configuration updates without restarting the queue manager
 ## queue-manager-custom-metrics
   
 Samples and good practice guidance for customising an IBM provided MQ container image.
+
+## ccdt-deployment
   
+Sample ccdt web server deployment using nginx.
+
 
 
 
