@@ -29,6 +29,11 @@ ccdt-route.yaml
 Creates an OpenShift Route that will allow lookups from outside the cluster.
 
 
+## Deployment Overview
+
+![alt text](https://github.com/ibm-messaging/mq-gitops-samples/blob/main/ccdt-deployment/images/nginx-deploy.png)
+
+
 # Disclaimer  
 All samples in this repository are provided AS-IS without warranty of any kind, express or implied.  IBM shall not be responsible for any damages arising out of the use of, or otherwise related to, these samples.
 
