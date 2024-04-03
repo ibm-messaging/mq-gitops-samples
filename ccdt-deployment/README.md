@@ -2,7 +2,7 @@
 
 # Sample - using an nginx web server deployed on OpenShift to serve a JSON CCDT file
 
-This folder contains an ArgoCD application that can be used to deploy an nginx web server that will serve a JSON CCDT file, alternatively you can deploy the YAML samples in this order using ** oc apply -f ** :
+This folder contains an ArgoCD application that can be used to deploy an nginx web server that will serve a JSON CCDT file, alternatively you can deploy the YAML samples in this order using **oc apply -f** :
 
 ccdt-mq-routes-configmap.yaml  
 ccdt-mq-services-configmap.yaml  
