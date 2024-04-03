@@ -1,0 +1,14 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: ccdt
+  namespace: openshift-gitops
+spec:
+  destination:
+    namespace: mq-demo
+    server: https://kubernetes.default.svc
+  project: default
+  source:
+    path: ccdt-deployment
+    repoURL: 'https://github.com/martinevansibm/mq-gitops-samples'
+    targetRevision: main 
