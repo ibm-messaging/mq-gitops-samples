@@ -2,7 +2,7 @@
 
 This folder contains a sample ArgoCD application that can be used to deploy an Nginx web server to serve JSON CCDT files, alternatively you can just deploy the YAML samples in this order using **oc apply -f** :
 
-ccdt-mq-routes-configmap.yaml
+ccdt-mq-routes-configmap.yaml  
 ccdt-mq-services-configmap.yaml  
 ccdt-server-deployment.yaml  
 ccdt-service.yaml  
