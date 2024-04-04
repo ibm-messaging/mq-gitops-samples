@@ -13,7 +13,7 @@ Files explained,
 ccdt-mq-routes-configmap.yaml  
 cdt-mq-services-configmap.yaml
 
-These files contain the CCDT information in JSON format, the Nginx deployment will mount them into the pod/container. You will need to edit these files to contain the services and routes for your cluster and MQ deployment. The MQ routes used in the CCDT are created by the MQ Operator and can be used internally or externally but you must use the SNI approach in your MQ Client with these. The mq-services CCDT uses the Kubernetes Service to locate a queue manager and can be used with TLS or non-TLS client connections, the service can be used across namespaces if you include the full service URL.
+These files contain the CCDT information in JSON format, the Nginx deployment will mount them into the pod/container. You will need to edit these files to contain the services and routes for your cluster and MQ deployment. The MQ Routes used in the CCDT are created by the MQ Operator and can be used internally or externally but you must use the SNI approach in your MQ Client with these. The mq-services CCDT uses the Kubernetes Service to locate a queue manager and can be used with TLS or non-TLS client connections, the service can be used across namespaces if you include the full service URL.
 
 ccdt-server-deployment.yaml
 
@@ -21,13 +21,15 @@ This file contains the Pod deployment for an Nginx web server that will host the
 
 ccdt-service.yaml
 
-This file creates a Kubernetes Service that will route to the Nginx Pods. e.g. "http://ccdt-service.mq-demo.svc.cluster.local:8080/ccdt.json" where mq-demo is the namespace that the web server has been deployed to.
+This file creates a Kubernetes Service and therfore an HTTP URL that will route to the Nginx Pods. e.g. "http://ccdt-service.mq-demo.svc.cluster.local:8080/ccdt.json" where mq-demo is the namespace that the web server has been deployed to.
 
 ccdt-route.yaml
 
-Creates an OpenShift Route that will allow lookups from outside the cluster.
+Creates an OpenShift Route that will allow lookups of the CCDT from outside or inside the cluster.
 
 ## Deployment overview
+
+This diagram gives a high-level overview of the deployment and topology.
 
 ![alt text](https://github.com/ibm-messaging/mq-gitops-samples/blob/main/ccdt-deployment/images/nginx-deploy.png)
 
