@@ -2,7 +2,7 @@
 
 # Sample - using an nginx web server deployed on OpenShift to serve a JSON CCDT file
 
-This folder contains an ArgoCD application that can be used to deploy an nginx web server that will serve a JSON CCDT file, alternatively you can deploy the YAML samples in this order using **oc apply -f** :
+This folder contains an ArgoCD application that can be used to deploy an nginx web server to serve a JSON CCDT file, alternatively you can deploy the YAML samples in this order using **oc apply -f** :
 
 ccdt-mq-routes-configmap.yaml  
 ccdt-mq-services-configmap.yaml  
@@ -12,14 +12,14 @@ ccdt-route.yaml
 
 Files explained,
 
-ccdt-mq-routes-configmap.yaml
+ccdt-mq-routes-configmap.yaml  
 cdt-mq-services-configmap.yaml
 
-These files contain the CCDT file in JSON format, the nginx deployment will mount them into the container.
+These files contain the CCDT information in JSON format, the nginx deployment will mount them into the container. You will need to edit these files to contain the services and routes for your cluster and MQ deployment. The mq-routes are created by the MQ Operator and can be used internally or externally but you must use the SNI approach with these. The mq-services CCDT uses the Kubernetes Service to locate a queue manager and can be used with TLS or non-TLS, the service can be used across namespaces if you include the full service URL. 
 
 ccdt-server-deployment.yaml
 
-Contains the Pod deployment for an nginx web server that will host the CCDT files.
+Contains the Pod deployment for an nginx web server that will host the CCDT files. The internal CCDT (services) is located in the root, the external (routes) CCDT is under /external. You can increase the number of Pods for high availability within your cluster.
 
 ccdt-service.yaml
 
@@ -29,7 +29,7 @@ ccdt-route.yaml
 
 Creates an OpenShift Route that will allow lookups from outside the cluster.
 
-## Deployment Overview
+## Deployment overview
 
 ![alt text](https://github.com/ibm-messaging/mq-gitops-samples/blob/main/ccdt-deployment/images/nginx-deploy.png)
 
