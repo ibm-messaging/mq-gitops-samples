@@ -17,11 +17,11 @@ These files contain the CCDT information in JSON format, the Nginx deployment wi
 
 ccdt-server-deployment.yaml
 
-This file contains the Pod deployment for an Nginx web server that will host the CCDT files. The internal CCDT (mq-services) is located in the root of the file system, the external (mq-routes) CCDT is under /external. You can increase the number of Pods for high availability within your cluster. Note that the un-priviledged Nginx container image uses port 8080, previuosly is used port 80 by default.
+This file contains the Pod deployment for an Nginx web server that will host the CCDT files. The internal CCDT (mq-services) is in the root of the file system, the external (mq-routes) CCDT is under /external. You can increase the number of Pods for high availability within your cluster. Note that the un-privileged Nginx container image uses port 8080, previously is used port 80 by default.
 
 ccdt-service.yaml
 
-This file creates a Kubernetes Service and therfore an HTTP URL that will route to the Nginx Pods. e.g. "http://ccdt-service.mq-demo.svc.cluster.local:8080/ccdt.json" where mq-demo is the namespace that the web server has been deployed to.
+This file creates a Kubernetes Service and therefore an HTTP URL that will route to the Nginx Pods. e.g. "http://ccdt-service.mq-demo.svc.cluster.local:8080/ccdt.json" where mq-demo is the namespace that the web server has been deployed to.
 
 ccdt-route.yaml
 
