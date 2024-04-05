@@ -10,5 +10,5 @@ spec:
   project: default
   source:
     path: ccdt-deployment
-    repoURL: 'https://github.com/martinevansibm/mq-gitops-samples'
+    repoURL: 'https://github.com/ibm-messaging/mq-gitops-samples'
     targetRevision: main 
