@@ -1,0 +1,49 @@
+apiVersion: mq.ibm.com/v1beta1
+kind: QueueManager
+metadata:
+  name: qmdemo
+  annotations:
+    com.ibm.mq/write-defaults-spec: 'false'
+  namespace: mq-demo
+spec:
+  license:
+    accept: true
+    license: L-AXAF-JLZ53A
+    use: Development
+  web:
+    enabled: true
+  pki:
+    keys:
+      - name: certificate
+        secret:
+          items:
+            - tls.key
+            - tls.crt
+          secretName: qmdemo-cert
+    trust:
+      - name: ca
+        secret:
+          items:
+            - ca.crt
+          secretName: qmdemo-cert
+  template:
+    pod:
+      containers:
+        - env:
+            - name: MQ_CONNAUTH_USE_HTP
+              value: 'true'
+            - name: MQ_APP_PASSWORD
+              value: newpassword
+            - name: MQ_ADMIN_PASSWORD
+              value: newpassword
+            - name: MQ_DEV
+              value: 'true'
+          name: qmgr
+  queueManager:
+    storage:
+      queueManager:
+        type: persistent-claim
+      defaultDeleteClaim: true
+    name: QMDEMO
+  version: 9.3.5.1-r1
+
