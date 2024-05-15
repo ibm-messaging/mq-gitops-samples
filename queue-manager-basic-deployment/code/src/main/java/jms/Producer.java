@@ -1,4 +1,4 @@
-package jmssamp;
+package jms;
 
 import javax.jms.JMSException;
 import javax.jms.Message;
