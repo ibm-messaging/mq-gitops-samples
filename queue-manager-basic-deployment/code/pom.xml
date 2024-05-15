@@ -4,6 +4,10 @@
   <artifactId>jms</artifactId>
   <version>0.0.1-SNAPSHOT</version>
   <name>producer</name>
+  <properties>
+     <maven.compiler.source>1.8</maven.compiler.source>
+     <maven.compiler.target>1.8</maven.compiler.target>
+  </properties>
     <!-- https://mvnrepository.com/artifact/com.ibm.mq/com.ibm.mq.allclient -->
 <dependencies>
 <dependency>
