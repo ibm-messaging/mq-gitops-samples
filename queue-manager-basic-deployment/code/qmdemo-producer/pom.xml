@@ -17,6 +17,45 @@
     <maven.compiler.source>1.7</maven.compiler.source>
     <maven.compiler.target>1.7</maven.compiler.target>
   </properties>
+  <profiles>
+    <profile>
+      <id>openshift</id>
+<build>
+<plugins>
+
+<plugin>
+                        <artifactId>maven-dependency-plugin</artifactId>
+                        <executions>
+                            <execution>
+                                <phase>generate-sources</phase>
+                                <goals>
+                                    <goal>copy-dependencies</goal>
+                                </goals>
+                                <configuration>
+                                    <outputDirectory>${project.build.directory}/lib</outputDirectory>
+                                    <useRepositoryLayout>true</useRepositoryLayout>
+                                </configuration>
+                            </execution>
+                            <execution>
+                                <id>build-classpath</id>
+                                <phase>generate-resources</phase>
+                                <goals>
+                                    <goal>build-classpath</goal>
+                                </goals>
+                                <configuration>
+                                    <outputFile>${project.build.directory}/lib/classpath</outputFile>
+                                    <localRepoProperty>lib</localRepoProperty>
+                                </configuration>
+                            </execution>
+                        </executions>
+                    </plugin>
+
+</plugins>
+
+</build>
+
+    </profile>
+  </profiles>
 
   <dependencies>
     <dependency>
@@ -35,6 +74,7 @@
   <build>
     <pluginManagement><!-- lock down plugins versions to avoid using Maven defaults (may be moved to parent pom) -->
       <plugins>
+
         <!-- clean lifecycle, see https://maven.apache.org/ref/current/maven-core/lifecycles.html#clean_Lifecycle -->
         <plugin>
           <artifactId>maven-clean-plugin</artifactId>

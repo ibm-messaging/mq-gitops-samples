@@ -50,12 +50,14 @@ public class Producer {
 			con.close();
 			System.out.println("Finished...");
 
-		} catch (JMSException e) {
+		} catch (Exception e) {
 
-			System.out.println(e + "\n" + e.getLinkedException() + e.getMessage());
+                        e.printStackTrace();
+                        for (Throwable cause = e.getCause(); cause != null; cause = cause.getCause()) {
+                           System.err.println("Caused by:");
+                           cause.printStackTrace();
+                        }
 
-		} catch (InterruptedException e) {
-			e.printStackTrace();
-		} 
-	}
+		}
+}
 }
