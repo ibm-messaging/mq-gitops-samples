@@ -20,6 +20,23 @@
   <profiles>
     <profile>
       <id>openshift</id>
+
+
+<dependencies>
+    <dependency>
+      <groupId>junit</groupId>
+      <artifactId>junit</artifactId>
+      <version>4.11</version>
+      <scope>test</scope>
+    </dependency>
+	<dependency>
+    <groupId>com.ibm.mq</groupId>
+    <artifactId>com.ibm.mq.allclient</artifactId>
+    <version>9.3.5.0</version>
+</dependency>
+  </dependencies>
+
+
 <build>
 <plugins>
 
@@ -50,6 +67,34 @@
                         </executions>
                     </plugin>
 
+<plugin>
+    <groupId>org.apache.maven.plugins</groupId>
+    <artifactId>maven-assembly-plugin</artifactId>
+    <executions>
+        <execution>
+            <phase>package</phase>
+            <goals>
+                <goal>single</goal>
+            </goals>
+            <configuration>
+                <archive>
+                <manifest>
+                    <mainClass>
+                        com.ibm.integration.qmdemo.ExecutableMavenJar
+                    </mainClass>
+                </manifest>
+                </archive>
+                <descriptorRefs>
+                    <descriptorRef>jar-with-dependencies</descriptorRef>
+                </descriptorRefs>
+            </configuration>
+        </execution>
+    </executions>
+</plugin>
+
+
+
+
 </plugins>
 
 </build>
@@ -57,19 +102,7 @@
     </profile>
   </profiles>
 
-  <dependencies>
-    <dependency>
-      <groupId>junit</groupId>
-      <artifactId>junit</artifactId>
-      <version>4.11</version>
-      <scope>test</scope>
-    </dependency>
-	<dependency>
-    <groupId>com.ibm.mq</groupId>
-    <artifactId>com.ibm.mq.allclient</artifactId>
-    <version>9.3.5.0</version>
-</dependency>
-  </dependencies>
+  
 
   <build>
     <pluginManagement><!-- lock down plugins versions to avoid using Maven defaults (may be moved to parent pom) -->
@@ -101,6 +134,7 @@
             <manifest>
               <addClasspath>true</addClasspath>
               <mainClass>com.ibm.integration.qmdemo.Producer</mainClass>
+ <classpathPrefix>lib/</classpathPrefix>
             </manifest>
           </archive>
         </configuration>
