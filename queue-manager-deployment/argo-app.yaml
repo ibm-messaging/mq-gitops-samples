@@ -11,5 +11,5 @@ spec:
   source:
     path: queue-manager-deployment/queue-managers
     repoURL: 'https://github.com/ibm-messaging/mq-gitops-samples'
-    targetRevision: main
+    targetRevision: v0.1.1-beta
   project: default

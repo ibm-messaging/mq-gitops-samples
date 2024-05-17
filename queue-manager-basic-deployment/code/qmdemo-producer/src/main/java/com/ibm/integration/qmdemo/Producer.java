@@ -20,7 +20,7 @@ public class Producer {
 			cf.setHostName("qmdemo-ibm-mq");
 			cf.setPort(1414);
 			cf.setQueueManager("QMDEMO");
-			cf.setChannel("DEV.APP.SVRCONN");
+			cf.setChannel("DEV.APP.SVRCONN.0TLS");
 			cf.setTransportType(WMQConstants.WMQ_CM_CLIENT);
 			cf.setAppName("MY-PRODUCER");
 			cf.setClientReconnectOptions(WMQConstants.WMQ_CLIENT_RECONNECT);

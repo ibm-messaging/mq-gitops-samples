@@ -40,6 +40,11 @@ spec:
               value: 'true'
           name: qmgr
   queueManager:
+    mqsc:
+      - configMap:
+          items:
+            - dev-config.mqsc
+          name: qmdemo-dev-config
     storage:
       queueManager:
         type: persistent-claim
