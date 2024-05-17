@@ -5,7 +5,7 @@ Certificate Manager
 
 Usage
 
-Clone this repository, change the passwords in the qmdemo-qm.yaml file and then Producer.java and Consumer.java files to a password of your choice, currently set to 'newpassword'  
+Clone this repository, change the passwords in qmdemo-qm.yaml, Producer.java and Consumer.java to a password of your choice, currently set to 'newpassword'  
 Log into you OpenShft cluster and create a project called mq-demo  
   
 oc create -f qmdemo-cert.yaml  
