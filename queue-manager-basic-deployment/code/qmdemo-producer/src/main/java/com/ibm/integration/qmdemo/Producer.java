@@ -22,10 +22,8 @@ public class Producer {
 			cf.setQueueManager("QMDEMO");
 			cf.setChannel("DEV.APP.SVRCONN");
 			cf.setTransportType(WMQConstants.WMQ_CM_CLIENT);
-//			cf.setBooleanProperty(JmsConstants.USER_AUTHENTICATION_MQCSP, true);		
 			cf.setAppName("MY-PRODUCER");
 			cf.setClientReconnectOptions(WMQConstants.WMQ_CLIENT_RECONNECT);
-//			cf.setClientReconnectTimeout(320);
 
 			Connection con = null;
 			
