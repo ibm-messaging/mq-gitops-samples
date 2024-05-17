@@ -43,6 +43,7 @@ public class Consumer {
         					Message message = consumer.receive();
         					System.out.println("Received message, count: " + messageCount);
         					messageCount++;
+                                                Thread.sleep(500);
         				}
                         
 
