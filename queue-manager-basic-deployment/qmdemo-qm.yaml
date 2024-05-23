@@ -32,12 +32,18 @@ spec:
         - env:
             - name: MQ_CONNAUTH_USE_HTP
               value: 'true'
-            - name: MQ_APP_PASSWORD
-              value: newpassword
-            - name: MQ_ADMIN_PASSWORD
-              value: newpassword
             - name: MQ_DEV
               value: 'true'
+            - name: MQ_ADMIN_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: qmdemo-passwords
+                  key: dev-admin-password
+            - name: MQ_APP_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: qmdemo-passwords
+                  key: dev-app-password
           name: qmgr
   queueManager:
     mqsc:

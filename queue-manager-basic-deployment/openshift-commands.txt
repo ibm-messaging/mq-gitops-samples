@@ -1,0 +1,4 @@
+oc apply -f qmdemo-mqsc-config-map.yaml
+oc apply -f qmdemo-cert.yaml
+oc apply -f qmdemo-passwords-secret.yaml
+oc apply -f qmdemo-qm.yaml
