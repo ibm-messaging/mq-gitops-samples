@@ -18,7 +18,17 @@ An OpenShift cluster with a default storage class and the following Operators:
 
 - IBM MQ
 - Red Hat OpenShift GitOps (ensure ArgoCD has access to the terget project and plugins are enabled)
-- cert-manager Operator for Red Hat OpenShift
+- cert-manager Operator for Red Hat OpenShift and a self-signed ClusterIssuer if you are using the demo certificate requests in this repository.
+e.g.
+
+```yaml
+apiVersion: cert-manager.io/v1
+kind: ClusterIssuer
+metadata:
+  name: selfsigned-issuer
+spec:
+  selfSigned: {}
+```
 
 Patch ArgoCD to allow the use of plugins, first option applies globally, second has application scope.
 
