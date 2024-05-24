@@ -3,7 +3,7 @@
 These Kustomize deployment samples are intended for use with an implementation of ArgoCD. The sample will deploy a two queue manager uniform-cluster with TLS and a dynamic MQSC update capability. The sample has a custom sed transformer that provides the capability to template any files that Kustomize generates, including the MQSC that gets inserted into Kubernetes config maps.
 
 > [!WARNING]
-> This deployment disables queue manager security, it is strongly recommended you enable security for anything other than a demonstration.
+> This deployment sets a password for the MQ Console 'admin' user and the 'app' user in the templates/native-ha/kustomize.yaml using secretGenerator, it is stronly recommended that you put these passwords in a secure Secret. The sample here is for demonstration purposes only.
 
 > [!NOTE]
 > If you just want to build the YAML files without deploying, in the 'mq-gitops-samples/queue-manager-deployment' folder run:
