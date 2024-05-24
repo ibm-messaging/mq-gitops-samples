@@ -2,7 +2,7 @@ This repository contains samples that can be used to deploy a basic queue manage
 
 
 > [!IMPORTANT]  
-> The sample uses a persistent volume, but it will be deleted upon deletion of the queue manager custom resource. Do not use this sample as a template for a production deployment.  
+> The sample uses a persistent volume, but it will be deleted upon deletion of the queue manager custom resource. Do not use this sample as a template for a production deployment its intended use is for demonstration purposes.  
 
 > [!WARNING]  
 > The sample passwords secret should not be used as-is and you should not store passwords in the clear in Git repositories, the passwords used in this repository are there solely to show the format of the YAML files.  The samples use 'newpassword' for the 'admin' user in the MQ Console.  
@@ -15,7 +15,8 @@ Certificate Manager with a Cluster Issuer, self-signed is fine for test/demonstr
 
 __Usage__  
 
-Clone this repository, change the passwords in qmdemo-passwords-secret.yaml, Producer.java and Consumer.java to a password of your choice, currently set to 'newpassword'  
+Clone this repository  
+Change the passwords in files qmdemo-passwords-secret.yaml, Producer.java and Consumer.java to a password of your choice, they are currently set to 'newpassword'  
 Log into you OpenShft cluster and create a project called mq-demo  
   
 ```
