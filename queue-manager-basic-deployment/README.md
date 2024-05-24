@@ -15,6 +15,17 @@ A default storage class that provides block storage.
 The IBM MQ Operator.  
 Certificate Manager with a Cluster Issuer, self-signed is fine for test/demonstration purposes.  
 
+Example self-signed ClusterIssuer:  
+
+```
+apiVersion: cert-manager.io/v1
+kind: ClusterIssuer
+metadata:
+  name: selfsigned-issuer
+spec:
+  selfSigned: {}
+```
+
 __Usage__  
 
 Clone this repository  
