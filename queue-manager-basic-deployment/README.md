@@ -7,7 +7,7 @@ This repository contains samples that can be used to deploy a basic queue manage
 > The sample uses a persistent volume, but it will be deleted upon deletion of the queue manager custom resource. Do not use this sample as a template for a production deployment its intended use is for demonstration purposes.  
 
 > [!WARNING]  
-> The sample passwords secret should not be used as-is and you should not store passwords in the clear in Git repositories, the passwords used in this repository are there solely to show the format of the YAML files.  The samples use 'newpassword' for the 'admin' user in the MQ Console and for the 'app' user in the Java samples.  
+> The sample passwords secret should not be used as-is and you should not store passwords in repositories in the clear, especially in public Git repositories, the passwords used in this repository are there solely to show the format of the YAML files.  The samples use 'newpassword' for the 'admin' user in the MQ Console and for the 'app' user in the Java samples. If you want to get up and running quickly without using the sample passwords, fork to a private repository and setup the credentials for your repository in OpenShift.  
 
 ## Dependencies
 
@@ -30,8 +30,8 @@ spec:
 
 ## Usage
 
-- Clone this repository.  
-- Change the passwords in files qmdemo-passwords-secret.yaml, Producer.java and Consumer.java to a password of your choice, they are currently set to 'newpassword', or use the commandline to create a secret and don't apply the YAML, you will still need to the Java programs to match and ensure the passwords in the Java code are not checked into Git,  
+- Fork this repository. If you are running in a closed environment and don't care about securing your queue manager you can use this repository as-is - not recommended.
+- Change the passwords in the files: qmdemo-passwords-secret.yaml, Producer.java and Consumer.java to a password of your choice, they are currently set to 'newpassword', or use the commandline to create a secret and don't apply the YAML, you will still need to the Java programs to match and ensure the passwords in the Java code are not publicly accessible. 
 ```
 oc create secret generic qmdemo-passwords --from-literal=dev-admin-password=newpassword --from-literal=dev-app-password=newpassword
 ```
