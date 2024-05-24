@@ -32,9 +32,10 @@ or
 source openshift-commands.txt
 ```  
 
-Deploy the producer and consumer apps,  
+Deploy the producer and consumer Java applications.  
 
-Change the passwords to match what you have in the qmdemo-passwords-secret.yaml  
+> [!IMPORTANT]
+> Change the passwords in Producer.java and Consumer.java to match what you have in the qmdemo-passwords-secret.yaml  
 
 ```
 oc new-app registry.redhat.io/redhat-openjdk-18/openjdk18-openshift~https://github.com/ibm-messaging/mq-gitops-samples#basic-deployment --context-dir=/queue-manager-basic-deployment/code/qmdemo-producer --env='JAVA_APP_JAR=producer-1.0-SNAPSHOT-jar-with-dependencies.jar' --name=mq-producer  
