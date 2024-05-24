@@ -1,28 +1,33 @@
-This repository contains samples that can be used to deploy a basic queue manager running on Red Hat OpenShift, it also contains sample producer and consumer Java applications that can be built using Source to Image (S2I). The sample Java programs can be used to demonstrate sending and receiving messages; all of the necessary components queues, authority records etc. should be built for you. Note: that the sample uses a persistent volume, but it will be deleted upon deletion of the queue manager custom resource. The samples use the IBM MQ Developer edition. In addition to the queuue manager the sample will setup the IBM MQ Console, the MQ Operator will create the necessary Route, don't forget to change the password in the sample Secret file and store securely.
+This repository contains samples that can be used to deploy a basic queue manager running on Red Hat OpenShift, the samples use the IBM MQ Developer edition. The repository also contains sample producer and consumer Java applications that can be built using Source to Image (S2I), the sample Java programs can be used to demonstrate sending and receiving messages to a queue. All the necessary components, queues, authority records etc. should be built for you. In addition to the queue manager, the sample will setup the IBM MQ Console, the MQ Operator will create a Route for the Console UI, don't forget to change the password in the sample Secret file and store securely.  
 
-:warning: **Warning:**
+:note: **Note:**  
+The sample uses a persistent volume, but it will be deleted upon deletion of the queue manager custom resource. Do not use this sample as a template for a production deployment.  
 
-The sample passwords secret should not be used as-is and you should not store passwords in the clear in Git repositories, the passwords used in this repository are there solely to show the format of the YAML files.  The samples use 'newpassword' for the 'admin' user in the MQ Console.
+:warning: **Warning:**  
 
-Dependencies
+The sample passwords secret should not be used as-is and you should not store passwords in the clear in Git repositories, the passwords used in this repository are there solely to show the format of the YAML files.  The samples use 'newpassword' for the 'admin' user in the MQ Console.  
 
-A default storage class that provides block storage.
+__Dependencies__  
+
+A default storage class that provides block storage.  
 The IBM MQ Operator.  
-Certificate Manager with a Cluster Issuer, self-signed is fine for test/demonstration purposes.
+Certificate Manager with a Cluster Issuer, self-signed is fine for test/demonstration purposes.  
 
-Usage
+__Usage__  
 
 Clone this repository, change the passwords in qmdemo-passwords-secret.yaml, Producer.java and Consumer.java to a password of your choice, currently set to 'newpassword'  
 Log into you OpenShft cluster and create a project called mq-demo  
   
+```
 oc apply -f qmdemo-mqsc-config-map.yaml  
 oc apply -f qmdemo-cert.yaml  
 oc apply -f qmdemo-passwords-secret.yaml  
 oc apply -f qmdemo-qm.yaml  
-
+```
 or  
-
+```
 $ source openshift-commands.txt
+```  
 
 Deploy the producer and consumer apps,  
 
