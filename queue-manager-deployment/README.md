@@ -1,4 +1,4 @@
-# Sample - IBM MQ Uniform Cluster with Native HA Queue Managers
+# IBM MQ Uniform Cluster with Native HA Queue Managers
 
 These Kustomize deployment samples are intended for use with an implementation of ArgoCD. The sample will deploy a two queue manager uniform-cluster with TLS and a dynamic MQSC update capability. The sample has a custom sed transformer that provides the capability to template any files that Kustomize generates, including the MQSC that gets inserted into Kubernetes config maps.
 
