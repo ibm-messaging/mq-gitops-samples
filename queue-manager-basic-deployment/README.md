@@ -30,13 +30,13 @@ spec:
 
 ## Usage
 
-- Clone this repository  
+- Clone this repository.  
 - Change the passwords in files qmdemo-passwords-secret.yaml, Producer.java and Consumer.java to a password of your choice, they are currently set to 'newpassword' or use the commandline to create a secret and don't apply the YAML, you will still need to the Java programs to match and ensure the passwords in the Java code are not checked into Git,  
 ```
 oc create secret generic qmdemo-passwords --from-literal=dev-admin-password=newpassword --from-literal=dev-app-password=newpassword
 ```
-- Log into you OpenShft cluster and create a project called mq-demo.
-- Apply the YAML files, skip qmdemo-passwords-secret.yaml if you created the secret via the commandline.
+- Log into you OpenShft cluster and create a project called mq-demo.  
+- Apply the YAML files, skip qmdemo-passwords-secret.yaml if you created the secret via the commandline.  
   
 ```
 oc apply -f qmdemo-mqsc-config-map.yaml  
