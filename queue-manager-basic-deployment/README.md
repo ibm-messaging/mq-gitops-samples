@@ -11,9 +11,11 @@ This repository contains samples that can be used to deploy a basic queue manage
 
 __Dependencies__  
 
-A default storage class that provides block storage.  
-The IBM MQ Operator.  
-Certificate Manager with a Cluster Issuer, self-signed is fine for test/demonstration purposes.  
+Ensure you have setup the following resources on your OpenShift cluster:  
+
+- A default storage class that provides block storage.  
+- Certificate Manager with a Cluster Issuer, self-signed is fine for test/demonstration purposes.  
+- The IBM MQ Operator.  
 
 Example self-signed ClusterIssuer:  
 
