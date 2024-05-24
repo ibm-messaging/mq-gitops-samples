@@ -5,7 +5,7 @@ These Kustomize deployment samples are intended for use with an implementation o
 > [!WARNING]
 > This deployment disables queue manager security, it is strongly recommended you enable security for anything other than a demonstration.
 
-> [!INFORMATION]
+> [!NOTE]
 > If you just want to build the YAML files without deploying, in the 'mq-gitops-samples/queue-manager-deployment' folder run:
 
 ```shell
