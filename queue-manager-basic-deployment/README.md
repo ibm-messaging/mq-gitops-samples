@@ -31,7 +31,7 @@ spec:
 ## Usage
 
 - Fork or clone this repository.
-- Change the passwords in the files: qmdemo-passwords-secret.yaml, Producer.java and Consumer.java to a password of your choice, they are currently set to 'newpassword', or use the commandline to create a secret and don't apply the qmdemo-passwords-secret.yaml, you will still need to change the Java programs to match, ensure the passwords in the Java code are not placed in a publicly accessible place.  
+- Change the passwords in these files: qmdemo-passwords-secret.yaml, Producer.java and Consumer.java to a password of your choice, they are currently set to 'newpassword'. Alternatively use the commandline to create a secret and don't apply the qmdemo-passwords-secret.yaml, you will still need to change the Java programs to match, ensure the passwords in the Java code are not placed in a publicly accessible place.  
 ```
 oc create secret generic qmdemo-passwords --from-literal=dev-admin-password=newpassword --from-literal=dev-app-password=newpassword
 ```
@@ -52,7 +52,10 @@ source openshift-commands.txt
 Deploy the producer and consumer Java applications.  
 
 > [!IMPORTANT]
-> Change the passwords in Producer.java and Consumer.java to match what you have in the qmdemo-passwords-secret.yaml  
+> Change the passwords in Producer.java and Consumer.java to match what you have in the Secret qmdemo-passwords-secret and ensure you store the code securely.
+
+> [!CAUTION]
+> The samples below usese this repository that has the publicaly accessible passwords.  
 
 ```
 oc new-app registry.redhat.io/redhat-openjdk-18/openjdk18-openshift~https://github.com/ibm-messaging/mq-gitops-samples#main --context-dir=/queue-manager-basic-deployment/code/qmdemo-producer --env='JAVA_APP_JAR=producer-1.0-SNAPSHOT-jar-with-dependencies.jar' --name=mq-producer  
