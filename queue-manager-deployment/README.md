@@ -1,12 +1,12 @@
-# mq-gitops-samples
+# mq-gitops-samples IBM MQ Uniform Cluster with Native HA Queue Managers
 
 These Kustomize deployment samples are intended for use with an implementation of ArgoCD. The sample will deploy a two queue manager uniform-cluster with TLS and a dynamic MQSC update capability. The sample has a custom sed transformer that provides the capability to template any files that Kustomize generates, including the MQSC that gets inserted into Kubernetes config maps.
 
-:warning: **Warning:**
-This deployment disables queue manager security, it is strongly recommended you enable security for anything other than a demonstration.
+> [!WARNING]
+> This deployment disables queue manager security, it is strongly recommended you enable security for anything other than a demonstration.
 
-:bulb: **Tip:**
-If you just want to build the YAML files without deploying, in the 'mq-gitops-samples/queue-manager-deployment' folder run:
+> [!INFORMATION]
+> If you just want to build the YAML files without deploying, in the 'mq-gitops-samples/queue-manager-deployment' folder run:
 
 ```shell
 kustomize build --enable-alpha-plugins --enable-exec queue-managers/
