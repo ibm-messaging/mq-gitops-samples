@@ -9,7 +9,7 @@ This repository contains samples that can be used to deploy a basic queue manage
 > [!WARNING]  
 > The sample passwords secret should not be used as-is and you should not store passwords in the clear in Git repositories, the passwords used in this repository are there solely to show the format of the YAML files.  The samples use 'newpassword' for the 'admin' user in the MQ Console and for the 'app' user in the Java samples.  
 
-__Dependencies__  
+## Dependencies
 
 Ensure you have setup the following resources on your OpenShift cluster:  
 
@@ -28,7 +28,7 @@ spec:
   selfSigned: {}
 ```
 
-__Usage__  
+## Usage
 
 Clone this repository  
 Change the passwords in files qmdemo-passwords-secret.yaml, Producer.java and Consumer.java to a password of your choice, they are currently set to 'newpassword'  
