@@ -55,7 +55,7 @@ Deploy the producer and consumer Java applications.
 > Change the passwords in Producer.java and Consumer.java to match what you have in the Secret qmdemo-passwords-secret and ensure you store the code securely.
 
 > [!CAUTION]
-> The samples below usese this repository that has the publicaly accessible passwords.  
+> The samples below uses this repository that has the publicaly accessible passwords.  
 
 ```
 oc new-app registry.redhat.io/redhat-openjdk-18/openjdk18-openshift~https://github.com/ibm-messaging/mq-gitops-samples#main --context-dir=/queue-manager-basic-deployment/code/qmdemo-producer --env='JAVA_APP_JAR=producer-1.0-SNAPSHOT-jar-with-dependencies.jar' --name=mq-producer  
