@@ -7,7 +7,7 @@ This repository contains samples that can be used to deploy a basic queue manage
 > The sample uses a persistent volume, but it will be deleted upon deletion of the queue manager custom resource. Do not use this sample as a template for a production deployment its intended use is for demonstration purposes.  
 
 > [!WARNING]  
-> The sample passwords secret should not be used as-is and you should not store passwords in the clear in Git repositories, the passwords used in this repository are there solely to show the format of the YAML files.  The samples use 'newpassword' for the 'admin' user in the MQ Console and the username and password for the Java applications.  
+> The sample passwords secret should not be used as-is and you should not store passwords in the clear in Git repositories, the passwords used in this repository are there solely to show the format of the YAML files.  The samples use 'newpassword' for the 'admin' user in the MQ Console and for the 'app' user in the Java samples.  
 
 __Dependencies__  
 
