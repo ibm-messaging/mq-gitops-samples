@@ -60,12 +60,12 @@ spec:
             - name: MQ_ADMIN_PASSWORD
               valueFrom:
                 secretKeyRef:
-                  name: __env____qmgrname__-passwords
+                  name: __qmgrname__-passwords
                   key: dev-admin-password
             - name: MQ_APP_PASSWORD
               valueFrom:
                 secretKeyRef:
-                  name: __env____qmgrname__-passwords
+                  name: __qmgrname__-passwords
                   key: dev-app-password
           name: qmgr
           volumeMounts:
