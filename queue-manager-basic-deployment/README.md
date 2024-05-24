@@ -1,6 +1,6 @@
 # Basic Queue Manager Deployment
 
-This repository contains samples that can be used to deploy a basic queue manager running on Red Hat OpenShift, the samples use the IBM MQ Developer edition. The repository also contains sample producer and consumer Java applications that can be built using Source to Image (S2I), and used to demonstrate sending and receiving messages to a queue. All the necessary components for the producer and consumer, queues, authority records etc. should be built for you. In addition to the queue manager, the sample will setup the IBM MQ Console, the MQ Operator will create a Route for the Console UI, don't forget to change the password in the sample secret file and store securely.  
+This repository contains samples that can be used to deploy a basic queue manager running on Red Hat OpenShift, the samples use the IBM MQ Developer edition. The repository also contains sample producer and consumer Java applications that can be built using Source to Image (S2I) and used to demonstrate sending and receiving messages to a queue. All the necessary components for the producer and consumer, queues, authority records etc. should be built for you. In addition to the queue manager, the sample will setup the IBM MQ Console, the MQ Operator will create a Route for the Console UI, don't forget to change the password in the sample secret file and store securely.  
 
 
 > [!IMPORTANT]  
