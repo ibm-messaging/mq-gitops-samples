@@ -15,3 +15,8 @@ configMapGenerator:
   behavior: create
   files:
   - static.mqsc
+secretGenerator:
+- name: passwords
+  literals:
+  - dev-admin-password='newpassword'
+  - dev-app-password='newpassword'

@@ -1,0 +1,12 @@
+oc delete QueueManager qmdemo            -n mq-demo
+oc delete ConfigMap qmdemo-dev-config    -n mq-demo
+oc delete Certificate qmdemo-self-signed -n mq-demo
+oc delete Secret qmdemo-passwords        -n mq-demo
+
+oc delete deployment mq-producer -n mq-demo
+oc delete buildconfig mq-producer -n mq-demo
+oc delete service mq-producer -n mq-demo
+
+oc delete deployment mq-consumer -n mq-demo
+oc delete buildconfig mq-consumer -n mq-demo
+oc delete service mq-consumer -n mq-demo
