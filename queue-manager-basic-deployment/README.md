@@ -1,10 +1,10 @@
 # Basic Queue Manager Deployment
 
-This repository contains samples that can be used to deploy a basic (single instance - standalone, no HA or MQ Cluster) queue manager running on Red Hat OpenShift, the samples use the IBM MQ Developer edition which does not require an IBM entitlement key. The repository also contains sample producer and consumer Java applications that can be built using Source to Image (S2I) and used to demonstrate sending and receiving messages to a queue. All the necessary components for the producer and consumer, queues, authority records etc. should be built for you. In addition to the queue manager, the sample will setup the IBM MQ Console, the MQ Operator will create a Route for the Console UI, don't forget to change the password in the sample secret file and store securely if you are adding it back to a repository.  
+This repository contains samples that can be used to deploy a basic (single instance - standalone, no HA or MQ Cluster) queue manager running on Red Hat OpenShift, the samples use the IBM MQ Developer edition which does not require an IBM entitlement key. The repository also contains sample producer and consumer Java applications that can be built using Source to Image (S2I) and used to demonstrate sending and receiving messages to a queue. All the necessary components for the producer and consumer, queues, authority records etc. should be built for you. In addition to the queue manager, the sample will setup the IBM MQ Console, the MQ Operator will create a Route/URL for the Console UI which you can find by selecting the QMDEMO queue manager under the MQ Operator UI.
 
 
 > [!IMPORTANT]  
-> The sample uses a persistent volume, but it will be deleted upon deletion of the queue manager custom resource. Do not use this sample as a template for a production deployment its intended use is for demonstration purposes.  
+> The sample uses a persistent volume, but it will be deleted upon removal of the queue manager custom resource. Do not use this sample as a template for a production deployment its intended use is for demonstration purposes.  
 
 > [!WARNING]  
 > The sample passwords secret should not be used as-is and you should not store passwords in repositories in the clear, especially in public Git repositories, the passwords used in this repository are there solely to show the format of the YAML files.  The samples use 'newpassword' for the 'admin' user in the MQ Console and for the 'app' user in the Java samples.
