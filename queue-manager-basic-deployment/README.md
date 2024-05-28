@@ -1,6 +1,6 @@
 # Basic Queue Manager Deployment
 
-This repository contains samples that can be used to deploy a basic queue manager running on Red Hat OpenShift, the samples use the IBM MQ Developer edition. The repository also contains sample producer and consumer Java applications that can be built using Source to Image (S2I) and used to demonstrate sending and receiving messages to a queue. All the necessary components for the producer and consumer, queues, authority records etc. should be built for you. In addition to the queue manager, the sample will setup the IBM MQ Console, the MQ Operator will create a Route for the Console UI, don't forget to change the password in the sample secret file and store securely if you are adding it back to a repository.  
+This repository contains samples that can be used to deploy a basic (single instance - standalone, no HA or MQ Cluster) queue manager running on Red Hat OpenShift, the samples use the IBM MQ Developer edition. The repository also contains sample producer and consumer Java applications that can be built using Source to Image (S2I) and used to demonstrate sending and receiving messages to a queue. All the necessary components for the producer and consumer, queues, authority records etc. should be built for you. In addition to the queue manager, the sample will setup the IBM MQ Console, the MQ Operator will create a Route for the Console UI, don't forget to change the password in the sample secret file and store securely if you are adding it back to a repository.  
 
 
 > [!IMPORTANT]  
@@ -55,7 +55,7 @@ Deploy the producer and consumer Java applications.
 > Change the passwords in Producer.java and Consumer.java to match what you have in the Secret qmdemo-passwords-secret and ensure you store the code securely.
 
 > [!CAUTION]
-> The samples below uses this repository that has the publicaly accessible passwords.  
+> The samples below use this repository that has the publicaly accessible passwords.  
 
 ```
 oc new-app registry.redhat.io/redhat-openjdk-18/openjdk18-openshift~https://github.com/ibm-messaging/mq-gitops-samples#main --context-dir=/queue-manager-basic-deployment/code/qmdemo-producer --env='JAVA_APP_JAR=producer-1.0-SNAPSHOT-jar-with-dependencies.jar' --name=mq-producer  
