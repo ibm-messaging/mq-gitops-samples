@@ -16,9 +16,9 @@ Samples that use Kustomize and ArgoCD to deploy and manage an IBM MQ Uniform Clu
 
 **Features**
   
-Certificate management  
-  
-Dynamic MQSC configuration updates without restarting the queue manager  
+- Certificate management
+- Dynamic MQSC configuration updates without restarting the queue manager
+- Templated queue managers
   
 ## queue-manager-custom-metrics
   
