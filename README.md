@@ -1,11 +1,18 @@
 # mq-gitops-samples
 GitOps samples for IBM MQ
 
-This repository contains samples that can be used to automate IBM MQ tasks on an OpenShift Container Platform.
+This repository contains samples that can be used to automate IBM MQ tasks on an OpenShift Container Platform.  
+
+> [!CAUTION]
+> All of the samples in this repository use the IBM MQ Developer edition, only use the IBM MQ Developer edition and its developer specific settings for development or demonstt=ration purposes.
+
+## queue-manager-basic-deployment
+
+Samples that show you how to deploy a single instance queue manager.  
 
 ## queue-manager-deployment
 
-Samples that use Kustomize and ArgoCD to deploy and manage an IBM MQ Uniform Cluster.
+Samples that use Kustomize and ArgoCD to deploy and manage an IBM MQ Uniform Cluster.  
 
 **Features**
   
@@ -15,11 +22,11 @@ Dynamic MQSC configuration updates without restarting the queue manager
   
 ## queue-manager-custom-metrics
   
-Samples and good practice guidance for customising an IBM provided MQ container image.
+Samples and good practice guidance for customising an IBM provided MQ container image.  
 
 ## ccdt-deployment
   
-Sample ccdt web server deployment using nginx.
+Sample ccdt web server deployment using nginx.  
 
 
 
