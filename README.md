@@ -4,7 +4,7 @@ GitOps samples for IBM MQ
 This repository contains samples that can be used to automate IBM MQ tasks on an OpenShift Container Platform.  
 
 > [!CAUTION]
-> All of the samples in this repository use the IBM MQ Developer edition, only use the IBM MQ Developer edition and its developer specific settings for development or demonstt=ration purposes.
+> All of the samples in this repository use the IBM MQ Developer edition, only use the IBM MQ Developer edition and its developer specific settings for development or demonstration purposes.
 
 ## queue-manager-basic-deployment
 
