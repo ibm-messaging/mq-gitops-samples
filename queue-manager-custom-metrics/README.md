@@ -4,8 +4,8 @@ IBM provide pre-built IBM MQ (MQ) container images for use with the MQ Operator,
 
 Estimated reading time 5 minutes, typical execution time 15-20 minutes.
 
-:warning: **Warning:**
-This sample uses the developer edition of IBM MQ - for production use an appropriate image.
+> [!WARNING]  
+> This sample uses the developer edition of IBM MQ - for production use an appropriate image.
 
 ## Important considerations and good practice for using a custom image
 
@@ -41,7 +41,8 @@ By following the steps below you will end up with a pipeline that will clone the
 
 1. Install OpenShift Pipelines. Go to the OCP OperatorHub and install ‘Red Hat OpenShift Pipelines’, you can take the defaults for this example\.
 
-:bulb: **Tip: search for ‘pipeline’**
+> [!TIP]  
+> Tip: search for ‘pipeline’
 
 2. Create a namespace. If you don’t have an existing project create a new one, we will be using ‘mq\-demo’ for this example\. When you login to the command line make sure you are using the right project as the YAML files do not specify a namespace\.
 
@@ -99,13 +100,12 @@ oc process mq-metrics-pipeline-run-template --param=runNumber=02 | oc create -f 
 Example commands are in the **example\-commands\.sh file**
 
 7. Once you have a customised image you can create a queue manager YAML and specify your custom image on the spec.queueManager.image field.
-8. Add the MQSC to start the collector and emmiter as an MQ Service, see cmd/mq_prometheus/mq_prometheus.mqsc in the https://github.com/ibm-messaging/mq-metric-samples repo.
+8. Add the MQSC to start the collector and emmiter as an MQ Service, see cmd/mq_prometheus/mq_prometheus.mqsc in the https://github.com/ibm-messaging/mq-metric-samples repo.  
 
-**Notes:**
-
-To find the tag for a task image search here, 
-
-[Red Hat Certified Products & Services \- Red Hat Ecosystem Catalog](https://catalog.redhat.com/)
+> [!NOTE]  
+> To find the tag for a task image search here, 
+>
+> [Red Hat Certified Products & Services \- Red Hat Ecosystem Catalog](https://catalog.redhat.com/)
 
 
 **Pipeline parameters:**
@@ -116,6 +116,7 @@ To find the tag for a task image search here,
 
 ---
 
-:exclamation: **NOTE:** The sample Dockerfile in this repo also uses the above parameters, they are passed in via BUILD_EXTRA_ARGS field e.g., --build-arg mqVersion=VRMF on the final buildah task.
+> [!IMPORTANT]  
+> The sample Dockerfile in this repo also uses the above parameters, they are passed in via BUILD_EXTRA_ARGS field e.g., --build-arg mqVersion=VRMF on the final buildah task.
 
 ---
