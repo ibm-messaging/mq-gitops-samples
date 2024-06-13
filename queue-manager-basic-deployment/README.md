@@ -1,11 +1,12 @@
 # Basic Queue Manager Deployment
 
 This repository contains samples that can be used to deploy a single instance (no High Availability or MQ Clustering) queue manager running on Red Hat OpenShift, the samples use the IBM MQ Developer edition which does not require an IBM entitlement key. The repository also contains sample producer and consumer Java applications that can be built using Source to Image (S2I), these samples can be used to demonstrate sending and receiving messages to a queue. All the necessary components for the producer and consumer, queues, authority records etc. should be built for you. In addition to the queue manager, the sample will setup the IBM MQ Console, the MQ Operator will create a Route/URL for the Console UI which you can find by selecting the QMDEMO queue manager under the MQ Operator UI.  
-  
-The sample queue manager uses an ephemeral (temporary) volume, it will be deleted upon removal of the queue manager custom resource. Do not use this sample as a template for a production deployment its intended use is for demonstration purposes only.  
+ 
   
 > [!WARNING]  
-> The sample has a password in the queue manager YAML file, this should not be used as-is and you should not store passwords in repositories in the clear, especially in public Git repositories, the passwords used in this repository are there solely to show the format of the YAML files.  The samples use 'newpassword' for the 'admin' user in the MQ Console and for the 'app' user in the Java samples. Change the password when you add the queue manager YAML to your OpenShift cluster.
+> The sample has a password in the queue manager YAML file, this should not be used as-is and you should not store passwords in repositories in the clear, especially in public Git repositories. The passwords used in this repository are there solely to show the format of the YAML files.  The samples use 'newpassword' for the 'admin' user in the MQ Console and for the 'app' user in the Java samples. Change the password when you add the queue manager YAML to your OpenShift cluster.  
+>
+> The sample queue manager uses an ephemeral (temporary) volume, it will be deleted upon removal of the queue manager custom resource. Do not use this sample as a template for a production deployment its intended use is for demonstration purposes only.  
 
 > [!IMPORTANT]
 > ## Dependencies
