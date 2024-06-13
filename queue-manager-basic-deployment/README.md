@@ -85,7 +85,7 @@ source openshift-commands.txt
 Deploy the producer and consumer Java applications.  
 
 > [!IMPORTANT]
-> Change the passwords in Producer.java and Consumer.java to match what you have in the Secret qmdemo-passwords-secret and ensure you store the code securely.
+> Change the passwords in Producer.java and Consumer.java to match what you have in the queue manager YAML and ensure you store the code securely.
 
 > [!CAUTION]
 > The samples below use this repository that has the publicaly accessible passwords.  
