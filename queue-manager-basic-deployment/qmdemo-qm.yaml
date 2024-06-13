@@ -35,15 +35,9 @@ spec:
             - name: MQ_DEV
               value: 'true'
             - name: MQ_ADMIN_PASSWORD
-              valueFrom:
-                secretKeyRef:
-                  name: qmdemo-passwords
-                  key: dev-admin-password
+              value: 'newpassword'
             - name: MQ_APP_PASSWORD
-              valueFrom:
-                secretKeyRef:
-                  name: qmdemo-passwords
-                  key: dev-app-password
+              value: 'newpassword'
           name: qmgr
   queueManager:
     mqsc:
@@ -53,8 +47,6 @@ spec:
           name: qmdemo-dev-config
     storage:
       queueManager:
-        type: persistent-claim
-      defaultDeleteClaim: true
+        type: ephereral
     name: QMDEMO
-  version: 9.3.5.1-r1
-
+  version: 9.3.5.1-r2
