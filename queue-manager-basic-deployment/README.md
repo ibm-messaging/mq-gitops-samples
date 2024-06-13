@@ -74,13 +74,20 @@ oc apply -f qmdemo-cert.yaml
 oc apply -f qmdemo-qm.yaml  
 ```
 
-3. Change the passwords in these files: Producer.java and Consumer.java to the same password you set in the queue manager YAML, they are set to 'newpassword' by default. Ensure the passwords in the Java code are not placed in a publicly accessible place.  
+You should now have a running queue manager.  
+
+### Optional
+
+3. Clone or fork this repository if you want to deploy the sample producer and consumer Java applications, you need to take a copy if you are changing the passwords (strongly recommended).
+
+4. Change the passwords in these files: Producer.java and Consumer.java to the same password you set in the queue manager YAML, they are set to 'newpassword' by default. Ensure the passwords in the Java code are not placed in a publicly accessible place.  
 
 
-4. Deploy the producer and consumer Java applications.  
+5. Deploy the producer and consumer Java applications, you will need to replace this repository with the location of your files if you have changed the passwords.  
 
 ```
 oc new-app registry.redhat.io/redhat-openjdk-18/openjdk18-openshift~https://github.com/ibm-messaging/mq-gitops-samples#main --context-dir=/queue-manager-basic-deployment/code/qmdemo-producer --env='JAVA_APP_JAR=producer-1.0-SNAPSHOT-jar-with-dependencies.jar' --name=mq-producer -n mq-demo  
   
 oc new-app registry.redhat.io/redhat-openjdk-18/openjdk18-openshift~https://github.com/ibm-messaging/mq-gitops-samples#main --context-dir=/queue-manager-basic-deployment/code/qmdemo-consumer --env='JAVA_APP_JAR=consumer-1.0-SNAPSHOT-jar-with-dependencies.jar' --name=mq-consumer -n mq-demo  
 ```
+
