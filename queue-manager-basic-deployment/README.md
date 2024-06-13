@@ -1,6 +1,6 @@
 # Basic Queue Manager Deployment
 
-This repository contains samples that can be used to deploy a single instance (no High Availability or MQ Clustering) queue manager running on Red Hat OpenShift, the samples use the IBM MQ Developer edition which does not require an IBM entitlement key. The repository also contains sample producer and consumer Java applications that can be built using Source to Image (S2I), these samples can be used to demonstrate sending and receiving messages to a queue. All the necessary components for the producer and consumer, queues, authority records etc. should be built for you. In addition to the queue manager, the sample will setup the IBM MQ Console, the MQ Operator will create a Route/URL for the Console UI which you can find by selecting the QMDEMO queue manager under the MQ Operator UI.  
+This repository contains samples that can be used to deploy a single instance (no High Availability or MQ Clustering) queue manager running on Red Hat OpenShift, the samples use the IBM MQ Developer edition which does not require an IBM entitlement key. The repository also contains sample producer and consumer Java applications that can be built using Source to Image (S2I), these samples can be used to demonstrate sending and receiving messages to a queue. All the necessary components for the producer and consumer, queues, authority records etc. should be built for you. In addition to the queue manager, the sample will setup the IBM MQ Console, the MQ Operator will create a Route/URL for the Console UI which you can find by selecting the QMDEMO queue manager under the MQ Operator in the OpenShift console.  
  
   
 > [!WARNING]  
@@ -66,7 +66,7 @@ spec:
 ## Usage
 
 1. Log into you OpenShft cluster and create a project called 'mq-demo'.  
-2. Apply the YAML files by adding them to your cluster through the OpenShift UI or use the commandline e.g.
+2. Apply the YAML files, in the following order, by adding them to your cluster through the OpenShift UI or use the commandline e.g.
   
 ```
 oc apply -f qmdemo-mqsc-config-map.yaml  
