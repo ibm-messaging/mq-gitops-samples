@@ -5,7 +5,7 @@ This repository contains samples that can be used to deploy a single instance (n
 The sample queue manager uses an ephemeral (temporary) volume, it will be deleted upon removal of the queue manager custom resource. Do not use this sample as a template for a production deployment its intended use is for demonstration purposes only.  
   
 > [!WARNING]  
-> The sample sets a password in the queue manager YAML file, this should not be used as-is and you should not store passwords in repositories in the clear, especially in public Git repositories, the passwords used in this repository are there solely to show the format of the YAML files.  The samples use 'newpassword' for the 'admin' user in the MQ Console and for the 'app' user in the Java samples. Change the password when you add the queue manager YAML to your OpenShift cluster.
+> The sample has a password in the queue manager YAML file, this should not be used as-is and you should not store passwords in repositories in the clear, especially in public Git repositories, the passwords used in this repository are there solely to show the format of the YAML files.  The samples use 'newpassword' for the 'admin' user in the MQ Console and for the 'app' user in the Java samples. Change the password when you add the queue manager YAML to your OpenShift cluster.
 
 > [!IMPORTANT]
 > ## Dependencies
@@ -64,31 +64,19 @@ spec:
 
 ## Usage
 
-- Fork or clone this repository.
-- Change the passwords in these files: qmdemo-passwords-secret.yaml, Producer.java and Consumer.java to a password of your choice, they are currently set to 'newpassword'. Alternatively use the commandline to create a secret and don't apply the qmdemo-passwords-secret.yaml, you will still need to change the Java programs to match, ensure the passwords in the Java code are not placed in a publicly accessible place.  
-```
-oc create secret generic qmdemo-passwords --from-literal=dev-admin-password=newpassword --from-literal=dev-app-password=newpassword
-```
-- Log into you OpenShft cluster and create a project called mq-demo.  
-- Apply the YAML files, skip qmdemo-passwords-secret.yaml if you created the secret via the commandline.  
+1. Log into you OpenShft cluster and create a project called 'mq-demo'.  
+2. Apply the YAML files by adding them to your cluster through the OpenShift UI or use the commandline e.g.
   
 ```
 oc apply -f qmdemo-mqsc-config-map.yaml  
 oc apply -f qmdemo-cert.yaml  
 oc apply -f qmdemo-qm.yaml  
 ```
-or  
-```
-source openshift-commands.txt
-```  
 
-Deploy the producer and consumer Java applications.  
+3. Change the passwords in these files: Producer.java and Consumer.java to the same password you set in the queue manager YAML, they are set to 'newpassword' by default. Ensure the passwords in the Java code are not placed in a publicly accessible place.  
 
-> [!IMPORTANT]
-> Change the passwords in Producer.java and Consumer.java to match what you have in the queue manager YAML and ensure you store the code securely.
 
-> [!CAUTION]
-> The samples below use this repository that has the publicaly accessible passwords.  
+4. Deploy the producer and consumer Java applications.  
 
 ```
 oc new-app registry.redhat.io/redhat-openjdk-18/openjdk18-openshift~https://github.com/ibm-messaging/mq-gitops-samples#main --context-dir=/queue-manager-basic-deployment/code/qmdemo-producer --env='JAVA_APP_JAR=producer-1.0-SNAPSHOT-jar-with-dependencies.jar' --name=mq-producer -n mq-demo  
