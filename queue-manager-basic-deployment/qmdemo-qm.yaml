@@ -53,6 +53,6 @@ spec:
           name: qmdemo-dev-config
     storage:
       queueManager:
-        type: ephereral
+        type: ephemeral
     name: QMDEMO
   version: 9.3.5.1-r2
