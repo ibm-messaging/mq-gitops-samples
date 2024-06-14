@@ -6,7 +6,10 @@ oc delete Certificate qmdemo-self-signed -n mq-demo
 oc delete deployment mq-producer -n mq-demo
 oc delete buildconfig mq-producer -n mq-demo
 oc delete service mq-producer -n mq-demo
+oc delete imagestream mq-producer -n mq-demo
+
 
 oc delete deployment mq-consumer -n mq-demo
 oc delete buildconfig mq-consumer -n mq-demo
 oc delete service mq-consumer -n mq-demo
+oc delete imagestream mq-consumer -n mq-demo

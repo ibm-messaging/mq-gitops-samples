@@ -4,8 +4,6 @@ This repository contains samples that can be used to deploy a single instance (n
  
   
 > [!WARNING]  
-> These samples have passwords in the queue manager YAML file and the Java source code files, these should not be used as-is and you should not store passwords in repositories in the clear, especially in public Git repositories. The samples use 'newpassword' for the 'admin' user to be used in the MQ Console and for the 'app' user in the Java samples. Change the password when you add the queue manager YAML to your OpenShift cluster and then change the passwords in the Java code to match. The passwords used in this repository are there solely to show the format of the YAML files and Java code.  
->
 > The sample queue manager uses an ephemeral (temporary) storage volume, it will be deleted upon removal of the queue manager custom resource. Do not use this sample as a template for a production deployment it is intended use is for demonstration purposes only.  
 
 > [!IMPORTANT]
@@ -65,8 +63,15 @@ spec:
 
 ## Usage
 
-1. Log into you OpenShft cluster and create a project called 'mq-demo'.  
-2. Apply the YAML files, in the following order, by adding them to your cluster through the OpenShift UI or use the commandline e.g.
+1. Log into you OpenShft cluster and create a project called 'mq-demo'. 
+
+2. Using a terminal window create a secret for the MQ Console and the application user.  
+
+```
+oc create secret generic qmdemo-passwords --from-literal=dev-admin-password=change-this-password --from-literal=dev-app-password=change-this-password -n mq-demo
+```
+
+3. Apply the YAML files in the order below, add them to your cluster through the OpenShift UI or use the commandline e.g.
   
 ```
 oc apply -f qmdemo-mqsc-config-map.yaml  
@@ -74,20 +79,20 @@ oc apply -f qmdemo-cert.yaml
 oc apply -f qmdemo-qm.yaml  
 ```
 
-You should now have a running queue manager.  
+You should now have a running queue manager and MQ Console. Log into the console with user 'admin' and the password you set when creating the secret in step 2.  
 
-### Optional
+### Optional - deploy the sample applications
 
-3. Clone or fork this repository if you want to deploy the sample producer and consumer Java applications, you need to take a copy if you are changing the passwords (strongly recommended).
+1. Use a terminal window to deploy the producer and consumer Java applications, make sure you change the value of MQ_APP_PASSWORD to be the same as what you set when creating the secret in step 2.
 
-4. Change the passwords in these files: Producer.java and Consumer.java to the same password you set in the queue manager YAML, they are set to 'newpassword' by default. Ensure the passwords in the Java code are not placed in a publicly accessible place.  
-
-
-5. Deploy the producer and consumer Java applications, you will need to replace this repository with the location of your files if you have changed the passwords.  
+### Producer  
 
 ```
-oc new-app registry.redhat.io/redhat-openjdk-18/openjdk18-openshift~https://github.com/ibm-messaging/mq-gitops-samples#main --context-dir=/queue-manager-basic-deployment/code/qmdemo-producer --env='JAVA_APP_JAR=producer-1.0-SNAPSHOT-jar-with-dependencies.jar' --name=mq-producer -n mq-demo  
-  
-oc new-app registry.redhat.io/redhat-openjdk-18/openjdk18-openshift~https://github.com/ibm-messaging/mq-gitops-samples#main --context-dir=/queue-manager-basic-deployment/code/qmdemo-consumer --env='JAVA_APP_JAR=consumer-1.0-SNAPSHOT-jar-with-dependencies.jar' --name=mq-consumer -n mq-demo  
+oc new-app registry.redhat.io/redhat-openjdk-18/openjdk18-openshift~https://github.com/ibm-messaging/mq-gitops-samples#main --context-dir=/queue-manager-basic-deployment/code/qmdemo-producer --env='JAVA_APP_JAR=producer-1.0-SNAPSHOT-jar-with-dependencies.jar' --env="MQ_APP_PASSWORD=change-this-password" --name=mq-producer -n mq-demo  
+```  
+### Consumer  
+
+```
+oc new-app registry.redhat.io/redhat-openjdk-18/openjdk18-openshift~https://github.com/ibm-messaging/mq-gitops-samples#main --context-dir=/queue-manager-basic-deployment/code/qmdemo-consumer --env='JAVA_APP_JAR=consumer-1.0-SNAPSHOT-jar-with-dependencies.jar' --env="MQ_APP_PASSWORD=change-this-password" --name=mq-consumer -n mq-demo  
 ```
 
