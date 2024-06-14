@@ -69,14 +69,15 @@ spec:
 
 </details>
 
+> [!TIP]
+> After installing the web terminal operator, refresh your browser the get the '>_' icon in the top right of the console, click the icon to open a web terminal.
+>
+
 ## Usage
 
 1. Log into you OpenShft cluster and create a project called 'mq-demo'. 
 
 2. Using a terminal window create a secret for the MQ Console and the application user.  
-> [!TIP]
-> After installing the web terminal operator, refresh your browser the get the '>_' icon in the top right of the console, click the icon to open a web terminal.
->
 
 ```
 oc create secret generic qmdemo-passwords --from-literal=dev-admin-password=change-this-password --from-literal=dev-app-password=change-this-password -n mq-demo
