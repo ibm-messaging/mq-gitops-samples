@@ -54,7 +54,7 @@ spec:
 
 <summary>Certificate Manager Operator</summary>
 
-1. Install the certificate manager by serching for 'cert-manager' in the OperatorHub, take the defaults.
+1. Install the Red Hat OpenShift cert-manager operator by serching for 'cert-manager' in the OperatorHub, take the defaults and install.
 2. Create a Cluster Issuer once the operator is installed, a self-signed is fine for test/demonstration purposes.  
 
 Example self-signed ClusterIssuer YAML 
