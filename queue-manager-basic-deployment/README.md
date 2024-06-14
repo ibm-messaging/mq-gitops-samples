@@ -81,7 +81,7 @@ oc apply -f qmdemo-cert.yaml
 oc apply -f qmdemo-qm.yaml  
 ```
 
-You should now have a running queue manager.  
+You should now have a running queue manager and MQ Console. Log into the console with user 'admin' and the password you set when creating the secret in step 2.  
 
 ### Optional - deploy the sample applications
 
