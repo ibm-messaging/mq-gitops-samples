@@ -11,6 +11,11 @@ spec:
     license: L-AXAF-JLZ53A
     use: Development
   web:
+    console:
+      authentication:
+        provider: manual
+      authorization:
+        provider: manual
     enabled: true
   pki:
     keys:
@@ -56,3 +61,5 @@ spec:
         type: ephemeral
     name: QMDEMO
   version: 9.3.5.1-r2
+
+
