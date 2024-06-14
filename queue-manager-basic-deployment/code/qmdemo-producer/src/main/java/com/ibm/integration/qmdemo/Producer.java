@@ -13,7 +13,14 @@ public class Producer {
 
 	public static void main(String[] args) {
 
-		try {	
+		try {
+
+			String mqAppPassword = System.getenv("MQ_APP_PASSWORD");
+
+                        if (mqAppPassword == null)
+                        {
+                                throw new Exception("No environment variable supplied for password, supply env var MQ_APP_PASSWORD with a password.");
+                        }	
 
 			MQConnectionFactory cf = new MQConnectionFactory();
 
@@ -30,7 +37,7 @@ public class Producer {
 			System.out.println(cf.toString());
 
 			System.out.println("Starting Producer - creating connection...");
-			con = cf.createConnection("app","newpassword");
+			con = cf.createConnection("app",mqAppPassword);
 			System.out.println("Creating session...");
 			Session session = con.createSession(false,Session.AUTO_ACKNOWLEDGE);
 			Destination sendTo = session.createQueue("DEV.QUEUE.1");
