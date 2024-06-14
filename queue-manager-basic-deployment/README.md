@@ -92,7 +92,14 @@ spec:
 oc create secret generic qmdemo-passwords --from-literal=dev-admin-password=change-this-password --from-literal=dev-app-password=change-this-password -n mq-demo
 ```
 
-3. Apply the YAML files in the order below, add them to your cluster through the OpenShift UI or use the commandline e.g.
+3. Add the sample YAML files to you cluster in the order below,  
+
+- qmdemo-mqsc-config-map.yaml  
+- qmdemo-cert.yaml  
+- qmdemo-qm.yaml  
+
+
+You can add them to your cluster through the OpenShift UI (click the + at the top of the console) or you can use the command line if you have a local copy of the files e.g.  
   
 ```
 oc apply -f qmdemo-mqsc-config-map.yaml  
