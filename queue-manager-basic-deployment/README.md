@@ -54,7 +54,8 @@ spec:
 
 <summary>Certificate Manager Operator</summary>
 
-Install the certificate manager by serching for 'certificate-manager' in the OperatorHub, take the defaults and then create a Cluster Issuer once the operator is installed, a self-signed is fine for test/demonstration purposes.  
+1. Install the certificate manager by serching for 'cert-manager' in the OperatorHub, take the defaults.
+2. Create a Cluster Issuer once the operator is installed, a self-signed is fine for test/demonstration purposes.  
 
 Example self-signed ClusterIssuer YAML 
 
