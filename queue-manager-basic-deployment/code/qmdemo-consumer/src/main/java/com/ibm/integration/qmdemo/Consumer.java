@@ -13,6 +13,12 @@ public class Consumer {
         public static void main(String[] args) {
 
                 try {
+                        String mqAppPassword = System.getenv("MQ_APP_PASSWORD");
+
+                        if (mqAppPassword == null)
+                        {
+                                throw new Exception("No environment variable supplied for password, supply env var MQ_APP_PASSWORD with a password.");
+                        }
 
                         MQConnectionFactory cf = new MQConnectionFactory();
 
@@ -29,7 +35,7 @@ public class Consumer {
                         System.out.println(cf.toString());
 
                         System.out.println("Starting Consumer - creating connection...");
-                        con = cf.createConnection("app","newpassword");
+                        con = cf.createConnection("app",mqAppPassword);
                         System.out.println("Creating session...");
                         Session session = con.createSession(false,Session.AUTO_ACKNOWLEDGE);
                         Destination getFrom = session.createQueue("DEV.QUEUE.1");
