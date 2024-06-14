@@ -65,8 +65,15 @@ spec:
 
 ## Usage
 
-1. Log into you OpenShft cluster and create a project called 'mq-demo'.  
-2. Apply the YAML files, in the following order, by adding them to your cluster through the OpenShift UI or use the commandline e.g.
+1. Log into you OpenShft cluster and create a project called 'mq-demo'. 
+
+2. Using the terminal window create a secret for the MQ Console and the applicatiomn user.  
+
+```
+oc create secret generic qmdemo-passwords --from-literal=dev-admin-password=change-this-password --from-literal=dev-app-password=change-this-password
+```
+
+3. Apply the YAML files, in the following order, by adding them to your cluster through the OpenShift UI or use the commandline e.g.
   
 ```
 oc apply -f qmdemo-mqsc-config-map.yaml  
@@ -86,8 +93,8 @@ You should now have a running queue manager.
 5. Deploy the producer and consumer Java applications, you will need to replace this repository with the location of your files if you have changed the passwords.  
 
 ```
-oc new-app registry.redhat.io/redhat-openjdk-18/openjdk18-openshift~https://github.com/ibm-messaging/mq-gitops-samples#main --context-dir=/queue-manager-basic-deployment/code/qmdemo-producer --env='JAVA_APP_JAR=producer-1.0-SNAPSHOT-jar-with-dependencies.jar' --name=mq-producer -n mq-demo  
+oc new-app registry.redhat.io/redhat-openjdk-18/openjdk18-openshift~https://github.com/ibm-messaging/mq-gitops-samples#main --context-dir=/queue-manager-basic-deployment/code/qmdemo-producer --env='JAVA_APP_JAR=producer-1.0-SNAPSHOT-jar-with-dependencies.jar' --env="MQ_APP_PASSWORD=change-this-password" --name=mq-producer -n mq-demo  
   
-oc new-app registry.redhat.io/redhat-openjdk-18/openjdk18-openshift~https://github.com/ibm-messaging/mq-gitops-samples#main --context-dir=/queue-manager-basic-deployment/code/qmdemo-consumer --env='JAVA_APP_JAR=consumer-1.0-SNAPSHOT-jar-with-dependencies.jar' --name=mq-consumer -n mq-demo  
+oc new-app registry.redhat.io/redhat-openjdk-18/openjdk18-openshift~https://github.com/ibm-messaging/mq-gitops-samples#main --context-dir=/queue-manager-basic-deployment/code/qmdemo-consumer --env='JAVA_APP_JAR=consumer-1.0-SNAPSHOT-jar-with-dependencies.jar' --env="MQ_APP_PASSWORD=change-this-assword" --name=mq-consumer -n mq-demo  
 ```
 

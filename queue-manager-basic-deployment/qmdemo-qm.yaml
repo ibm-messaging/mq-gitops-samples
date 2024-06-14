@@ -35,9 +35,15 @@ spec:
             - name: MQ_DEV
               value: 'true'
             - name: MQ_ADMIN_PASSWORD
-              value: 'newpassword'
+              valueFrom:
+                secretKeyRef:
+                  name: qmdemo-passwords
+                  key: dev-app-password
             - name: MQ_APP_PASSWORD
-              value: 'newpassword'
+              valueFrom:
+                secretKeyRef:
+                  name: qmdemo-passwords
+                  key: dev-app-password
           name: qmgr
   queueManager:
     mqsc:
