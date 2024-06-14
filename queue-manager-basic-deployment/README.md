@@ -10,8 +10,16 @@ This repository contains samples that can be used to deploy a single instance (n
 > ## Dependencies
 > Ensure you have setup the following resources on your OpenShift cluster 
 >
+
 <details>
-<summary>The IBM MQ Operator</summary>  
+<summary>Web Terminal Operator</summary>  
+
+Install the web terminal operator by serching for 'web terminal' in the OperatorHub, take the defaults and click install.
+
+</details>
+
+<details>
+<summary>IBM MQ Operator</summary>  
   
 &NewLine;
 
@@ -44,7 +52,7 @@ spec:
 
 <details>
 
-<summary>Certificate Manager</summary>
+<summary>Certificate Manager Operator</summary>
 
 Install the certificate manager by serching for 'certificate-manager' in the OperatorHub, take the defaults and then create a Cluster Issuer once the operator is installed, a self-signed is fine for test/demonstration purposes.  
 
