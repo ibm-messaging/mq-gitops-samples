@@ -4,8 +4,6 @@ This repository contains samples that can be used to deploy a single instance (n
  
   
 > [!WARNING]  
-> These samples have passwords in the queue manager YAML file and the Java source code files, these should not be used as-is and you should not store passwords in repositories in the clear, especially in public Git repositories. The samples use 'newpassword' for the 'admin' user to be used in the MQ Console and for the 'app' user in the Java samples. Change the password when you add the queue manager YAML to your OpenShift cluster and then change the passwords in the Java code to match. The passwords used in this repository are there solely to show the format of the YAML files and Java code.  
->
 > The sample queue manager uses an ephemeral (temporary) storage volume, it will be deleted upon removal of the queue manager custom resource. Do not use this sample as a template for a production deployment it is intended use is for demonstration purposes only.  
 
 > [!IMPORTANT]
