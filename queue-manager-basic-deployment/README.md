@@ -14,16 +14,18 @@ This repository contains samples that can be used to deploy a single instance (n
 <details>
 <summary>Web Terminal Operator</summary>  
 
-Install the web terminal operator by serching for 'web terminal' in the OperatorHub, take the defaults and click install.
+&NewLine;  
+
+Install the web terminal operator by serching for 'web terminal' in the OperatorHub, take the defaults and click install. The web terminal operator allows you to run 'oc' commands in a terminal window in your browser, if you already have 'oc' installed you can skip this dependency and use your own terminal.
 
 </details>
 
 <details>
 <summary>IBM MQ Operator</summary>  
   
-&NewLine;
+&NewLine;  
 
-**1.** Use the YAML below to add the IBM Operator catalog, full details can be found here,  
+**1.** Use the YAML below to add the IBM Operator catalog. This will allow you to find IBM MQ in the OpenShift operator hub, full details can be found here,  
 https://www.ibm.com/docs/en/SSFKSJ_9.3.0/container/ctr-add-catalog-source.html
 
 &NewLine;
@@ -52,7 +54,13 @@ spec:
 
 <details>
 
-<summary>Certificate Manager Operator</summary>
+<summary>Certificate Manager Operator</summary>  
+
+&NewLine;  
+
+A certificate manager in OpenShift allows you to simply add some YAML with a certificate request, it will put the ca, public/private keys in a secret for you that the queue manager can use.  
+
+&NewLine;  
 
 1. Install the Red Hat OpenShift cert-manager operator by serching for 'cert-manager' in the OperatorHub, take the defaults and install.
 2. When the operator has finished installing create a Cluster Issuer, a self-signed is fine for test/demonstration purposes.  
