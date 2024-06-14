@@ -85,9 +85,14 @@ You should now have a running queue manager and MQ Console. Log into the console
 
 1. Use a terminal window to deploy the producer and consumer Java applications, make sure you change the value of MQ_APP_PASSWORD to be the same as what you set when creating the secret in step 2.
 
+###Producer  
+
 ```
 oc new-app registry.redhat.io/redhat-openjdk-18/openjdk18-openshift~https://github.com/ibm-messaging/mq-gitops-samples#main --context-dir=/queue-manager-basic-deployment/code/qmdemo-producer --env='JAVA_APP_JAR=producer-1.0-SNAPSHOT-jar-with-dependencies.jar' --env="MQ_APP_PASSWORD=change-this-password" --name=mq-producer -n mq-demo  
-  
+```  
+###Consumer  
+
+```
 oc new-app registry.redhat.io/redhat-openjdk-18/openjdk18-openshift~https://github.com/ibm-messaging/mq-gitops-samples#main --context-dir=/queue-manager-basic-deployment/code/qmdemo-consumer --env='JAVA_APP_JAR=consumer-1.0-SNAPSHOT-jar-with-dependencies.jar' --env="MQ_APP_PASSWORD=change-this-password" --name=mq-consumer -n mq-demo  
 ```
 
