@@ -68,7 +68,7 @@ spec:
 2. Using a terminal window create a secret for the MQ Console and the application user.  
 
 ```
-oc create secret generic qmdemo-passwords --from-literal=dev-admin-password=change-this-password --from-literal=dev-app-password=change-this-password
+oc create secret generic qmdemo-passwords --from-literal=dev-admin-password=change-this-password --from-literal=dev-app-password=change-this-password -n mq-demo
 ```
 
 3. Apply the YAML files in the order below, add them to your cluster through the OpenShift UI or use the commandline e.g.
