@@ -62,7 +62,7 @@ A certificate manager in OpenShift allows you to simply add some YAML with a cer
 
 &NewLine;  
 
-1. Install the Red Hat OpenShift cert-manager operator by serching for 'cert-manager' in the OperatorHub, take the defaults and install.
+1. Install the 'Community' cert-manager operator by serching for 'cert-manager' in the OperatorHub, take the defaults and install.
 2. When the operator has finished installing create a Cluster Issuer, a self-signed is fine for test/demonstration purposes.  
 
 Example self-signed ClusterIssuer YAML 
