@@ -8,7 +8,7 @@ metadata:
 spec:
   license:
     accept: true
-    license: L-AXAF-JLZ53A
+    license: L-CLXQ-ADXTK3
     use: Development
   web:
     console:
@@ -60,6 +60,5 @@ spec:
       queueManager:
         type: ephemeral
     name: QMDEMO
-  version: 9.3.5.1-r2
-
+  version: 9.4.0.0-r1
 
