@@ -5,6 +5,8 @@ metadata:
   annotations:
     com.ibm.mq/write-defaults-spec: 'false'
   namespace: mq-demo
+  annotations:
+    argocd.argoproj.io/sync-wave: "1"
 spec:
   license:
     accept: true

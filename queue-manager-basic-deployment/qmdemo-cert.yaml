@@ -3,6 +3,8 @@ kind: Certificate
 metadata:
   name: qmdemo-self-signed
   namespace: mq-demo
+  annotations:
+    argocd.argoproj.io/sync-wave: "0"
 spec:
   commonName: qmdemo
   dnsNames:
