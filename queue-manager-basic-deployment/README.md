@@ -84,9 +84,9 @@ spec:
 
 ## Usage
 
-1. Log into you OpenShft cluster and create a project called 'mq-demo'. 
+1. Log into you OpenShft cluster and create a project called 'mq-demo'. Click Home -> Projects and then the 'Create Project' button; OpenShift Projects are like NameSpaces but they include additional security features.  
 
-2. Using a terminal window create a secret for the MQ Console and the application user.  
+2. Using a terminal window create a secret for the MQ Console and the application user. See Tip above.  
 
 ```
 oc create secret generic qmdemo-passwords --from-literal=dev-admin-password=change-this-password --from-literal=dev-app-password=change-this-password -n mq-demo
