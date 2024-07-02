@@ -14,6 +14,9 @@ public class Producer {
 	public static void main(String[] args) {
                 // uncomment this line to make a connection via TLS from outside of an OpenShift cluster
                 // System.setProperty("com.ibm.mq.cfg.SSL.outboundSNI","HOSTNAME");
+		// uncomment this line to turn off certificate validation - use for test purposes only
+		// System.setProperty("com.ibm.mq.cfg.SSL.certificateValPolicy","NONE");
+
 		try {
 
 			String mqAppPassword = System.getenv("MQ_APP_PASSWORD");
@@ -27,6 +30,8 @@ public class Producer {
 
 			cf.setHostName("qmdemo-ibm-mq");
 			cf.setPort(1414);
+			// uncomment this line to switch to TLS
+			// cf.setSSLCipherSuite("*ANY");
 			cf.setQueueManager("QMDEMO");
 			cf.setChannel("DEV.APP.SVRCONN.0TLS");
 			cf.setTransportType(WMQConstants.WMQ_CM_CLIENT);
