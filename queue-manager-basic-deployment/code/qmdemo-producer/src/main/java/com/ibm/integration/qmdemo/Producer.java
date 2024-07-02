@@ -12,7 +12,8 @@ import com.ibm.msg.client.wmq.WMQConstants;
 public class Producer {
 
 	public static void main(String[] args) {
-
+                // uncomment this line to make a connection via TLS from outside of an OpenShift cluster
+                // System.setProperty("com.ibm.mq.cfg.SSL.outboundSNI","HOSTNAME");
 		try {
 
 			String mqAppPassword = System.getenv("MQ_APP_PASSWORD");
