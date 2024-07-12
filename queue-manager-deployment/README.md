@@ -17,6 +17,7 @@ kustomize build --enable-alpha-plugins --enable-exec queue-managers/
 An OpenShift cluster with a default storage class and the following Operators:
 
 - IBM MQ
+- a project called 'mq-demo'
 - Red Hat OpenShift GitOps (ensure ArgoCD has access to the terget project and plugins are enabled)
 - cert-manager Operator for Red Hat OpenShift and a self-signed ClusterIssuer if you are using the demo certificate requests in this repository.
 e.g.
@@ -81,7 +82,7 @@ kind: RoleBinding
 apiVersion: rbac.authorization.k8s.io/v1
 metadata:
   name: argo-test
-  namespace: default
+  namespace: mq-demo
 subjects:
   - kind: ServiceAccount
     name: openshift-gitops-argocd-application-controller
