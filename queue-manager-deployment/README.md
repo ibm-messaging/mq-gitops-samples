@@ -32,10 +32,17 @@ spec:
 
 Patch ArgoCD to allow the use of plugins, first option applies globally, second has application scope.
 
-option 1
+option 1  
+
+Example command:  
+
+```bash
+oc patch argocd/openshift-gitops -n openshift-gitops --patch-file argo-patch.yaml --type=merge
+```
+
 
 ```yaml
-apiVersion: argoproj.io/v1alpha1
+apiVersion: argoproj.io/v1beta1
 kind: ArgoCD
 metadata:
   name: openshift-gitops
@@ -47,7 +54,7 @@ spec:
 ```
 option 2
 ```yaml
-apiVersion: argoproj.io/v1alpha1
+apiVersion: argoproj.io/v1beta1
 kind: ArgoCD
 metadata:
   name: openshift-gitops
