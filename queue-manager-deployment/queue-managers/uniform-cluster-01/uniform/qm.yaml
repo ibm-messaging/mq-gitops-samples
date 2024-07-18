@@ -10,7 +10,7 @@ spec:
         limits:
           cpu: '1'
         requests:
-          cpu: '1'
+          cpu: '0.5'
       name: __ENV____QMGRNAME__
       mqsc:
       - configMap:

@@ -24,7 +24,7 @@ spec:
         limits:
           cpu: 800m
         requests:
-          cpu: 800m
+          cpu: 500m
       name: __ENV____QMGRNAME__
       availability:
         type: NativeHA
