@@ -1,0 +1,17 @@
+apiVersion: cert-manager.io/v1
+kind: Certificate
+metadata:
+  name: selfsigned-cert
+spec:
+  commonName: __env____qmgrname__
+  dnsNames:
+  - __env____qmgrname__
+  - __env____qmgrname__-qmgrs
+  - __env____qmgrname__.my-platform.com
+  issuerRef:
+    name: selfsigned-issuer
+    kind: ClusterIssuer
+  secretName: __env____qmgrname__-cert
+  subject:
+    organizations:
+    - IBM
