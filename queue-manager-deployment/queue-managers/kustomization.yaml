@@ -1,3 +1,5 @@
 resources:
 - ./uniform-cluster-01/qm01
 - ./uniform-cluster-01/qm02
+- ./uniform-cluster-01/qm03
+- ./uniform-cluster-01/qm04
