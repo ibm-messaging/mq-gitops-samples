@@ -13,7 +13,7 @@ data:
                         "clientConnection": {
                                 "connection": [
                                         {
-                                                "host": "qm01-qm-ibm-mq.mq-demo.svc.cluster.local",
+                                                "host": "qm01-qm-ibm-mq",
                                                 "port": 1414
                                         }
                                 ],
@@ -33,7 +33,7 @@ data:
                         "clientConnection": {
                                 "connection": [
                                         {
-                                                "host": "qm02-qm-ibm-mq.mq-demo.svc.cluster.local",
+                                                "host": "qm02-qm-ibm-mq",
                                                 "port": 1414
                                         }
                                 ],
@@ -53,7 +53,7 @@ data:
                         "clientConnection": {
                                 "connection": [
                                         {
-                                                "host": "qm01-qm-ibm-mq.mq-demo.svc.cluster.local",
+                                                "host": "qm01-qm-ibm-mq",
                                                 "port": 1414
                                         }
                                 ],
@@ -69,7 +69,7 @@ data:
                         "clientConnection": {
                                 "connection": [
                                         {
-                                                "host": "qm02-qm-ibm-mq.mq-demo.svc.cluster.local",
+                                                "host": "qm02-qm-ibm-mq",
                                                 "port": 1414
                                         }
                                 ],
@@ -85,7 +85,7 @@ data:
                         "clientConnection": {
                                 "connection": [
                                         {
-                                                "host": "qm03-qm-ibm-mq.mq-demo.svc.cluster.local",
+                                                "host": "qm03-qm-ibm-mq",
                                                 "port": 1414
                                         }
                                 ],
@@ -101,7 +101,7 @@ data:
                         "clientConnection": {
                                 "connection": [
                                         {
-                                                "host": "qm04-qm-ibm-mq.mq-demo.svc.cluster.local",
+                                                "host": "qm04-qm-ibm-mq",
                                                 "port": 1414
                                         }
                                 ],
