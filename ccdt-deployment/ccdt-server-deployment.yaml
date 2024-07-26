@@ -24,6 +24,10 @@ spec:
             - name: nginx-mq-services-file
               mountPath: /usr/share/nginx/html/
 
+            - name: nginx-mq-services-file
+              mountPath: /usr/share/nginx/html/notls
+
+
             - name: nginx-mq-routes-file
               mountPath: /usr/share/nginx/html/external
 
@@ -31,6 +35,11 @@ spec:
       - name: nginx-mq-services-file
         configMap:
           name: ccdt-mq-services-configmap
+
+      volumes:
+      - name: nginx-mq-services-file-no-tls
+        configMap:
+          name: ccdt-mq-services-configmap-no-tls
 
       - name: nginx-mq-routes-file
         configMap:

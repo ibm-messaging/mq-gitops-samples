@@ -1,0 +1,99 @@
+kind: ConfigMap
+apiVersion: v1
+metadata:
+  name: ccdt-mq-services-configmap-no-tls
+  annotations:
+    argocd.argoproj.io/sync-wave: "0"
+data:
+  ccdt.json: |  
+    {
+        "channel": [
+                {
+                        "name": "IBM.APP.SVRCONN",
+                        "clientConnection": {
+                                "connection": [
+                                        {
+                                                "host": "qm01-qm-ibm-mq",
+                                                "port": 1414
+                                        }
+                                ],
+                                "queueManager": "ANY_QM"
+                        },
+                        "connectionManagement": {
+                                "clientWeight": 1,
+                                "affinity": "none"
+                        },
+                        "type": "clientConnection"
+                },
+                {
+                        "name": "IBM.APP.SVRCONN",
+                        "clientConnection": {
+                                "connection": [
+                                        {
+                                                "host": "qm02-qm-ibm-mq",
+                                                "port": 1414
+                                        }
+                                ],
+                                "queueManager": "ANY_QM"
+                        },
+                        "connectionManagement": {
+                                "clientWeight": 1,
+                                "affinity": "none"
+                        },
+                        "type": "clientConnection"
+                },
+                {
+                        "name": "IBM.APP.SVRCONN",
+                        "clientConnection": {
+                                "connection": [
+                                        {
+                                                "host": "qm01-qm-ibm-mq",
+                                                "port": 1414
+                                        }
+                                ],
+                                "queueManager": "DQM01"
+                        },
+                        "type": "clientConnection"
+                },
+            {
+                        "name": "IBM.APP.SVRCONN",
+                        "clientConnection": {
+                                "connection": [
+                                        {
+                                                "host": "qm02-qm-ibm-mq",
+                                                "port": 1414
+                                        }
+                                ],
+                                "queueManager": "DQM02"
+                        },
+                        "type": "clientConnection"
+                },
+            {
+                        "name": "IBM.APP.SVRCONN",
+                        "clientConnection": {
+                                "connection": [
+                                        {
+                                                "host": "qm03-qm-ibm-mq",
+                                                "port": 1414
+                                        }
+                                ],
+                                "queueManager": "DQM03"
+                        },
+                        "type": "clientConnection"
+                },
+                {
+                        "name": "IBM.APP.SVRCONN",
+                        "clientConnection": {
+                                "connection": [
+                                        {
+                                                "host": "qm04-qm-ibm-mq",
+                                                "port": 1414
+                                        }
+                                ],
+                                "queueManager": "DQM04"
+                        },
+                        "type": "clientConnection"
+                }
+        ]
+    }
+
