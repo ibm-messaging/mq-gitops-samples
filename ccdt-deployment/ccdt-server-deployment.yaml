@@ -31,11 +31,11 @@ spec:
               mountPath: /usr/share/nginx/html/external
 
       volumes:
+
       - name: nginx-mq-services-file
         configMap:
           name: ccdt-mq-services-configmap
 
-      volumes:
       - name: nginx-mq-services-file-no-tls
         configMap:
           name: ccdt-mq-services-configmap-no-tls
