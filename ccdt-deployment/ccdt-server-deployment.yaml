@@ -24,9 +24,8 @@ spec:
             - name: nginx-mq-services-file
               mountPath: /usr/share/nginx/html/
 
-            - name: nginx-mq-services-file
+            - name: nginx-mq-services-file-no-tls
               mountPath: /usr/share/nginx/html/notls
-
 
             - name: nginx-mq-routes-file
               mountPath: /usr/share/nginx/html/external
