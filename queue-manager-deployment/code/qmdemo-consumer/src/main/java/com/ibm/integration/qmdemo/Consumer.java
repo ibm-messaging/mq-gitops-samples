@@ -30,7 +30,7 @@ public class Consumer {
                         	URL chanTab1 = null;
 
 			try {
-				chanTab1 = new URL("http://ccdt-service.default.svc.cluster.local:8080/ccdt.json");
+				chanTab1 = new URL("http://ccdt-service.default.svc.cluster.local:8080/notls/ccdt.json");
 			} catch (MalformedURLException e) {
 				e.printStackTrace();
 			}
