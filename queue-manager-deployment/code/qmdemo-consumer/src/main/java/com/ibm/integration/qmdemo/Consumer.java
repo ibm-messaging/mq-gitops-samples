@@ -18,7 +18,7 @@ public class Consumer {
                 // uncomment this line to make a connection via TLS from outside of an OpenShift cluster
                 // System.setProperty("com.ibm.mq.cfg.SSL.outboundSNI","HOSTNAME");
                 // uncomment this line to turn off certificate validation - use for test purposes only
-                // System.setProperty("com.ibm.mq.cfg.SSL.certificateValPolicy","NONE");
+                System.setProperty("com.ibm.mq.cfg.SSL.certificateValPolicy","NONE");
                 try {
                         String mqAppPassword = System.getenv("MQ_APP_PASSWORD");
 
