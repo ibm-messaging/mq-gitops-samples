@@ -41,7 +41,7 @@ public class Consumer {
                         cf.setQueueManager("*ANY_QM");
 
                         // uncomment this line to switch to TLS
-			cf.setSSLCipherSuite("*ANY");
+			cf.setSSLCipherSuite("*ANY_TLS12_OR_HIGHER");
 
                         cf.setTransportType(WMQConstants.WMQ_CM_CLIENT);
                         cf.setAppName("MY-CONSUMER");
