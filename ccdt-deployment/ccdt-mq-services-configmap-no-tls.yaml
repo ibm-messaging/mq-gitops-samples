@@ -1,7 +1,7 @@
 kind: ConfigMap
 apiVersion: v1
 metadata:
-  name: ccdt-mq-services-configmap
+  name: ccdt-mq-services-configmap-no-tls
   annotations:
     argocd.argoproj.io/sync-wave: "0"
 data:
@@ -19,9 +19,6 @@ data:
                                 ],
                                 "queueManager": "ANY_QM"
                         },
-                        "transmissionSecurity": {
-                                "cipherSpecification": "ANY_TLS12_OR_HIGHER"
-                        },
                         "connectionManagement": {
                                 "clientWeight": 1,
                                 "affinity": "none"
@@ -38,9 +35,6 @@ data:
                                         }
                                 ],
                                 "queueManager": "ANY_QM"
-                        },
-                        "transmissionSecurity": {
-                                "cipherSpecification": "ANY_TLS12_OR_HIGHER"
                         },
                         "connectionManagement": {
                                 "clientWeight": 1,
@@ -59,9 +53,6 @@ data:
                                 ],
                                 "queueManager": "DQM01"
                         },
-                        "transmissionSecurity": {
-                                "cipherSpecification": "ANY_TLS12_OR_HIGHER"
-                        },
                         "type": "clientConnection"
                 },
             {
@@ -74,9 +65,6 @@ data:
                                         }
                                 ],
                                 "queueManager": "DQM02"
-                        },
-                        "transmissionSecurity": {
-                                "cipherSpecification": "ANY_TLS12_OR_HIGHER"
                         },
                         "type": "clientConnection"
                 },
@@ -91,9 +79,6 @@ data:
                                 ],
                                 "queueManager": "DQM03"
                         },
-                        "transmissionSecurity": {
-                                "cipherSpecification": "ANY_TLS12_OR_HIGHER"
-                        },
                         "type": "clientConnection"
                 },
                 {
@@ -106,9 +91,6 @@ data:
                                         }
                                 ],
                                 "queueManager": "DQM04"
-                        },
-                        "transmissionSecurity": {
-                                "cipherSpecification": "ANY_TLS12_OR_HIGHER"
                         },
                         "type": "clientConnection"
                 }
