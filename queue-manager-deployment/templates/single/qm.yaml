@@ -4,14 +4,8 @@ metadata:
   name: ibm-mq
 spec:
   securityContext:
-          capabilities:
-            drop:
-              - ALL
-          privileged: false
-          runAsUser: 1000710000
-          runAsNonRoot: true
+          initVolumeAsRoot: true
           readOnlyRootFilesystem: false
-          allowPrivilegeEscalation: false
   pki:
     keys:
       - name: certificate
