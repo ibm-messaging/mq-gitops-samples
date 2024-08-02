@@ -31,7 +31,7 @@ spec:
       storage:
         queueManager:
           size: 2Gi
-          type: persistent-claim
+          type: ephemeral
         defaultDeleteClaim: true
       mqsc:
       - configMap:
