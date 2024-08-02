@@ -6,4 +6,4 @@ spec:
   queueManager:
     name: __ENV____QMGRNAME__
   web:
-    enabled: false
+    enabled: true
