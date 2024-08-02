@@ -4,7 +4,6 @@ metadata:
   name: ibm-mq
 spec:
   securityContext:
-          initVolumeAsRoot: true
           readOnlyRootFilesystem: false
   pki:
     keys:
