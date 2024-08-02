@@ -7,3 +7,8 @@ spec:
     name: __ENV____QMGRNAME__
   web:
     enabled: true
+    console:
+      authentication:
+        provider: manual
+      authorization:
+        provider: manual
