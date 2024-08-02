@@ -5,7 +5,7 @@ metadata:
 spec:
   queueManager:
       metrics:
-        enabled: false
+        enabled: true
       resources:
         limits:
           cpu: '1'
