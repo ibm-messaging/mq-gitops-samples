@@ -4,8 +4,7 @@ metadata:
   name: ibm-mq
 spec:
   securityContext:
-          supplementalGroups: [1000710000]
-          readOnlyRootFilesystem: false
+    readOnlyRootFilesystem: false
   pki:
     keys:
       - name: certificate
