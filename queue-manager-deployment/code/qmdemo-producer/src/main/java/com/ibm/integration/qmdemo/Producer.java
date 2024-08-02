@@ -9,6 +9,10 @@ import javax.jms.Session;
 import com.ibm.mq.jms.MQConnectionFactory;
 import com.ibm.msg.client.wmq.WMQConstants;
 
+import java.net.URL;
+import java.net.MalformedURLException;
+
+
 public class Producer {
 
 	public static void main(String[] args) {
@@ -24,19 +28,31 @@ public class Producer {
                         if (mqAppPassword == null)
                         {
                                 throw new Exception("No environment variable supplied for password, supply env var MQ_APP_PASSWORD with a password.");
-                        }	
+                        }
+						
+						URL chanTab1 = null;
+
+						try {
+							chanTab1 = new URL("http://ccdt-service.default.svc.cluster.local:8080/notls/ccdt.json");
+						} catch (MalformedURLException e) {
+							e.printStackTrace();
+						}
 
 			MQConnectionFactory cf = new MQConnectionFactory();
 
-			cf.setHostName("qmdemo-ibm-mq");
-			cf.setPort(1414);
+			cf.setCCDTURL(chanTab1);
+			cf.setQueueManager("*ANY_QM");
+
 			// uncomment this line to switch to TLS
 			// cf.setSSLCipherSuite("*ANY");
-			cf.setQueueManager("QMDEMO");
-			cf.setChannel("DEV.APP.SVRCONN.0TLS");
+
 			cf.setTransportType(WMQConstants.WMQ_CM_CLIENT);
 			cf.setAppName("MY-PRODUCER");
 			cf.setClientReconnectOptions(WMQConstants.WMQ_CLIENT_RECONNECT);
+			cf.setClientReconnectTimeout(120);
+            cf.setBalancingOptions(WMQConstants.WMQ_BALANCING_OPTIONS_IGNORE_TRANSACTIONS);
+		    cf.setBalancingTimeout(WMQConstants.WMQ_BALANCING_TIMEOUT_IMMEDIATE);
+
 
 			Connection con = null;
 			
