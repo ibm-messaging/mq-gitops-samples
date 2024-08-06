@@ -5,7 +5,6 @@ metadata:
 spec:
   securityContext:
     readOnlyRootFilesystem: false
-    supplementalGroups: [65534]
   pki:
     keys:
       - name: certificate
