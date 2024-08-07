@@ -3,7 +3,8 @@ kind: QueueManager
 metadata:
   name: ibm-mq
 spec:
-
+  securityContext:
+    readOnlyRootFilesystem: false
   pki:
     keys:
       - name: certificate
@@ -30,8 +31,8 @@ spec:
         type: SingleInstance
       storage:
         queueManager:
-          size: 2Gi
           type: persistent-claim
+          size: 2Gi
         defaultDeleteClaim: true
       mqsc:
       - configMap:
@@ -52,6 +53,8 @@ spec:
 
       containers:
         - env:
+            - name: DEBUG
+              value: 'true'
             - name: MQ_CONNAUTH_USE_HTP
               value: 'true'
             - name: MQ_DEV
