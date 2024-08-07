@@ -9,7 +9,7 @@ data:
     {
         "channel": [
                 {
-                        "name": "IBM.APP.SVRCONN",
+                        "name": "DEV.APP.SVRCONN.0TLS",
                         "clientConnection": {
                                 "connection": [
                                         {
@@ -26,7 +26,7 @@ data:
                         "type": "clientConnection"
                 },
                 {
-                        "name": "IBM.APP.SVRCONN",
+                        "name": "DEV.APP.SVRCONN.0TLS",
                         "clientConnection": {
                                 "connection": [
                                         {
@@ -43,7 +43,7 @@ data:
                         "type": "clientConnection"
                 },
                 {
-                        "name": "IBM.APP.SVRCONN",
+                        "name": "DEV.APP.SVRCONN.0TLS",
                         "clientConnection": {
                                 "connection": [
                                         {
@@ -56,7 +56,7 @@ data:
                         "type": "clientConnection"
                 },
             {
-                        "name": "IBM.APP.SVRCONN",
+                        "name": "DEV.APP.SVRCONN.0TLS",
                         "clientConnection": {
                                 "connection": [
                                         {
@@ -69,7 +69,7 @@ data:
                         "type": "clientConnection"
                 },
             {
-                        "name": "IBM.APP.SVRCONN",
+                        "name": "DEV.APP.SVRCONN.0TLS",
                         "clientConnection": {
                                 "connection": [
                                         {
@@ -82,7 +82,7 @@ data:
                         "type": "clientConnection"
                 },
                 {
-                        "name": "IBM.APP.SVRCONN",
+                        "name": "DEV.APP.SVRCONN.0TLS",
                         "clientConnection": {
                                 "connection": [
                                         {
