@@ -53,8 +53,6 @@ spec:
 
       containers:
         - env:
-            - name: DEBUG
-              value: 'true'
             - name: MQ_CONNAUTH_USE_HTP
               value: 'true'
             - name: MQ_DEV
