@@ -15,9 +15,9 @@ import com.ibm.msg.client.wmq.WMQConstants;
 public class Consumer {
 
         public static void main(String[] args) {
-                // uncomment this line to make a connection via TLS from outside of an OpenShift cluster
+                // uncomment this line to make a connection via TLS from outside of an OpenShift cluster.
                 // System.setProperty("com.ibm.mq.cfg.SSL.outboundSNI","HOSTNAME");
-                // uncomment this line to turn off certificate validation - use for test purposes only
+                // uncomment this line to turn off certificate validation - use for test purposes only.
                 //System.setProperty("com.ibm.mq.cfg.SSL.certificateValPolicy","NONE");
                 try {
                         String mqAppPassword = System.getenv("MQ_APP_PASSWORD");
@@ -27,30 +27,28 @@ public class Consumer {
                                 throw new Exception("No environment variable supplied for password, supply env var MQ_APP_PASSWORD with a password.");
                         }
 
-                        	URL chanTab1 = null;
+                        URL chanTab = null;
 
 			try {
-				chanTab1 = new URL("http://ccdt-service.default.svc.cluster.local:8080/notls/ccdt.json");
+				chanTab = new URL("http://ccdt-service.default.svc.cluster.local:8080/notls/ccdt.json");
 			} catch (MalformedURLException e) {
 				e.printStackTrace();
 			}
 
                         MQConnectionFactory cf = new MQConnectionFactory();
 
-                        cf.setCCDTURL(chanTab1);
+                        cf.setCCDTURL(chanTab);
                         cf.setQueueManager("*ANY_QM");
 
-                        // uncomment this line to switch to TLS
+                        // uncomment this line to switch to a TLS enabled MQ channel.
 			//cf.setSSLCipherSuite("*ANY_TLS12_OR_HIGHER");
 
                         cf.setTransportType(WMQConstants.WMQ_CM_CLIENT);
                         cf.setAppName("MY-CONSUMER");
                         cf.setClientReconnectOptions(WMQConstants.WMQ_CLIENT_RECONNECT);
-                        cf.setClientReconnectTimeout(120);
+                        cf.setClientReconnectTimeout(180);
                         cf.setBalancingOptions(WMQConstants.WMQ_BALANCING_OPTIONS_IGNORE_TRANSACTIONS);
 		        cf.setBalancingTimeout(WMQConstants.WMQ_BALANCING_TIMEOUT_IMMEDIATE);
-
-                
 
                         Connection con = null;
 
