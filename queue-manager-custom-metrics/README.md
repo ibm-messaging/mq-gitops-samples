@@ -116,7 +116,8 @@ Example commands are in the **example\-commands\.sh file**
 
 ---
 
-> [!IMPORTANT]  
+> [!IMPORTANT]
+> If you are using you own metrics collector you must not enable metrics in the queue manager YAML.  
 > The sample Dockerfile in this repo also uses the above parameters, they are passed in via BUILD_EXTRA_ARGS field e.g., --build-arg mqVersion=VRMF on the final buildah task.
 
 ---
