@@ -1,6 +1,6 @@
 ARG mqSrcImage="icr.io/ibm-messaging/mq"
 
-ARG mqVersion="9.3.3.1-r1"
+ARG mqVersion="9.4.0.0-r3"
 
 ARG targetRegistry="image-registry.openshift-image-registry.svc:5000/mq-demo"
 
