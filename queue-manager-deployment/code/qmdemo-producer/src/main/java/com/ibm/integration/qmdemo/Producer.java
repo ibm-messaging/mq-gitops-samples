@@ -62,7 +62,7 @@ public class Producer {
 			con = cf.createConnection("app",mqAppPassword);
 			System.out.println("Creating session...");
 			Session session = con.createSession(false,Session.AUTO_ACKNOWLEDGE);
-			Destination sendTo = session.createQueue("DEV.QUEUE.1");
+			Destination sendTo = session.createQueue("APP.DEMO.1");
 			MessageProducer producer = session.createProducer(sendTo);
 
 			Message msg = session.createTextMessage("Test some data here"); 
