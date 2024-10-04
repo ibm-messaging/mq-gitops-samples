@@ -58,7 +58,7 @@ public class Consumer {
                         con = cf.createConnection("app",mqAppPassword);
                         System.out.println("Creating session...");
                         Session session = con.createSession(false,Session.AUTO_ACKNOWLEDGE);
-                        Destination getFrom = session.createQueue("DEV.QUEUE.1");
+                        Destination getFrom = session.createQueue("APP.DEMO.1");
                         MessageConsumer consumer = session.createConsumer(getFrom);
                         
                         int messageCount=1;
