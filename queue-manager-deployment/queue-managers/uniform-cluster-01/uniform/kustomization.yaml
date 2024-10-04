@@ -6,7 +6,7 @@ patches:
 
 # Uncomment to include components required for a Prometheus MQ Service, requires a container image with the collector.
 #components:
-#- ../../../components/prometheus-monitor
+- ../../../components/prometheus-monitor
 
 generatorOptions:
  disableNameSuffixHash: true
