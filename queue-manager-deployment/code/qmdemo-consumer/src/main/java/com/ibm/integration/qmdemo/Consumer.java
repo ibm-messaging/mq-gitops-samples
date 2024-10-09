@@ -47,7 +47,7 @@ public class Consumer {
                         cf.setAppName("MY-CONSUMER");
                         cf.setClientReconnectOptions(WMQConstants.WMQ_CLIENT_RECONNECT);
                         cf.setClientReconnectTimeout(30);
-                        cf.setBalancingOptions(WMQConstants.WMQ_BALANCING_OPTIONS_IGNORE_TRANSACTIONS);
+                        //cf.setBalancingOptions(WMQConstants.WMQ_BALANCING_OPTIONS_IGNORE_TRANSACTIONS);
 		        cf.setBalancingTimeout(WMQConstants.WMQ_BALANCING_TIMEOUT_IMMEDIATE);
 
                         Connection con = null;
