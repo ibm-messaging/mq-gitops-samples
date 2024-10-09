@@ -49,7 +49,7 @@ public class Producer {
 			cf.setTransportType(WMQConstants.WMQ_CM_CLIENT);
 			cf.setAppName("MY-PRODUCER");
 			cf.setClientReconnectOptions(WMQConstants.WMQ_CLIENT_RECONNECT);
-			cf.setClientReconnectTimeout(120);
+			cf.setClientReconnectTimeout(30);
             cf.setBalancingOptions(WMQConstants.WMQ_BALANCING_OPTIONS_IGNORE_TRANSACTIONS);
 		    cf.setBalancingTimeout(WMQConstants.WMQ_BALANCING_TIMEOUT_IMMEDIATE);
 
@@ -69,9 +69,9 @@ public class Producer {
 
 			System.out.println("Sending...");
 
-				for (int i = 0; i < 4000; i++) {
+				for (int i = 0; i < 400000; i++) {
 					producer.send(msg);
-					Thread.sleep(3000);
+					Thread.sleep(500);
 				}
 
 			con.close();
