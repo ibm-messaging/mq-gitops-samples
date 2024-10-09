@@ -48,7 +48,7 @@ public class Consumer {
                         cf.setClientReconnectOptions(WMQConstants.WMQ_CLIENT_RECONNECT);
                         cf.setClientReconnectTimeout(30);
                         //cf.setBalancingOptions(WMQConstants.WMQ_BALANCING_OPTIONS_IGNORE_TRANSACTIONS);
-		        cf.setBalancingTimeout(WMQConstants.WMQ_BALANCING_TIMEOUT_IMMEDIATE);
+		        //cf.setBalancingTimeout(WMQConstants.WMQ_BALANCING_TIMEOUT_IMMEDIATE);
 
                         Connection con = null;
 
@@ -57,7 +57,7 @@ public class Consumer {
                         System.out.println("Starting Consumer - creating connection...");
                         con = cf.createConnection("app",mqAppPassword);
                         System.out.println("Creating session...");
-                        Session session = con.createSession(false,Session.DUPS_OK_ACKNOWLEDGE);
+                        Session session = con.createSession(false,Session.AUTO_ACKNOWLEDGE);
                         Destination getFrom = session.createQueue("APP.DEMO.1");
                         MessageConsumer consumer = session.createConsumer(getFrom);
                         
