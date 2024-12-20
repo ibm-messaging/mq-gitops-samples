@@ -1,0 +1,22 @@
+resources:
+- ./qm.yaml
+- ./certificate.yaml
+
+# Add the scripts required for dynamic updates via an MQ service.
+components:
+- ../../components/scripts
+
+generatorOptions:
+ disableNameSuffixHash: true
+# We use a configMapGenerator because it allows us to build up the mqsc from regular MQSC files.
+configMapGenerator:
+# Create an MQSC configMap using generic MQSC which will be added to all queue managers and applied during bootstrap.
+- name: mqsc-configmap
+  behavior: create
+  files:
+  - static.mqsc
+secretGenerator:
+- name: passwords
+  literals:
+  - dev-admin-password='newpassword'
+  - dev-app-password='newpassword'

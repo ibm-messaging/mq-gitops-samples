@@ -1,0 +1,78 @@
+apiVersion: mq.ibm.com/v1beta1
+kind: QueueManager
+metadata:
+  name: ibm-mq
+spec:
+  securityContext:
+    readOnlyRootFilesystem: false
+  pki:
+    keys:
+      - name: certificate
+        secret:
+          items:
+            - tls.key
+            - tls.crt
+          secretName: __env____qmgrname__-cert
+    trust:
+      - name: ca
+        secret:
+          items:
+            - ca.crt
+          secretName: __env____qmgrname__-cert
+
+  queueManager:
+      resources:
+        limits:
+          cpu: 800m
+        requests:
+          cpu: 300m
+      name: __ENV____QMGRNAME__
+      availability:
+        type: SingleInstance
+      storage:
+        queueManager:
+          type: persistent-claim
+          size: 2Gi
+        defaultDeleteClaim: true
+      mqsc:
+      - configMap:
+          name: __qmgrname__-mqsc-configmap
+          items:
+            - static.mqsc
+  template:
+    pod:
+      volumes:
+        - name: config-volume-scripts
+          configMap:
+            name: __qmgrname__-scripts-configmap
+            defaultMode: 0777
+        - name: dynamic-config-volume-mqsc
+          configMap:
+            name: __qmgrname__-dynamic-mqsc-configmap
+            defaultMode: 0777
+
+      containers:
+        - env:
+            - name: MQ_CONNAUTH_USE_HTP
+              value: 'true'
+            - name: MQ_DEV
+              value: 'true'
+            - name: MQ_ADMIN_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: __qmgrname__-passwords
+                  key: dev-admin-password
+            - name: MQ_APP_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: __qmgrname__-passwords
+                  key: dev-app-password
+          name: qmgr
+          volumeMounts:
+          - name: config-volume-scripts
+            mountPath: /mq-config
+            readOnly: true
+          - name: dynamic-config-volume-mqsc
+            mountPath: /dyn-mq-config-mqsc
+            readOnly: true
+

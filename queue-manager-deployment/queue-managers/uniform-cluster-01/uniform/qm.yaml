@@ -5,12 +5,12 @@ metadata:
 spec:
   queueManager:
       metrics:
-        enabled: false
+        enabled: true
       resources:
         limits:
           cpu: '1'
         requests:
-          cpu: '1'
+          cpu: 300m
       name: __ENV____QMGRNAME__
       mqsc:
       - configMap:
@@ -23,4 +23,10 @@ spec:
           name: __qmgrname__-qm-ini-configmap
           items:
             - qm.ini
-          
+  web:
+    enabled: true
+    console:
+      authentication:
+        provider: manual
+      authorization:
+        provider: manual
