@@ -10,7 +10,7 @@ objects:
     spec:
       params:
         - name: mqVersion
-          value: 9.3.5.0-r2
+          value: 9.4.0.0-r3
         - name: mqSrcImage
           value: icr.io/ibm-messaging/mq
         - name: targetRegistry
