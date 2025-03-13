@@ -18,7 +18,9 @@ RUN chmod 770 /usr/local/bin/mqgo/mq_prometheus
 
 COPY --from=mq-metrics /go/src/github.com/ibm-messaging/mq-metric-samples/mq_prometheus.sh /opt/mqm/metrics
 
-COPY --from=mq-metrics /go/src/github.com/ibm-messaging/mq-metric-samples/config.common.yaml /opt/mqm/metrics
+COPY --from=mq-metrics /config.common.yaml /usr/local/bin/mqgo/mq_prometheus.yaml
+
+RUN ls /
 
 RUN chmod 770 /opt/mqm/metrics/*
 
