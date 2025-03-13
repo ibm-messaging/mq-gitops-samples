@@ -19,10 +19,10 @@ global:
 
 # You can point at a CCDT here. You probably will have to use this
 # for TLS client connections to a queue manager
-    ccdtUrl:
+    #ccdtUrl:
 # For simple client configurations, set the connName and channel
-    connName:
-    channel:
+    #connName:
+    #channel:
 # If none of the channel-related attributes are set, then this can
 # be set to true to force client connectivity and the usual environment
 # variables such as MQSERVER are used.
@@ -45,7 +45,7 @@ global:
 # Setting this to a non-empty value switches the collectors to use durable subs. And then the
 # replyQueue and replyQueue2 values MUST refer to distinct QLOCALs. The value of this attribute must be
 # unique for any collector program connecting to this queue manager
-    durableSubPrefix: 
+    #durableSubPrefix: 
 
 # Maximum time (seconds) to wait for a status response from qmgr. 
     waitInterval: 3
@@ -108,7 +108,7 @@ global:
       monitor: 'codelab-monitor'
 
 # Load and evaluate rules in this file every 'evaluation_interval' seconds.
-rule_files:
+#rule_files:
   # - "first.rules"
   # - "second.rules"
 
