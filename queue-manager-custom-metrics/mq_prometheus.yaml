@@ -14,8 +14,8 @@ global:
   rediscoverInterval: 1h
   tzOffset: 0h
 
-connection:
-    queueManager: QM1
+#connection:
+    #queueManager: QM1
 
 # You can point at a CCDT here. You probably will have to use this
 # for TLS client connections to a queue manager
