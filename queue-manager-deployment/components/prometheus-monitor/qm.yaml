@@ -6,5 +6,5 @@ spec:
   queueManager:
     metrics:
       enabled: false
-    image: image-registry.openshift-image-registry.svc:5000/mq-demo/mq-with-metrics:9.4.0.0-r3
+    image: image-registry.openshift-image-registry.svc:5000/mq-demo/mq-with-metrics:9.4.2.0-r1
     
