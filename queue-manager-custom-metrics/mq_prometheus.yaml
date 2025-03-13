@@ -124,17 +124,17 @@ scrape_configs:
     # metrics_path defaults to '/metrics'
     # scheme defaults to 'http'.
 
-    static_configs:
-      - targets: ['localhost:9090']
+    #static_configs:
+      #- targets: ['localhost:9090']
 
   # Adding a reference to an MQ monitor. All we have to do is
   # name the host and port on which the monitor is listening.
   # Port 9157 is the reserved default port for this monitor.
-  - job_name: 'ibmmq'
-    scrape_interval: 15s
+  #- job_name: 'ibmmq'
+    #scrape_interval: 15s
 
-    static_configs:
-       - targets: ['hostname.example.com:9157']
+    #static_configs:
+       #- targets: ['hostname.example.com:9157']
   # targets: ['hostname.example.com:9157','hostname.example.com:9158'] is
   # the syntax if you want to have several prometheus monitors on the same
   # box.
