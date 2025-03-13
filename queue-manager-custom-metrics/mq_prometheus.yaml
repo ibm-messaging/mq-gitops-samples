@@ -37,7 +37,7 @@ global:
 
 # Which queue should be used as the template for replies from the qmgr. This will 
 # usually be a QMODEL
-    replyQueue: SYSTEM.DEFAULT.MODEL.QUEUE
+    #replyQueue: SYSTEM.DEFAULT.MODEL.QUEUE
 # If 'replyQueue' is set to a QLOCAL, then you must also set
 #   replyQueue2: A.DIFFERENT.QLOCAL
 
@@ -48,7 +48,7 @@ global:
     #durableSubPrefix: 
 
 # Maximum time (seconds) to wait for a status response from qmgr. 
-    waitInterval: 3
+    #waitInterval: 3
 # Metadata Tags and Values which allow setting of additional descriptive information about the queue
 # manager such as the environment (eg DEV/TEST/PROD). 
 #    metadataTags:
