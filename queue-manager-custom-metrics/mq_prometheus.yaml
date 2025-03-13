@@ -26,7 +26,7 @@ global:
 # If none of the channel-related attributes are set, then this can
 # be set to true to force client connectivity and the usual environment
 # variables such as MQSERVER are used.
-    clientConnection: false
+    #clientConnection: false
 
 # If a user is set, then a password must be passed somehow. It can
 # be done in this file, on a command line, as the content of a named file or 
