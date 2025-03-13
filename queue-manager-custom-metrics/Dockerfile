@@ -16,7 +16,7 @@ COPY --from=mq-metrics /go/bin/mq_prometheus /usr/local/bin/mqgo/mq_prometheus
 
 RUN chmod 770 /usr/local/bin/mqgo/mq_prometheus
 
-COPY --from=mq-metrics /go/src/github.com/ibm-messaging/mq-metric-samples/mq_prometheus.sh /opt/mqm/metrics
+COPY queue-manager-custom-metrics/mq_prometheus.sh /opt/mqm/metrics
 
 COPY queue-manager-custom-metrics/mq_prometheus.yaml /usr/local/bin/mqgo/mq_prometheus.yaml
 
