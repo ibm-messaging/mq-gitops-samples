@@ -21,7 +21,7 @@ fi
 # separated by commas. When no queues match a pattern, it is reported but
 # is not fatal.
 # The set can also include negative patterns such as "!SYSTEM.*".
-queues="APP.*,MYQ.*"
+queues="APP.*,MYQ.*,DEV.*"
 
 # An alternative is to have a file containing the patterns, and named
 # via the ibmmq.monitoredQueuesFile option.
