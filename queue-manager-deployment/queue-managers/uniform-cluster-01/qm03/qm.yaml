@@ -1,0 +1,9 @@
+apiVersion: mq.ibm.com/v1beta1
+kind: QueueManager
+metadata:
+  name: ibm-mq
+spec:
+  queueManager:
+    name: __ENV____QMGRNAME__
+  web:
+    enabled: true
