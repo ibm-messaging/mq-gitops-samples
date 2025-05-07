@@ -1,8 +1,8 @@
-ARG sourceVersion="9.4.2.0-r1"
+ARG mqVersion="9.4.2.0-r1"
 
-ARG sourceImage="image-registry.openshift-image-registry.svc:5000/mq-pipeline/mq-with-metrics"
+ARG mqSrcImage="image-registry.openshift-image-registry.svc:5000/mq-pipeline/mq-with-metrics"
 
-FROM ${sourceImage}:${sourceVersion}
+FROM ${mqSrcImage}:${mqVersion}
 
 USER 0
 
