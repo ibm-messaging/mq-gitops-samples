@@ -7,7 +7,7 @@ FROM ${mqSrcImage}:${mqVersion}
 USER 0
 
 RUN ls -lrt 
-
+RUN echo "--------------root------------------"
 RUN ls -lrt /
 
 COPY queue-manager-custom-otel/mqtracingexit.conf /var/mqm/exits64/
