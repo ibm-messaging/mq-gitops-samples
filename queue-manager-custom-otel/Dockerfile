@@ -6,9 +6,14 @@ FROM ${mqSrcImage}:${mqVersion}
 
 USER 0
 
-COPY /workspace/source/mq-exit/* /var/mqm/exits64/
+RUN ls -lrt 
+
+RUN ls -lrt /
 
 COPY queue-manager-custom-otel/mqtracingexit.conf /var/mqm/exits64/
+
+COPY mq-exit/mqtracingexit_r /var/mqm/exits64/
+COPY mq-exit/tracelibrary.so /var/mqm/exits64/
 
 RUN chmod 770 /var/mqm/exits64/*
 
