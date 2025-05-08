@@ -6,8 +6,6 @@ FROM ${mqSrcImage}:${mqVersion}
 
 USER 0
 
-RUN find / -name tracelibrary.so
-
 COPY queue-manager-custom-otel/mqtracingexit.conf /var/mqm/exits64/
 
 COPY mq-exit/mqtracingexit_r /var/mqm/exits64/
