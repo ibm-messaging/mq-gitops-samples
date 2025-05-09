@@ -2,7 +2,7 @@ apiVersion: tekton.dev/v1
 kind: Task
 metadata:
   name: get-exit
-  namespace: mq-pipeline
+  namespace: mq-demo
 spec:
   steps:
     - computeResources: {}
@@ -10,9 +10,11 @@ spec:
       name: get-exit-step
       script: |
         #!/usr/bin/env bash
-        mkdir /workspace/mq-exit/
-        curl --netrc-file /workspace/exit-secret/passwordfile https://delivery04-mul.dhe.ibm.com/sdfdl/v2/sar/CM/WS/0d0y8/0/Xa.2/Xb.jusyLTSp44S0BhTgjavVv-MH5AfgtnySUlhqZB8V4cPsEPydKCIsX214jqA/Xc.CM/WS/0d0y8/0/9.4.2.1-IBM-Instana-MQ-Tracing-LinuxX64.tar.gz/Xd./Xf.LPR.D1VK/Xg.13334990/Xi.habanero/XY.habanero/XZ.RD_jqw-QPyUePJ00cQMCWdSiCszJ1kO1/9.4.2.1-IBM-Instana-MQ-Tracing-LinuxX64.tar.gz --output /workspace/mq-exit/9.4.2.1-IBM-Instana-MQ-Tracing-LinuxX64.tar.gz
-        tar -xzf /workspace/mq-exit/9.4.2.1-IBM-Instana-MQ-Tracing-LinuxX64.tar.gz -C /workspace/mq-exit/
-        ls -lrt /workspace/mq-exit/
+        echo "Creating directory"
+        mkdir /workspace/output/mq-exit/
+        curl http://servername:8000/9.4.2.1-IBM-Instana-MQ-Tracing-LinuxX64.tar.gz --output /workspace/output/mq-exit/9.4.2.1-IBM-Instana-MQ-Tracing-LinuxX64.tar.gz
+        tar -xzf /workspace/output/mq-exit/9.4.2.1-IBM-Instana-MQ-Tracing-LinuxX64.tar.gz -C /workspace/output/mq-exit/
+        ls -lrt /workspace/output/mq-exit/
   workspaces:
     - name: exit-secret
+    - name: output
