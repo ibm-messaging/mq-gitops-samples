@@ -9,8 +9,8 @@ USER 0
 COPY queue-manager-custom-otel/mqtracingexit.conf /var/mqm/exits64/Installation1
 
 COPY mq-exit/mqtracingexit_r /var/mqm/exits64/Installation1
-COPY mq-exit/tracelibrary.so /var/mqm/exits64//Installation1
+COPY mq-exit/tracelibrary.so /var/mqm/exits64/Installation1
 
-RUN chmod 770 /var/mqm/exits64/Installation1*
+RUN chmod 770 /var/mqm/exits64/Installation1/*
 
 USER 1001
