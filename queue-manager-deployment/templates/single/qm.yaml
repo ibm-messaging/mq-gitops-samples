@@ -29,6 +29,7 @@ spec:
       name: __ENV____QMGRNAME__
       availability:
         type: SingleInstance
+      imagePullPolicy: Always
       storage:
         queueManager:
           type: persistent-claim
