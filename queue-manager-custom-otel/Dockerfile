@@ -6,11 +6,13 @@ FROM ${mqSrcImage}:${mqVersion}
 
 USER 0
 
-COPY queue-manager-custom-otel/mqtracingexit.conf /opt/mqm/myexits
+RUN mkdir /opt/mqm/myexits
 
-COPY mq-exit/mqtracingexit_r /opt/mqm/myexits
-COPY mq-exit/tracelibrary.so /opt/mqm/myexits
+COPY queue-manager-custom-otel/mqtracingexit.conf /opt/mqm/myexits/mqtracingexit.conf
 
-RUN chmod 770 /opt/mqm/myexits*
+COPY mq-exit/mqtracingexit_r /opt/mqm/myexits/mqtracingexit_r
+COPY mq-exit/tracelibrary.so /opt/mqm/myexits/tracelibrary.so
+
+RUN chmod 770 /opt/mqm/myexits/*
 
 USER 1001
