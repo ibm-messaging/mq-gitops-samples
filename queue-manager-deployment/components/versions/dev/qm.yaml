@@ -9,4 +9,4 @@ spec:
     use: Development
   version: 9.4.0.0-r2
   queueManager:
-    image: image-registry.openshift-image-registry.svc:5000/mq-demo/mq-with-otel:v1.0
+    image: image-registry.openshift-image-registry.svc:5000/mq-demo/mq-with-otel:v1.2
