@@ -7,6 +7,6 @@ spec:
     accept: true
     license: L-CLXQ-ADXTK3
     use: Development
-  version: 9.4.0.0-r2
+  version: 9.4.2.1-r1
   queueManager:
-    image: image-registry.openshift-image-registry.svc:5000/mq-demo/mq-with-otel:v1.2
+    image: image-registry.openshift-image-registry.svc:5000/mq-demo/mq-with-otel:9.4.2.1-r1
