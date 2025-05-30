@@ -4,6 +4,10 @@ metadata:
   name: get-exit
   namespace: mq-demo
 spec:
+  params:
+    - default: myhost
+      description: Server location for zip file
+      name: srchost
   steps:
     - computeResources: {}
       image: ubi9
@@ -12,9 +16,12 @@ spec:
         #!/usr/bin/env bash
         echo "Creating directory"
         mkdir /workspace/output/mq-exit/
-        curl http://servername:8000/9.4.2.1-IBM-Instana-MQ-Tracing-LinuxX64.tar.gz --output /workspace/output/mq-exit/9.4.2.1-IBM-Instana-MQ-Tracing-LinuxX64.tar.gz
+        curl http://$(params.srchost):8000/9.4.2.1-IBM-Instana-MQ-Tracing-LinuxX64.tar.gz --output /workspace/output/mq-exit/9.4.2.1-IBM-Instana-MQ-Tracing-LinuxX64.tar.gz
+        if test "$?" != "0"; then
+          echo Command $1 exited with abnormal status
+          exit 1;
+        fi
         tar -xzf /workspace/output/mq-exit/9.4.2.1-IBM-Instana-MQ-Tracing-LinuxX64.tar.gz -C /workspace/output/mq-exit/
         ls -lrt /workspace/output/mq-exit/
   workspaces:
-    - name: exit-secret
     - name: output
