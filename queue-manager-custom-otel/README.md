@@ -1,5 +1,7 @@
 Note: This is a work in progress/rough sample.  
 
+
+
 The pipeline clones this repo which has a simple Dockerfile, the Dockerfile will build an image with an MQ Exit taken from a workspace that contains the exit code. The 'from' image can be any IBM MQ image that you have built already or one straight from icr.io/ibm-messaging/mq.  
 
 Step 1 - clone this repo.  
