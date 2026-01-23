@@ -1,5 +1,5 @@
 resources:
-- ../../../templates/single
+- ../../../templates/native-ha
 
 patches:
 - path: ./qm.yaml
