@@ -30,6 +30,7 @@ spec:
       availability:
         type: NativeHA
         updateStrategy: RollingUpdate
+      imagePullPolicy: Always
       storage:
         queueManager:
           size: 2Gi
