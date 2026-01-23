@@ -3,7 +3,8 @@ kind: QueueManager
 metadata:
   name: ibm-mq
 spec:
-
+  securityContext:
+    readOnlyRootFilesystem: false
   pki:
     keys:
       - name: certificate
