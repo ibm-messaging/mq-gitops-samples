@@ -5,7 +5,7 @@ metadata:
 spec:
   params:
     - name: mqVersion
-      value: 9.4.0.0-r3
+      value: 9.4.5.1-r1
     - name: mqSrcImage
       value: icr.io/ibm-messaging/mq
     - name: targetRegistry
