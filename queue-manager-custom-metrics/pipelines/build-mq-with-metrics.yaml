@@ -2,10 +2,10 @@ apiVersion: tekton.dev/v1
 kind: Pipeline
 metadata:
   name: mq-pipeline
-  namespace: mq-pipeline
+  namespace: mq-demo
 spec:
   params:
-    - default: 9.4.2.0-r1
+    - default: 10.0.0.0-r3
       description: IBM MQ version
       name: mqVersion
       type: string
@@ -145,7 +145,7 @@ spec:
       params:
         - name: IMAGE
           value: >-
-            image-registry.openshift-image-registry.svc:5000/mq-pipeline/mq-with-metrics:v1.0
+            image-registry.openshift-image-registry.svc:5000/$(context.pipelineRun.namespace)/mq-with-metrics:$(params.mqVersion)
         - name: DOCKERFILE
           value: queue-manager-custom-metrics/Dockerfile
         - name: BUILD_ARGS
