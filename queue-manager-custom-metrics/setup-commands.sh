@@ -5,7 +5,7 @@ oc create secret docker-registry my-docker-registry-creds --docker-server=docker
 oc secrets link pipeline my-docker-registry-creds
 
 # create credentials for the buildah task for pushing to a registry
-oc create secret docker-registry internal-registry-creds --docker-server=image-registry.openshift-image-registry.svc:5000 --docker-username=kubeadmin --docker-password=`oc whoami -t` --docker-email=email
+oc create secret docker-registry internal-registry-creds --docker-server=image-registry.openshift-image-registry.svc:5000 --docker-username=`oc whoami` --docker-password=`oc whoami -t` --docker-email=email
 
 # run using a template
 oc create -f pipeline-run-template.yaml

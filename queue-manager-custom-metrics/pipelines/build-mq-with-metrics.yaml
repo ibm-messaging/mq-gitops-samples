@@ -1,76 +1,70 @@
-apiVersion: tekton.dev/v1beta1
+apiVersion: tekton.dev/v1
 kind: Pipeline
 metadata:
   name: build-mq-with-metrics
+  namespace: mq-demo
 spec:
   params:
-    - default: 9.4.0.0-r3
+    - default: 10.0.0.0-r3
+      description: IBM MQ version
       name: mqVersion
       type: string
     - default: icr.io/ibm-messaging/mq
       name: mqSrcImage
       type: string
-    - default: image-registry.openshift-image-registry.svc:5000/$(context.pipelineRun.namespace)
+    - default: >-
+        image-registry.openshift-image-registry.svc:5000/$(context.pipelineRun.namespace)
       name: targetRegistry
       type: string
-
   tasks:
     - name: git-clone-metrics
       params:
-        - name: url
-          value: 'https://github.com/ibm-messaging/mq-metric-samples'
-        - name: revision
-          value: master
-        - name: refspec
-          value: ''
-        - name: submodules
-          value: 'true'
-        - name: depth
-          value: '1'
-        - name: sslVerify
-          value: 'true'
-        - name: crtFileName
+        - name: CRT_FILENAME
           value: ca-bundle.crt
-        - name: subdirectory
+        - name: SUBDIRECTORY
           value: ''
-        - name: sparseCheckoutDirectories
-          value: ''
-        - name: deleteExisting
+        - name: USER_HOME
+          value: /home/git
+        - name: DELETE_EXISTING
           value: 'true'
-        - name: httpProxy
-          value: ''
-        - name: httpsProxy
-          value: ''
-        - name: noProxy
-          value: ''
-        - name: verbose
+        - name: VERBOSE
+          value: 'false'
+        - name: SSL_VERIFY
+          value: 'false'
+        - name: URL
+          value: https://github.com/ibm-messaging/mq-metric-samples
+        - name: REVISION
+          value: master
+        - name: SUBMODULES
           value: 'true'
-        - name: gitInitImage
-          value: >-
-            registry.redhat.io/openshift-pipelines/pipelines-git-init-rhel8:v1.13.1-1
-        - name: userHome
-          value: /workspace/output
+        - name: DEPTH
+          value: '1'
+        - name: SPARSE_CHECKOUT_DIRECTORIES
+          value: ''
       taskRef:
-        kind: ClusterTask
-        name: git-clone
+        params:
+          - name: kind
+            value: task
+          - name: name
+            value: git-clone
+          - name: namespace
+            value: openshift-pipelines
+        resolver: cluster
       workspaces:
         - name: output
           workspace: mq-metrics-workspace
-    - name: buildah-prometheus-metrics
+    - name: build-metrics
       params:
         - name: IMAGE
-          value: >-
-            $(params.targetRegistry)/mq-metrics:$(params.mqVersion)
-        - name: BUILDER_IMAGE
-          value: 'registry.redhat.io/rhel8/buildah:latest'
-        - name: STORAGE_DRIVER
-          value: vfs
+          value: $(params.targetRegistry)/mq-metrics:$(params.mqVersion)
         - name: DOCKERFILE
           value: ./Dockerfile
+        - name: BUILD_ARGS
+          value: []
         - name: CONTEXT
-          value: ''
-        - name: TLSVERIFY
-          value: 'true'
+          value: .
+        - name: STORAGE_DRIVER
+          value: vfs
         - name: FORMAT
           value: oci
         - name: BUILD_EXTRA_ARGS
@@ -81,11 +75,21 @@ spec:
           value: ''
         - name: SKIP_PUSH
           value: 'false'
+        - name: TLS_VERIFY
+          value: 'true'
+        - name: VERBOSE
+          value: 'false'
       runAfter:
         - git-clone-metrics
       taskRef:
-        kind: ClusterTask
-        name: buildah
+        params:
+          - name: kind
+            value: task
+          - name: name
+            value: buildah
+          - name: namespace
+            value: openshift-pipelines
+        resolver: cluster
       workspaces:
         - name: source
           workspace: mq-metrics-workspace
@@ -93,79 +97,94 @@ spec:
           workspace: mq-metrics-dockerconfig
     - name: git-clone-mq-gitops
       params:
-        - name: url
-          value: 'https://github.com/ibm-messaging/mq-gitops-samples'
-        - name: revision
-          value: main
-        - name: refspec
-          value: ''
-        - name: submodules
-          value: 'true'
-        - name: depth
-          value: '1'
-        - name: sslVerify
-          value: 'true'
-        - name: crtFileName
+        - name: CRT_FILENAME
           value: ca-bundle.crt
-        - name: subdirectory
+        - name: HTTP_PROXY
           value: ''
-        - name: sparseCheckoutDirectories
+        - name: HTTPS_PROXY
           value: ''
-        - name: deleteExisting
-          value: 'true'
-        - name: httpProxy
+        - name: NO_PROXY
           value: ''
-        - name: httpsProxy
+        - name: SUBDIRECTORY
           value: ''
-        - name: noProxy
-          value: ''
-        - name: verbose
-          value: 'true'
-        - name: gitInitImage
-          value: >-
-            registry.redhat.io/openshift-pipelines/pipelines-git-init-rhel8:v1.13.1-1
-        - name: userHome
+        - name: USER_HOME
           value: /home/git
+        - name: DELETE_EXISTING
+          value: 'true'
+        - name: VERBOSE
+          value: 'false'
+        - name: SSL_VERIFY
+          value: 'true'
+        - name: URL
+          value: https://github.com/ibm-messaging/mq-gitops-samples
+        - name: REVISION
+          value: main
+        - name: REFSPEC
+          value: ''
+        - name: SUBMODULES
+          value: 'true'
+        - name: DEPTH
+          value: '1'
+        - name: SPARSE_CHECKOUT_DIRECTORIES
+          value: ''
       runAfter:
-        - buildah-prometheus-metrics
+        - build-metrics
       taskRef:
-        kind: ClusterTask
-        name: git-clone
+        params:
+          - name: kind
+            value: task
+          - name: name
+            value: git-clone
+          - name: namespace
+            value: openshift-pipelines
+        resolver: cluster
       workspaces:
         - name: output
           workspace: mq-metrics-workspace
-    - name: buildah-mq-with-metrics
+    - name: buildah
       params:
         - name: IMAGE
           value: >-
-            $(params.targetRegistry)/mq-with-metrics:$(params.mqVersion)
-        - name: BUILDER_IMAGE
-          value: 'registry.redhat.io/rhel8/buildah:latest'
-        - name: STORAGE_DRIVER
-          value: vfs
+            image-registry.openshift-image-registry.svc:5000/$(context.pipelineRun.namespace)/mq-with-metrics:$(params.mqVersion)
         - name: DOCKERFILE
           value: queue-manager-custom-metrics/Dockerfile
+        - name: BUILD_ARGS
+          value: []
         - name: CONTEXT
           value: .
-        - name: TLSVERIFY
-          value: 'true'
+        - name: STORAGE_DRIVER
+          value: vfs
         - name: FORMAT
           value: oci
         - name: BUILD_EXTRA_ARGS
-          value: '--build-arg mqVersion=$(params.mqVersion) --build-arg mqSrcImage=$(params.mqSrcImage) --build-arg targetRegistry=$(params.targetRegistry)'
+          value: >-
+            --build-arg mqVersion=$(params.mqVersion) --build-arg
+            mqSrcImage=$(params.mqSrcImage) --build-arg
+            targetRegistry=$(params.targetRegistry)
         - name: PUSH_EXTRA_ARGS
           value: ''
         - name: SKIP_PUSH
           value: 'false'
+        - name: TLS_VERIFY
+          value: 'true'
+        - name: VERBOSE
+          value: 'false'
       runAfter:
         - git-clone-mq-gitops
       taskRef:
-        kind: ClusterTask
-        name: buildah
+        params:
+          - name: kind
+            value: task
+          - name: name
+            value: buildah
+          - name: namespace
+            value: openshift-pipelines
+        resolver: cluster
       workspaces:
         - name: source
           workspace: mq-metrics-workspace
+        - name: dockerconfig
+          workspace: mq-metrics-dockerconfig
   workspaces:
     - name: mq-metrics-workspace
     - name: mq-metrics-dockerconfig
-
