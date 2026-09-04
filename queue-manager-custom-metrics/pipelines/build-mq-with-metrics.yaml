@@ -1,7 +1,7 @@
 apiVersion: tekton.dev/v1
 kind: Pipeline
 metadata:
-  name: mq-pipeline
+  name: build-mq-with-metrics
   namespace: mq-demo
 spec:
   params:
@@ -52,7 +52,7 @@ spec:
         resolver: cluster
       workspaces:
         - name: output
-          workspace: mq-workspace
+          workspace: mq-metrics-workspace
     - name: build-metrics
       params:
         - name: IMAGE
@@ -92,7 +92,7 @@ spec:
         resolver: cluster
       workspaces:
         - name: source
-          workspace: mq-workspace
+          workspace: mq-metrics-workspace
         - name: dockerconfig
           workspace: mq-metrics-dockerconfig
     - name: git-clone-mq-gitops
@@ -140,7 +140,7 @@ spec:
         resolver: cluster
       workspaces:
         - name: output
-          workspace: mq-workspace
+          workspace: mq-metrics-workspace
     - name: buildah
       params:
         - name: IMAGE
@@ -182,9 +182,9 @@ spec:
         resolver: cluster
       workspaces:
         - name: source
-          workspace: mq-workspace
+          workspace: mq-metrics-workspace
         - name: dockerconfig
           workspace: mq-metrics-dockerconfig
   workspaces:
-    - name: mq-workspace
+    - name: mq-metrics-workspace
     - name: mq-metrics-dockerconfig
