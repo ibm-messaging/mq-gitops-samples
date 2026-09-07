@@ -33,7 +33,7 @@ spec:
         queueManager:
           size: 2Gi
           type: persistent-claim
-        defaultDeleteClaim: true
+        defaultDeleteClaim: false
       mqsc:
       - configMap:
           name: __qmgrname__-mqsc-configmap
