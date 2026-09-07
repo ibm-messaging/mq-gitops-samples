@@ -9,7 +9,7 @@ These Kustomize deployment samples are intended for use with an implementation o
 > If you just want to build the YAML files without deploying, in the 'mq-gitops-samples/queue-manager-deployment' folder run:
 
 ```shell
-kustomize build --enable-alpha-plugins --enable-exec queue-managers/
+kustomize --enable-alpha-plugins --enable-exec queue-managers/
 ```
 
 **Prerequisites:**
