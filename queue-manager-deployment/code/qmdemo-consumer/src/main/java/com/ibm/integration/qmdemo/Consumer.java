@@ -46,32 +46,42 @@ public class Consumer {
                         cf.setTransportType(WMQConstants.WMQ_CM_CLIENT);
                         cf.setAppName("MY-CONSUMER");
                         cf.setClientReconnectOptions(WMQConstants.WMQ_CLIENT_RECONNECT);
-                        cf.setClientReconnectTimeout(30);
-                        //cf.setBalancingOptions(WMQConstants.WMQ_BALANCING_OPTIONS_IGNORE_TRANSACTIONS);
-		        //cf.setBalancingTimeout(WMQConstants.WMQ_BALANCING_TIMEOUT_IMMEDIATE);
-
-                        Connection con = null;
+                        cf.setClientReconnectTimeout(180);
+                        cf.setBalancingOptions(WMQConstants.WMQ_BALANCING_OPTIONS_IGNORE_TRANSACTIONS);
+		        cf.setBalancingTimeout(WMQConstants.WMQ_BALANCING_TIMEOUT_IMMEDIATE);
 
                         System.out.println(cf.toString());
 
-                        System.out.println("Starting Consumer - creating connection...");
-                        con = cf.createConnection("app",mqAppPassword);
-                        System.out.println("Creating session...");
-                        Session session = con.createSession(false,Session.AUTO_ACKNOWLEDGE);
-                        Destination getFrom = session.createQueue("APP.DEMO.1");
-                        MessageConsumer consumer = session.createConsumer(getFrom);
-                        
-                        int messageCount=1;
-                        con.start();
-                        
-                        while (true) {
+                        int messageCount = 1;
 
-        					Message message = consumer.receive();
-        					System.out.println("Received message, count: " + messageCount);
-        					messageCount++;
-                                                Thread.sleep(100);
-        				}
-                        
+                        while (true) {
+                                Connection con = null;
+                                try {
+                                        System.out.println("Starting Consumer - creating connection...");
+                                        con = cf.createConnection("app", mqAppPassword);
+                                        System.out.println("Creating session...");
+                                        Session session = con.createSession(false, Session.AUTO_ACKNOWLEDGE);
+                                        Destination getFrom = session.createQueue("DEV.QUEUE.1");
+                                        MessageConsumer consumer = session.createConsumer(getFrom);
+
+                                        con.start();
+
+                                        while (true) {
+                                                Message message = consumer.receive();
+                                                System.out.println("Received message, count: " + messageCount);
+                                                messageCount++;
+                                                Thread.sleep(500);
+                                        }
+
+                                } catch (Exception e) {
+                                        System.err.println("Connection lost, reconnecting in 5 seconds...");
+                                        e.printStackTrace();
+                                        if (con != null) {
+                                                try { con.close(); } catch (Exception ignored) {}
+                                        }
+                                        Thread.sleep(5000);
+                                }
+                        }
 
                 } catch (Exception e) {
 
