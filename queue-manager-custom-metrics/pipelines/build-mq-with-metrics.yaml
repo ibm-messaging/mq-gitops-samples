@@ -5,7 +5,7 @@ metadata:
   namespace: mq-demo
 spec:
   params:
-    - default: 10.0.0.0-r3
+    - default: 10.0.0.0-r4
       description: IBM MQ version
       name: mqVersion
       type: string
