@@ -5,12 +5,12 @@ metadata:
 spec:
   queueManager:
       metrics:
-        enabled: true
+        enabled: false
       resources:
         limits:
           cpu: '1'
         requests:
-          cpu: 300m
+          cpu: 1
       name: __ENV____QMGRNAME__
       mqsc:
       - configMap:
