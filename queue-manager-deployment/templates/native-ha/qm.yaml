@@ -27,6 +27,8 @@ spec:
           cpu: 800m
       name: __ENV____QMGRNAME__
       availability:
+        podDisruptionBudget:
+          enabled: true
         type: NativeHA
         updateStrategy: RollingUpdate
       storage:
